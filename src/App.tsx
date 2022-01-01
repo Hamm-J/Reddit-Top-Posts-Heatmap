@@ -1,6 +1,10 @@
+import Fetcher from "./components/Fetcher/Fetcher";
+
 function App() {
   return (
-    <div>hello world</div>
+    <div>
+      <Fetcher></Fetcher>
+    </div>
   );
 }
 
