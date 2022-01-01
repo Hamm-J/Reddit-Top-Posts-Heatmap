@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Fetcher = () => {
   const subreddit = "halo";
@@ -32,8 +32,7 @@ const Fetcher = () => {
 
   return (
     <>
-      { posts.map((post:any, postIdx:any) => (
-            
+      { posts.map((post:any, postIdx:any) => ( 
             <div key={postIdx}>{post.data.permalink}</div>
         ))} 
     </>
