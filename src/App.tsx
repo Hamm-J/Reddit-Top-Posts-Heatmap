@@ -1,23 +1,33 @@
+import { useState } from "react";
 import Fetcher from "./api/Fetcher/Fetcher";
-import InputText from "./components/InputText/InputText";
-import Button from "./components/Button/Button";
-import Radio from "./components/Radio/Radio";
-import InputNumber from "./components/InputNumber/InputNumber";
+import { FetcherContext } from "./contexts/FetcherContext";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [subreddit, setSubreddit] = useState<string>("halo");
+  const [time, setTime] = useState<string>("month");
+  const [limit, setLimit] = useState<number>(100);
+  const [url, setUrl] = useState<string>(`https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`);
+  const contextValues = {
+    url,
+    setUrl,
+    posts,
+    setPosts,
+    subreddit,
+    setSubreddit,
+    time,
+    setTime,
+    limit,
+    setLimit,
+  };
   return (
     <div>
-      <InputText placeholder="search..." />
-      <Radio label="Hour" radioGroup="time" />
-      <Radio label="Day" radioGroup="time" />
-      <Radio label="Week" radioGroup="time" />
-      <Radio label="Month" radioGroup="time" />
-      <Radio label="Year" radioGroup="time" />
-      <Radio label="All" radioGroup="time" />
-      <InputNumber limit={100} placeholder="Set post limit (1-100)" />
-      <Button label="Search"></Button>
-      {/* TODO: Fetcher turned off while creating basic UI */}
-      {/* <Fetcher></Fetcher> */}
+      <FetcherContext.Provider value={contextValues}>
+        <Navbar></Navbar>
+        {/* TODO: Fetcher turned off while creating basic UI */}
+        <Fetcher></Fetcher>
+      </FetcherContext.Provider>
     </div>
   );
 }

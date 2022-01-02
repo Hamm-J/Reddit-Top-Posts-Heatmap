@@ -2,12 +2,13 @@ import { InputField } from "./InputText.styled";
 
 interface Props {
   placeholder: string;
+  onChange: () => void;
 }
 
-const InputText = ({ placeholder }: Props): any => {
+const InputText = ({ placeholder, onChange }: Props): any => {
   return (
     <>
-      <InputField placeholder={placeholder} />
+      <InputField placeholder={placeholder} onChange={onChange}/>
     </>
   );
 };

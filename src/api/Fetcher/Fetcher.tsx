@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
+import { FetcherContext } from "../../contexts/FetcherContext";
 
 const Fetcher = () => {
-  const subreddit = "halo";
-  const time = "month";
-  const limit = 100;
-  const url = `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`;
-
-  const [posts, setPosts] = useState([]);
+  const { url, posts, setPosts } = useContext<any>(FetcherContext);
 
   const redditFetcher = async () => {
     const response = await fetch(url);
@@ -27,14 +23,14 @@ const Fetcher = () => {
 
         setPosts(topPostsArray);
         return topPostsArray;
-      })
-  }, []);
+      });
+  }, [url]);
 
   return (
     <>
-      { posts.map((post:any, postIdx:any) => ( 
-            <div key={postIdx}>{post.data.permalink}</div>
-        ))} 
+      {posts.map((post: any, postIdx: any) => (
+        <div key={postIdx}>{post.data.permalink}</div>
+      ))}
     </>
   );
 };

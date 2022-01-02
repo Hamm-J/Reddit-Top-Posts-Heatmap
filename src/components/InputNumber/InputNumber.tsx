@@ -2,13 +2,14 @@ import { InputField } from "./InputNumber.styled";
 
 interface Props {
   limit: number;
+  onChange: () => any;
   placeholder: string;
 }
 
-const InputNumber = ({ limit, placeholder }: Props): any => {
+const InputNumber = ({ limit, onChange, placeholder }: Props): any => {
   return (
     <>
-      <InputField placeholder={placeholder} />
+      <InputField placeholder={placeholder} onChange={onChange}/>
     </>
   );
 };
