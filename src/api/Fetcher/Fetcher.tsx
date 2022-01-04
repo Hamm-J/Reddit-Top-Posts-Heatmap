@@ -1,5 +1,10 @@
 import { useEffect, useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
+import {
+  unixToTime,
+  unixToWeekDay,
+  unixToCalendarDate,
+} from "../../helpers/UTCConversions";
 
 const Fetcher = () => {
   const { url, posts, setPosts } = useContext<any>(FetcherContext);
@@ -29,7 +34,12 @@ const Fetcher = () => {
   return (
     <>
       {posts.map((post: any, postIdx: any) => (
-        <div key={postIdx}>{post.data.permalink}</div>
+        // <div key={postIdx}>{post.data.permalink}</div>
+        <div key={postIdx}>
+          {unixToTime(post.data.created_utc)}
+          {unixToWeekDay(post.data.created_utc)}
+          {unixToCalendarDate(post.data.created_utc)}
+        </div>
       ))}
     </>
   );
