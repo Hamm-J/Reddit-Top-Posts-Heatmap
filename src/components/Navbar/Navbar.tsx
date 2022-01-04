@@ -44,7 +44,7 @@ const Navbar = () => {
       <InputNumber
         limit={100}
         placeholder="Set post limit (1-100)"
-        onChange={() => limitHandler}
+        onChange={(event:void) => limitHandler(event)}
       />
       <Button label="Search" onClick={submitHandler}></Button>
     </Nav>
