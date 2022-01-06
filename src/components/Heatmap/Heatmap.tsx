@@ -10,7 +10,6 @@ import {
 
 const Heatmap = () => {
   let arr = Array.from({ length: 168 }, (x, i) => i);
-  console.log(arr);
 
   return (
     <HeatmapContainer>

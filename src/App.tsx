@@ -28,7 +28,7 @@ function App() {
         <Navbar></Navbar>
         <Heatmap></Heatmap>
         {/* TODO: Fetcher turned off while creating basic UI */}
-        {/* <Fetcher></Fetcher> */}
+        <Fetcher></Fetcher>
       </FetcherContext.Provider>
     </div>
   );

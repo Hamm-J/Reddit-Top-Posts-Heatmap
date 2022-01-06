@@ -1,10 +1,10 @@
 import { useEffect, useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
-  unixToTime,
-  unixToWeekDay,
-  unixToCalendarDate,
+  unixToCalendarDateTime,
 } from "../../helpers/UTCConversions";
+import { fetcherTransform } from "../../helpers/fetcherTransform";
+
 
 const Fetcher = () => {
   const { url, posts, setPosts } = useContext<any>(FetcherContext);
@@ -23,11 +23,12 @@ const Fetcher = () => {
       .then((data) => {
         const topPostsArray = data.data.children;
         const arrayLength = data.data.dist;
+        console.log('from Fetcher')
         console.log(arrayLength);
         console.log(topPostsArray);
-
         setPosts(topPostsArray);
-        return topPostsArray;
+        const transformedPostArray = fetcherTransform(topPostsArray);
+        return transformedPostArray; 
       });
   }, [url]);
 
@@ -36,9 +37,7 @@ const Fetcher = () => {
       {posts.map((post: any, postIdx: any) => (
         // <div key={postIdx}>{post.data.permalink}</div>
         <div key={postIdx}>
-          {unixToTime(post.data.created_utc)}
-          {unixToWeekDay(post.data.created_utc)}
-          {unixToCalendarDate(post.data.created_utc)}
+          {unixToCalendarDateTime(post.data.created_utc)}
         </div>
       ))}
     </>
