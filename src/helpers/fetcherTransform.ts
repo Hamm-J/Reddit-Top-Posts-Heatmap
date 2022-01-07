@@ -29,5 +29,5 @@ export const fetcherTransform = (responseArray: any[]) => {
   });
   console.log("from fetcherTransform");
   console.log(results);
-  return results; // hash map
+  return results; 
 };

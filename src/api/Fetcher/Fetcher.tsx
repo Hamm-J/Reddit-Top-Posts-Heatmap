@@ -7,7 +7,7 @@ import { fetcherTransform } from "../../helpers/fetcherTransform";
 
 
 const Fetcher = () => {
-  const { url, posts, setPosts } = useContext<any>(FetcherContext);
+  const { url, setPosts } = useContext<any>(FetcherContext);
 
   const redditFetcher = async () => {
     const response = await fetch(url);
@@ -26,22 +26,13 @@ const Fetcher = () => {
         console.log('from Fetcher')
         console.log(arrayLength);
         console.log(topPostsArray);
-        setPosts(topPostsArray);
         const transformedPostArray = fetcherTransform(topPostsArray);
-        return transformedPostArray; 
+        return setPosts(transformedPostArray);
       });
   }, [url]);
-
   return (
-    <>
-      {posts.map((post: any, postIdx: any) => (
-        // <div key={postIdx}>{post.data.permalink}</div>
-        <div key={postIdx}>
-          {unixToCalendarDateTime(post.data.created_utc)}
-        </div>
-      ))}
-    </>
-  );
+    <></>
+  )
 };
 
 export default Fetcher;
