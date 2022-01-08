@@ -18,22 +18,22 @@ const Heatmap = () => {
   let sundayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Sunday_${ele}`
   );
-  let mondayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let mondayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Monday_${ele}`
   );
-  let tuesdayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let tuesdayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Tuesday_${ele}`
   );
-  let wednesdayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let wednesdayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Wednesday_${ele}`
   );
-  let thursdayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let thursdayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Thursday_${ele}`
   );
-  let fridayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let fridayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Friday_${ele}`
   );
-  let saturdayRow = Array.from({ length: 24 }, (x, i) => i).map(
+  let saturdayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Saturday_${ele}`
   );
 
