@@ -2,6 +2,7 @@ import { useState } from "react";
 import Fetcher from "./api/Fetcher/Fetcher";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
+import Heatmap from "./components/Heatmap/Heatmap";
 
 function App() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -25,6 +26,7 @@ function App() {
     <div>
       <FetcherContext.Provider value={contextValues}>
         <Navbar></Navbar>
+        <Heatmap></Heatmap>
         {/* TODO: Fetcher turned off while creating basic UI */}
         <Fetcher></Fetcher>
       </FetcherContext.Provider>

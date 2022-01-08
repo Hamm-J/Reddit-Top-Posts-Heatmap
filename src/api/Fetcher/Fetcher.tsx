@@ -1,8 +1,13 @@
 import { useEffect, useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
+import {
+  unixToCalendarDateTime,
+} from "../../helpers/UTCConversions";
+import { fetcherTransform } from "../../helpers/fetcherTransform";
+
 
 const Fetcher = () => {
-  const { url, posts, setPosts } = useContext<any>(FetcherContext);
+  const { url, setPosts } = useContext<any>(FetcherContext);
 
   const redditFetcher = async () => {
     const response = await fetch(url);
@@ -18,21 +23,16 @@ const Fetcher = () => {
       .then((data) => {
         const topPostsArray = data.data.children;
         const arrayLength = data.data.dist;
+        console.log('from Fetcher')
         console.log(arrayLength);
         console.log(topPostsArray);
-
-        setPosts(topPostsArray);
-        return topPostsArray;
+        const transformedPostArray = fetcherTransform(topPostsArray);
+        return setPosts(transformedPostArray);
       });
   }, [url]);
-
   return (
-    <>
-      {posts.map((post: any, postIdx: any) => (
-        <div key={postIdx}>{post.data.permalink}</div>
-      ))}
-    </>
-  );
+    <></>
+  )
 };
 
 export default Fetcher;
