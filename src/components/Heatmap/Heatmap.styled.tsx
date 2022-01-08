@@ -1,6 +1,4 @@
-import { builtinModules } from "module";
 import styled from "styled-components";
-import { isPropertySignature } from "typescript";
 
 export const HeatmapContainer = styled.div`
   position: relative;
