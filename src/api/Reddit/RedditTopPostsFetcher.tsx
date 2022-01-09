@@ -3,10 +3,10 @@ import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   unixToCalendarDateTime,
 } from "../../helpers/UTCConversions";
-import { fetcherTransform } from "../../helpers/fetcherTransform";
+import { redditTopPostsFetcherTransform } from "../../helpers/redditTopPostsFetcherTransform";
 
 
-const Fetcher = () => {
+const RedditTopPostsFetcher = () => {
   const { url, setPosts } = useContext<any>(FetcherContext);
 
   const redditFetcher = async () => {
@@ -26,7 +26,7 @@ const Fetcher = () => {
         console.log('from Fetcher')
         console.log(arrayLength);
         console.log(topPostsArray);
-        const transformedPostArray = fetcherTransform(topPostsArray);
+        const transformedPostArray = redditTopPostsFetcherTransform(topPostsArray);
         return setPosts(transformedPostArray);
       });
   }, [url]);
@@ -35,4 +35,4 @@ const Fetcher = () => {
   )
 };
 
-export default Fetcher;
+export default RedditTopPostsFetcher;

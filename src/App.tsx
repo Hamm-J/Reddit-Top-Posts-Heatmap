@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Fetcher from "./api/Fetcher/Fetcher";
+import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
 import Heatmap from "./components/Heatmap/Heatmap";
@@ -28,10 +28,11 @@ function App() {
     setSelectedCell,
   };
 
+
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
-        <Fetcher></Fetcher>
+        <RedditTopPostsFetcher></RedditTopPostsFetcher>
         <Navbar></Navbar>
         <Heatmap></Heatmap>
         {/* TODO: Fetcher turned off while creating basic UI */}

@@ -1,6 +1,6 @@
 import { unixToDayHour } from "./UTCConversions";
 
-export const fetcherTransform = (responseArray: any[]) => {
+export const redditTopPostsFetcherTransform = (responseArray: any[]) => {
   let results: any = {};
 
   responseArray.forEach((obj) => {
