@@ -16,7 +16,7 @@ export const redditTopPostsFetcherTransform = (responseArray: any[]) => {
       totalAwardsReceived: post.total_awards_received,
       numComments: post.num_comments,
       pinned: post.pinned,
-      postHint: post.post_hint,
+      postHint: String(post.post_hint),
       stickied: post.stickied,
       spoiler: post.spoiler,
     };
