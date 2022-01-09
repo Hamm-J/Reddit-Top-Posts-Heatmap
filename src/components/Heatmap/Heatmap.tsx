@@ -11,7 +11,7 @@ import {
 } from "./Heatmap.styled";
 
 const Heatmap = () => {
-  const { posts } = useContext<any>(FetcherContext);
+  const { posts, setSelectedCell } = useContext<any>(FetcherContext);
 
   // Create each day's row with 24 elements (1 for each hour) and set the
   // elements' value to the keys of what the fetcherTransform returns
@@ -39,6 +39,7 @@ const Heatmap = () => {
 
   console.log("from Heatmap");
   console.log(posts);
+  let temp;
 
   return (
     <HeatmapContainer>
@@ -69,6 +70,11 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
@@ -79,6 +85,11 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
@@ -89,6 +100,11 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
@@ -99,6 +115,11 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
@@ -109,6 +130,11 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
@@ -119,16 +145,26 @@ const Heatmap = () => {
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
         ))}
-        
+
         {saturdayRow.map((postTime: any, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
+            onClick={() =>
+                postTime in posts
+                  ? setSelectedCell(posts[postTime])
+                  : alert(`There were no posts at ${postTime}.`)
+            }
           >
             {postTime in posts ? posts[postTime].length : 0}
           </Cell>
