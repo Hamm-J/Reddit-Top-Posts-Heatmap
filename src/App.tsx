@@ -27,6 +27,7 @@ function App() {
     selectedCell,
     setSelectedCell,
   };
+
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
