@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Fetcher from "./api/Fetcher/Fetcher";
+import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
+import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
 import Heatmap from "./components/Heatmap/Heatmap";
@@ -27,10 +28,12 @@ function App() {
     selectedCell,
     setSelectedCell,
   };
+
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
-        <Fetcher></Fetcher>
+        <RedditTopPostsFetcher></RedditTopPostsFetcher>
+        <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <Navbar></Navbar>
         <Heatmap></Heatmap>
         {/* TODO: Fetcher turned off while creating basic UI */}

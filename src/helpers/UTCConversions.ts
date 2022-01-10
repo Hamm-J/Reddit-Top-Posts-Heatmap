@@ -38,7 +38,7 @@ export const unixToDayHour = (unix: number) => {
   let dayOfWeek = days[a.getDay()];
   let hour = a.getHours();
   let time = `${dayOfWeek}_${hour}`;
-  return time
+  return time;
 };
 
 export const unixToCalendarDateTime = (unix: number) => {
@@ -65,4 +65,16 @@ export const unixToCalendarDateTime = (unix: number) => {
   let sec = a.getSeconds();
   let time = `${date}_${month}_${year}_${hour}:${min}:${sec}`;
   return time;
+};
+
+export const newDateToUTC = (date: Date) => {
+  let timeUTC = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds()
+  );
+  return timeUTC;
 };
