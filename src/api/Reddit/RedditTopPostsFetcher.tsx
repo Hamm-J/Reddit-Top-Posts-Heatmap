@@ -1,38 +1,87 @@
 import { useEffect, useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
-import {
-  unixToCalendarDateTime,
-} from "../../helpers/UTCConversions";
-import { redditTopPostsFetcherTransform } from "../../helpers/redditTopPostsFetcherTransform";
-
+import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const RedditTopPostsFetcher = () => {
-  const { url, setPosts } = useContext<any>(FetcherContext);
+  const { url, setPosts, setPostCounts } = useContext<any>(FetcherContext);
 
-  const redditFetcher = async () => {
-    const response = await fetch(url);
-    return response;
+  const fetchData = async () => {
+    try {
+      const response: any = await fetch(url);
+      return response;
+    } catch (error: any) {
+      console.error(error.message, error.stack);
+    }
+  };
+
+  const transformData = (responseArray: any[]) => {
+    let data: any = {};
+
+    responseArray.forEach((obj) => {
+      let post = obj.data;
+      let postDate = unixToDayHour(post.created_utc);
+      let postFieldsOfInterest = {
+        // subreddit info
+        subreddit: post.subreddit,
+        subredditId: post.subreddit_id,
+        subredditNamePrefixed: post.subreddit_name_prefixed,
+        subredditSubscribers: post.subreddit_subscribers,
+
+        // post info
+        date: post.created_utc,
+        id: post.id,
+        title: post.title,
+        permalink: post.permalink,
+        url: post.url,
+        thumbnail: post.thumbnail,
+        thumbnailHeight: post.thumbnail_height,
+        thumbnailWidth: post.thumbnail_width,
+
+        // post stats
+        ups: post.ups,
+        upvoteRatio: post.upvote_ratio,
+        totalAwardsReceived: post.total_awards_received,
+        numComments: post.num_comments,
+        pinned: post.pinned,
+        // cast to string so that `undefined` can be POSTed to firestore
+        postHint: String(post.post_hint),
+        stickied: post.stickied,
+        spoiler: post.spoiler,
+      };
+
+      if (!data[postDate]) {
+        data[postDate] = [postFieldsOfInterest];
+      } else {
+        data[postDate].push(postFieldsOfInterest);
+      }
+    });
+    return data;
+  };
+
+  const getPostCounts = (posts: any) => {
+    let counts: any = [];
+
+    for (let postDate in posts) {
+      counts[postDate] = posts[postDate].length;
+    }
+    return counts;
   };
 
   useEffect(() => {
-    redditFetcher()
+    fetchData()
       .then((response) => {
         const data = response.json();
         return data;
       })
       .then((data) => {
         const topPostsArray = data.data.children;
-        const arrayLength = data.data.dist;
-        console.log('from Fetcher')
-        console.log(arrayLength);
-        console.log(topPostsArray);
-        const transformedPostArray = redditTopPostsFetcherTransform(topPostsArray);
-        return setPosts(transformedPostArray);
+        const transformedPosts = transformData(topPostsArray);
+        const postCounts = getPostCounts(transformedPosts);
+        setPosts(transformedPosts);
+        setPostCounts(postCounts);
       });
   }, [url]);
-  return (
-    <></>
-  )
+  return <></>;
 };
 
 export default RedditTopPostsFetcher;

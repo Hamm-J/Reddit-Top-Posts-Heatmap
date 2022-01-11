@@ -9,10 +9,13 @@ import Inspector from "./components/Inspector/Inspector";
 
 function App() {
   const [posts, setPosts] = useState<any[]>([]);
+  const [postCounts, setPostCounts] = useState<any[]>([]);
   const [subreddit, setSubreddit] = useState<string>("halo");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(100);
-  const [url, setUrl] = useState<string>(`https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`);
+  const [url, setUrl] = useState<string>(
+    `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
+  );
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
 
   const contextValues = {
@@ -20,6 +23,8 @@ function App() {
     setUrl,
     posts,
     setPosts,
+    postCounts,
+    setPostCounts,
     subreddit,
     setSubreddit,
     time,
