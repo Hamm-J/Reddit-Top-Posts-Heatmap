@@ -59,11 +59,12 @@ const RedditTopPostsFetcher = () => {
   };
 
   const getPostCounts = (posts: any) => {
-    let counts: any = [];
+    let counts: any = {};
 
     for (let postDate in posts) {
       counts[postDate] = posts[postDate].length;
     }
+    console.log(counts);
     return counts;
   };
 

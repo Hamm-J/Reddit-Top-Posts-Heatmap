@@ -8,23 +8,30 @@ import {
 } from "../../helpers/UTCConversions";
 
 const FirebaseSubredditWriter = () => {
-  const { posts, subreddit } = useContext<any>(FetcherContext);
+  const { posts, postCounts, subreddit } = useContext<any>(FetcherContext);
 
   const createSubreddit = async () => {
     const saveTime = newDateToUTC(new Date());
 
-    const subredditSnapshotsCollectionRef = doc(
+    const subredditDataSnapshotsCollectionRef = doc(
       db,
-      "subreddit_snapshots",
+      "subreddit_data_snapshots",
       `${subreddit}_${saveTime}`
-    ); 
+    );
+
+    const subredditCountsSnapshotsCollectionRef = doc(
+      db,
+      "subreddit_counts_snapshots",
+      `${subreddit}_${saveTime}`
+    );
 
     alert(
       `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
         saveTime
       )}`
     );
-    setDoc(subredditSnapshotsCollectionRef, posts, { merge: true });
+    setDoc(subredditDataSnapshotsCollectionRef, posts, { merge: true });
+    setDoc(subredditCountsSnapshotsCollectionRef, postCounts, { merge: true });
   };
 
   return (
