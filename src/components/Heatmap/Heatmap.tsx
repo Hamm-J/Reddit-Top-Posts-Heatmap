@@ -37,8 +37,6 @@ const Heatmap = () => {
     (ele) => `Saturday_${ele}`
   );
 
-  console.log("from Heatmap");
-  console.log(posts);
   let temp;
 
   return (
@@ -71,9 +69,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -86,9 +84,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -101,9 +99,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -116,9 +114,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -131,9 +129,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -146,9 +144,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}
@@ -161,9 +159,9 @@ const Heatmap = () => {
             id={postTime}
             cellCount={postTime in posts ? posts[postTime].length : 0}
             onClick={() =>
-                postTime in posts
-                  ? setSelectedCell(posts[postTime])
-                  : alert(`There were no posts at ${postTime}.`)
+              postTime in posts
+                ? setSelectedCell(posts[postTime])
+                : alert(`There were no posts at ${postTime}.`)
             }
           >
             {postTime in posts ? posts[postTime].length : 0}

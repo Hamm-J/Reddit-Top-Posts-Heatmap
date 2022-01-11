@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
+import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
 import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
@@ -12,15 +13,16 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("halo");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(100);
-  const [url, setUrl] = useState<string>(
+  const [limit, setLimit] = useState<number>(5);
+  const [topPostsUrl, setTopPostsUrl] = useState<string>(
     `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
   );
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
+  const [comments, setComments] = useState<any>({});
 
   const contextValues = {
-    url,
-    setUrl,
+    topPostsUrl,
+    setTopPostsUrl,
     posts,
     setPosts,
     postCounts,
@@ -33,17 +35,19 @@ function App() {
     setLimit,
     selectedCell,
     setSelectedCell,
+    comments,
+    setComments,
   };
 
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
         <RedditTopPostsFetcher></RedditTopPostsFetcher>
+        <RedditCommentsFetcher></RedditCommentsFetcher>
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
         <Navbar></Navbar>
         <Heatmap></Heatmap>
-        {/* TODO: Fetcher turned off while creating basic UI */}
         <Inspector></Inspector>
       </FetcherContext.Provider>
     </div>
