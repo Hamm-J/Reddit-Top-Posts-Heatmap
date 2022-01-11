@@ -8,8 +8,8 @@ import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
 
 function App() {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [postCounts, setPostCounts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<any>({});
+  const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("halo");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(100);
