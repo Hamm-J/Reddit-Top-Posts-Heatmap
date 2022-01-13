@@ -32,13 +32,14 @@ const RedditCommentsFetcher = () => {
 
         for (let comment in arrayOfComments) {
           let commentFieldsOfInterest = {
-            id: arrayOfComments[comment].data.id,
-            permalink: arrayOfComments[comment].data.permalink,
-            author: arrayOfComments[comment].data.author,
-            created_utc: arrayOfComments[comment].data.created_utc,
-            ups: arrayOfComments[comment].data.ups,
-            downs: arrayOfComments[comment].data.downs,
-            body: arrayOfComments[comment].data.body,
+            // cast fields for uploading to firestore
+            id: String(arrayOfComments[comment].data.id),
+            permalink: String(arrayOfComments[comment].data.permalink),
+            author: String(arrayOfComments[comment].data.author),
+            created_utc: String(arrayOfComments[comment].data.created_utc),
+            ups: Number(arrayOfComments[comment].data.ups),
+            downs: Number(arrayOfComments[comment].data.downs),
+            body: String(arrayOfComments[comment].data.body),
           };
           if (!postComments[postId]) {
             postComments[postId] = [commentFieldsOfInterest];
