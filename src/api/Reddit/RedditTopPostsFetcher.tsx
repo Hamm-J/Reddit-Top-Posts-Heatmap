@@ -3,11 +3,12 @@ import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const RedditTopPostsFetcher = () => {
-  const { url, setPosts, setPostCounts } = useContext<any>(FetcherContext);
+  const { topPostsUrl, setPosts, setPostCounts } =
+    useContext<any>(FetcherContext);
 
   const fetchData = async () => {
     try {
-      const response: any = await fetch(url);
+      const response: any = await fetch(topPostsUrl);
       return response;
     } catch (error: any) {
       console.error(error.message, error.stack);
@@ -64,7 +65,6 @@ const RedditTopPostsFetcher = () => {
     for (let postDate in posts) {
       counts[postDate] = posts[postDate].length;
     }
-    console.log(counts);
     return counts;
   };
 
@@ -81,7 +81,7 @@ const RedditTopPostsFetcher = () => {
         setPosts(transformedPosts);
         setPostCounts(postCounts);
       });
-  }, [url]);
+  }, [topPostsUrl]);
   return <></>;
 };
 
