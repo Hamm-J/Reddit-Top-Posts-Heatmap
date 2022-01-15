@@ -29,6 +29,7 @@ const RedditTopPostsFetcher = () => {
         subredditSubscribers: post.subreddit_subscribers,
 
         // post info
+        author: post.author,
         date: post.created_utc,
         id: post.id,
         title: post.title,

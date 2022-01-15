@@ -38,7 +38,6 @@ function App() {
     comments,
     setComments,
   };
-  console.log(comments);
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>

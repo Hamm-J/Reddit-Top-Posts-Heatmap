@@ -1,36 +1,42 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
-import { InspectorContainer } from "./Inspector.styled";
-import { unixToDayHour } from "../../helpers/UTCConversions";
+import {
+  InspectorContainer,
+  InspectorGrid,
+  ColumnTitle,
+  RowValue,
+} from "./Inspector.styled";
+import { unixToCalendarDateTime } from "../../helpers/UTCConversions";
 
 const Inspector = () => {
-  const { selectedCell, comments } = useContext<any>(FetcherContext);
-  console.log("selectedcell");
-  // console.log(selectedCell[0].id);
-  // console.log(selectedCell);
+  const { selectedCell } = useContext<any>(FetcherContext);
   return (
     <InspectorContainer>
-      <p>Inspector</p>
-      {selectedCell.map((post: any, postIdx: any) => (
-        <div key={postIdx}>
-          <div>{post.permalink}</div>
-          <div>
-            <b>{unixToDayHour(post.date)}</b>
-          </div>
-          <div>
-            <b>{post.id}</b>
-          </div>
-          <div>
-            <p>comments stuff:</p>
-            {comments[selectedCell[0].id].map((val: any, valIdx: any) => (
-              <div key={valIdx}>
-                <div>{val.id}</div>
-                <div>{val.body}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+      <h3>Posts</h3>
+      <InspectorGrid>
+        <ColumnTitle>Title</ColumnTitle>
+        <ColumnTitle>Time Posted</ColumnTitle>
+        <ColumnTitle>Upvotes</ColumnTitle>
+        <ColumnTitle>Number of Comments</ColumnTitle>
+        <ColumnTitle>Author</ColumnTitle>
+
+        {selectedCell.map((post: any, postIdx: any) => (
+          <React.Fragment key={postIdx}>
+            <RowValue>
+              <a
+                href={`https://www.reddit.com${post.permalink}`}
+                target="_blank"
+              >
+                {post.title}
+              </a>
+            </RowValue>
+            <RowValue>{unixToCalendarDateTime(post.date)}</RowValue>
+            <RowValue>{post.ups}</RowValue>
+            <RowValue>{post.numComments}</RowValue>
+            <RowValue>{post.author}</RowValue>
+          </React.Fragment>
+        ))}
+      </InspectorGrid>
     </InspectorContainer>
   );
 };
