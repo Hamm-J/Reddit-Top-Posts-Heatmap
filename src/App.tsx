@@ -17,6 +17,7 @@ function App() {
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
+  const [showLanding, setShowLanding] = useState<boolean>(true);
 
   const contextValues = {
     topPostsUrl,
@@ -35,6 +36,8 @@ function App() {
     setSelectedCell,
     comments,
     setComments,
+    showLanding,
+    setShowLanding,
   };
   return (
     <div>
@@ -44,8 +47,14 @@ function App() {
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
         <Navbar></Navbar>
-        <Heatmap></Heatmap>
-        <Inspector></Inspector>
+        {showLanding ? (
+          <h1>landing</h1>
+        ) : (
+          <>
+            <Heatmap></Heatmap>
+            <Inspector></Inspector>
+          </>
+        )}
       </FetcherContext.Provider>
     </div>
   );

@@ -1,9 +1,9 @@
-import { useEffect, useContext, useRef } from "react";
+import { useEffect, useContext, useRef, useMemo } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const RedditTopPostsFetcher = () => {
-  const { topPostsUrl, setPosts, setPostCounts } =
+  const { topPostsUrl, setPosts, setPostCounts, setShowLanding } =
     useContext<any>(FetcherContext);
 
   const fetchData = async () => {
@@ -87,6 +87,7 @@ const RedditTopPostsFetcher = () => {
         const postCounts = getPostCounts(transformedPosts);
         setPosts(transformedPosts);
         setPostCounts(postCounts);
+        setShowLanding(false);
       });
   }, [topPostsUrl]);
   return <></>;
