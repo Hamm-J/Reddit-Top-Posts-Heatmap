@@ -27,6 +27,9 @@ function App() {
   // Landing page
   const [showLanding, setShowLanding] = useState<boolean>(true);
 
+  // Firebase user
+  const [user, setUser] = useState({});
+
   const contextValues = {
     topPostsUrl,
     setTopPostsUrl,
@@ -46,6 +49,8 @@ function App() {
     setComments,
     showLanding,
     setShowLanding,
+    user,
+    setUser,
   };
   return (
     <div>

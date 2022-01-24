@@ -1,11 +1,16 @@
 import React from "react";
 import { LoginContainer } from "./Login.styled";
-import FirebaseAuth from "../../api/Firebase/FirebaseAuth";
+import FirebaseLogin from "../../api/Firebase/FirebaseLogin";
+import FirebaseRegister from "../../api/Firebase/FirebaseRegister";
 
 const Login = () => {
   return (
     <LoginContainer>
-      <FirebaseAuth></FirebaseAuth>
+      <p>login</p>
+      <FirebaseLogin></FirebaseLogin>
+      <button>Create Account</button>
+      <FirebaseRegister></FirebaseRegister>
+      {/* <FirebaseAuth></FirebaseAuth> */}
     </LoginContainer>
   );
 };
