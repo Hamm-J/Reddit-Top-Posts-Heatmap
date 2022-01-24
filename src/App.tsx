@@ -13,9 +13,9 @@ import BannerTitle from "./components/BannerTitle/BannerTitle";
 function App() {
   const [posts, setPosts] = useState<any>({});
   const [postCounts, setPostCounts] = useState<any>({});
-  const [subreddit, setSubreddit] = useState<string>("halo");
+  const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(20);
+  const [limit, setLimit] = useState<number>(10);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
