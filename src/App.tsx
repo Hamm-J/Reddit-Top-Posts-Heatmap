@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   const [posts, setPosts] = useState<any>({});
@@ -17,6 +18,7 @@ function App() {
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
+  const [showLanding, setShowLanding] = useState<boolean>(true);
 
   const contextValues = {
     topPostsUrl,
@@ -35,6 +37,8 @@ function App() {
     setSelectedCell,
     comments,
     setComments,
+    showLanding,
+    setShowLanding,
   };
   return (
     <div>
@@ -44,8 +48,14 @@ function App() {
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
         <Navbar></Navbar>
-        <Heatmap></Heatmap>
-        <Inspector></Inspector>
+        {showLanding ? (
+          <Landing></Landing>
+        ) : (
+          <>
+            <Heatmap></Heatmap>
+            <Inspector></Inspector>
+          </>
+        )}
       </FetcherContext.Provider>
     </div>
   );
