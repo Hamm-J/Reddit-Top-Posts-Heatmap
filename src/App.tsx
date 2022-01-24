@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   const [posts, setPosts] = useState<any>({});
@@ -48,7 +49,7 @@ function App() {
         <FirebaseAuth></FirebaseAuth>
         <Navbar></Navbar>
         {showLanding ? (
-          <h1>landing</h1>
+          <Landing></Landing>
         ) : (
           <>
             <Heatmap></Heatmap>
