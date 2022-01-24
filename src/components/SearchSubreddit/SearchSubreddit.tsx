@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
-import { SearchSubredditContainer } from "./SearchSubreddit.styled";
+import {
+  SearchSubredditContainer,
+  FlexContainer,
+  R,
+} from "./SearchSubreddit.styled";
 import InputText from "../InputText/InputText";
 import Button from "../Button/Button";
 
@@ -19,12 +23,14 @@ const SearchSubreddit = () => {
   };
   return (
     <SearchSubredditContainer>
-      <p>r/</p>
-      <InputText
-        placeholder="search..."
-        onChange={(event: void) => searchHandler(event)}
-      />
-      <Button label="Search" onClick={submitHandler}></Button>
+      <FlexContainer>
+        <R>r /</R>
+        <InputText
+          placeholder="search..."
+          onChange={(event: void) => searchHandler(event)}
+        />
+        <Button label="Search" onClick={submitHandler}></Button>
+      </FlexContainer>
     </SearchSubredditContainer>
   );
 };

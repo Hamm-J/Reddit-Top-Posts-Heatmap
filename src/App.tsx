@@ -47,10 +47,11 @@ function App() {
         <RedditCommentsFetcher></RedditCommentsFetcher>
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
+        <h1>Find the best time to post on a subreddit</h1>
         {showLanding ? (
           <>
-            <Landing></Landing>
             <SearchSubreddit></SearchSubreddit>
+            <Landing></Landing>
           </>
         ) : (
           <>
