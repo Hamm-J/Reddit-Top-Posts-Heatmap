@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { LoginContainer } from "./Login.styled";
 import FirebaseLogin from "../../api/Firebase/FirebaseLogin";
-import FirebaseRegister from "../../api/Firebase/FirebaseRegister";
+import RegisterScreen from "../RegisterScreen/RegisterScreen";
+import Button from "../common/Button/Button";
 
 const Login = () => {
+  const [showRegisterScreen, setShowRegisterScreen] = useState(false);
+  const register = () => {
+    if (showRegisterScreen === false) {
+      setShowRegisterScreen(true);
+    } else {
+      setShowRegisterScreen(false);
+    }
+  };
   return (
     <LoginContainer>
       <p>login</p>
       <FirebaseLogin></FirebaseLogin>
-      <button>Create Account</button>
-      <FirebaseRegister></FirebaseRegister>
-      {/* <FirebaseAuth></FirebaseAuth> */}
+      <Button label="Register" onClick={register}></Button>
+      {showRegisterScreen && <RegisterScreen></RegisterScreen>}
     </LoginContainer>
   );
 };
