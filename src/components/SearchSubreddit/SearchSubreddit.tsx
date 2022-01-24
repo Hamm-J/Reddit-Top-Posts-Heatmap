@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
-import { Nav } from "./Navbar.styled";
+import { Nav } from "./SearchSubreddit.styled";
 import InputText from "../InputText/InputText";
 import Radio from "../Radio/Radio";
 import InputNumber from "../InputNumber/InputNumber";
 import Button from "../Button/Button";
 
-const Navbar = () => {
+const SearchSubreddit = () => {
   const {
     topPostsUrl,
     setTopPostsUrl,
@@ -83,4 +83,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default SearchSubreddit;

@@ -3,7 +3,7 @@ import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
 import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
 import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
-import Navbar from "./components/Navbar/Navbar";
+import SearchSubreddit from "./components/SearchSubreddit/SearchSubreddit";
 import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
@@ -47,7 +47,7 @@ function App() {
         <RedditCommentsFetcher></RedditCommentsFetcher>
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
-        <Navbar></Navbar>
+        <SearchSubreddit></SearchSubreddit>
         {showLanding ? (
           <Landing></Landing>
         ) : (
