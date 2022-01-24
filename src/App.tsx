@@ -9,16 +9,22 @@ import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
 import Landing from "./components/Landing/Landing";
 import BannerTitle from "./components/BannerTitle/BannerTitle";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  // reddit API
   const [posts, setPosts] = useState<any>({});
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(10);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
+
+  // Inspector
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
+
+  // Landing page
   const [showLanding, setShowLanding] = useState<boolean>(true);
 
   const contextValues = {
@@ -44,10 +50,10 @@ function App() {
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
+        <Navbar></Navbar>
         <RedditTopPostsFetcher></RedditTopPostsFetcher>
         <RedditCommentsFetcher></RedditCommentsFetcher>
-        <FirebaseSubredditWriter></FirebaseSubredditWriter>
-        <FirebaseAuth></FirebaseAuth>
+        {/* <FirebaseAuth></FirebaseAuth> */}
         <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
         {showLanding ? (
           <>
@@ -59,6 +65,7 @@ function App() {
             <SearchSubreddit></SearchSubreddit>
             <Heatmap></Heatmap>
             <Inspector></Inspector>
+            <FirebaseSubredditWriter></FirebaseSubredditWriter>
           </>
         )}
       </FetcherContext.Provider>
