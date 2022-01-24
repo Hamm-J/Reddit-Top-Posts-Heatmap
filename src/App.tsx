@@ -14,9 +14,7 @@ function App() {
   const [subreddit, setSubreddit] = useState<string>("halo");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(5);
-  const [topPostsUrl, setTopPostsUrl] = useState<string>(
-    `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
-  );
+  const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
 

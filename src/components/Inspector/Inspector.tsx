@@ -10,16 +10,21 @@ import { unixToCalendarDateTime } from "../../helpers/UTCConversions";
 
 const Inspector = () => {
   const { selectedCell } = useContext<any>(FetcherContext);
+  console.log(selectedCell);
   return (
     <InspectorContainer>
-      <h3>Posts</h3>
       <InspectorGrid>
-        <ColumnTitle>Title</ColumnTitle>
-        <ColumnTitle>Time Posted</ColumnTitle>
-        <ColumnTitle>Upvotes</ColumnTitle>
-        <ColumnTitle>Number of Comments</ColumnTitle>
-        <ColumnTitle>Author</ColumnTitle>
-
+        {selectedCell.length == 0 ? (
+          <></>
+        ) : (
+          <>
+            <ColumnTitle>Title</ColumnTitle>
+            <ColumnTitle>Time Posted</ColumnTitle>
+            <ColumnTitle>Upvotes</ColumnTitle>
+            <ColumnTitle>Number of Comments</ColumnTitle>
+            <ColumnTitle>Author</ColumnTitle>
+          </>
+        )}
         {selectedCell.map((post: any, postIdx: any) => (
           <React.Fragment key={postIdx}>
             <RowValue>

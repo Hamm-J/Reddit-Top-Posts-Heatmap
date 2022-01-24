@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useRef } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
@@ -69,7 +69,13 @@ const RedditTopPostsFetcher = () => {
     return counts;
   };
 
+  const firstUpdate = useRef(true);
+
   useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
     fetchData()
       .then((response) => {
         const data = response.json();
