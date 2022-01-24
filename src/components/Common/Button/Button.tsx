@@ -1,5 +1,4 @@
 import { ButtonField } from "./Button.styled";
-
 interface Props {
   label: string;
   onClick: () => any;

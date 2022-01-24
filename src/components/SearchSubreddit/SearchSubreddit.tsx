@@ -5,8 +5,8 @@ import {
   FlexContainer,
   R,
 } from "./SearchSubreddit.styled";
-import InputText from "../InputText/InputText";
-import Button from "../Button/Button";
+import InputText from "../common/InputText/InputText";
+import Button from "../common/Button/Button";
 
 const SearchSubreddit = () => {
   const { setTopPostsUrl, subreddit, setSubreddit, time, limit } =
