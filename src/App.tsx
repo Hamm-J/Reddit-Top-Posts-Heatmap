@@ -8,6 +8,7 @@ import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
 import Landing from "./components/Landing/Landing";
+import BannerTitle from "./components/BannerTitle/BannerTitle";
 
 function App() {
   const [posts, setPosts] = useState<any>({});
@@ -47,7 +48,7 @@ function App() {
         <RedditCommentsFetcher></RedditCommentsFetcher>
         <FirebaseSubredditWriter></FirebaseSubredditWriter>
         <FirebaseAuth></FirebaseAuth>
-        <h1>Find the best time to post on a subreddit</h1>
+        <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
         {showLanding ? (
           <>
             <SearchSubreddit></SearchSubreddit>
