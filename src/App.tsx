@@ -71,6 +71,7 @@ function App() {
             <Heatmap></Heatmap>
             <Inspector></Inspector>
             <FirebaseSubredditWriter></FirebaseSubredditWriter>
+            <Landing></Landing>
           </>
         )}
       </FetcherContext.Provider>
