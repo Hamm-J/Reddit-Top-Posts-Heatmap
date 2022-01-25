@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FetcherContext } from "../../contexts/FetcherContext";
 import { LoginContainer } from "./Login.styled";
 import FirebaseLogin from "../../api/Firebase/FirebaseLogin";
 import RegisterScreen from "../RegisterScreen/RegisterScreen";
 import Button from "../common/Button/Button";
 
 const Login = () => {
+  const { user } = useContext<any>(FetcherContext);
   const [showRegisterScreen, setShowRegisterScreen] = useState(false);
   const register = () => {
     if (showRegisterScreen === false) {
@@ -17,8 +19,8 @@ const Login = () => {
     <LoginContainer>
       <p>login</p>
       <FirebaseLogin></FirebaseLogin>
-      <Button label="Register" onClick={register}></Button>
-      {showRegisterScreen && <RegisterScreen></RegisterScreen>}
+      {!user && <Button label="Register" onClick={register}></Button>}
+      {!user && showRegisterScreen && <RegisterScreen></RegisterScreen>}
     </LoginContainer>
   );
 };
