@@ -17,9 +17,8 @@ const Login = () => {
   };
   return (
     <LoginContainer>
-      <p>login</p>
       <FirebaseLogin></FirebaseLogin>
-      {!user && <Button label="Register" onClick={register}></Button>}
+      {!user && <Button label="Sign up?" onClick={register}></Button>}
       {!user && showRegisterScreen && <RegisterScreen></RegisterScreen>}
     </LoginContainer>
   );

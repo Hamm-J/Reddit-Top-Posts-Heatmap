@@ -50,7 +50,7 @@ const FirebaseLogin = () => {
       ) : (
         <Button label="Login" onClick={login}></Button>
       )}
-      {user && <h1>{user?.email}</h1>}
+      {user && <p>{user?.email}</p>}
     </div>
   );
 };
