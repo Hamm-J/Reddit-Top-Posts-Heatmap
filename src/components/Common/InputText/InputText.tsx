@@ -2,8 +2,9 @@ import { InputField, IInputField } from "./InputText.styled";
 
 interface Props {
   placeholder: string;
-  onChange: () => void;
-  innerRef?: any;
+  // TODO: confirm that I need () => void here
+  onChange: React.ChangeEventHandler<HTMLInputElement> | (() => void);
+  innerRef?: React.RefObject<HTMLInputElement>;
   remFontSize?: IInputField["remFontSize"];
   borderThickness?: IInputField["borderThickness"];
 }

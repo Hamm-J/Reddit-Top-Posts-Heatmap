@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import Button from "../../components/common/Button/Button";
+import InputText from "../../components/common/InputText/InputText";
 
 const FirebaseLogin = () => {
   const { user, setUser } = useContext<any>(FetcherContext);
@@ -35,20 +37,20 @@ const FirebaseLogin = () => {
   };
   return (
     <div>
-      <input
-        type="text"
-        placeholder="login: username"
+      <InputText
         onChange={(event) => setLoginEmail(event.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="login: password"
+        placeholder="Login: Username"
+      ></InputText>
+      <InputText
         onChange={(event) => setLoginPassword(event.target.value)}
-      />
-      <button onClick={login}>login</button>
-      <br />
-      <button onClick={logout}>logout</button>
-      <h1>{user?.email}</h1>
+        placeholder="Login: Password"
+      ></InputText>
+      {user ? (
+        <Button label="Logout" onClick={logout}></Button>
+      ) : (
+        <Button label="Login" onClick={login}></Button>
+      )}
+      {user && <h1>{user?.email}</h1>}
     </div>
   );
 };

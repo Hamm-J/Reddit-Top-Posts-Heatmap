@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import Button from "../../components/common/Button/Button";
+import InputText from "../../components/common/InputText/InputText";
 
 const FirebaseRegister = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -25,17 +23,15 @@ const FirebaseRegister = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="sign up: username"
+      <InputText
         onChange={(event) => setRegisterEmail(event.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="sign up: password"
+        placeholder="Sign Up: Username"
+      ></InputText>
+      <InputText
         onChange={(event) => setRegisterPassword(event.target.value)}
-      />
-      <button onClick={register}>register</button>
+        placeholder="Sign Up: Password"
+      ></InputText>
+      <Button onClick={register} label="Register"></Button>
     </div>
   );
 };
