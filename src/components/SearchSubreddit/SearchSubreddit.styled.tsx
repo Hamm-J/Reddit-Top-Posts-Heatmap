@@ -17,6 +17,7 @@ export const FlexContainer = styled.div`
 
 export const R = styled.p`
   padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
 `;

@@ -36,8 +36,15 @@ const SearchSubreddit = () => {
           placeholder="search..."
           onChange={(event: void) => searchHandler(event)}
           innerRef={inputRef}
+          remFontSize={2}
+          borderThickness="medium"
         />
-        <Button label="Search" onClick={submitHandler}></Button>
+        <Button
+          label="Search"
+          onClick={submitHandler}
+          remFontSize={2}
+          backgroundColor="orange"
+        ></Button>
       </FlexContainer>
     </SearchSubredditContainer>
   );
