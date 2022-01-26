@@ -17,7 +17,7 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(100);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Inspector
@@ -70,7 +70,6 @@ function App() {
             <SearchSubreddit></SearchSubreddit>
             <Heatmap></Heatmap>
             <Inspector></Inspector>
-            <FirebaseSubredditWriter></FirebaseSubredditWriter>
             <Landing></Landing>
           </>
         )}

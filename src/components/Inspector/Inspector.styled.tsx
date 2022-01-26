@@ -6,13 +6,21 @@ export const InspectorContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
+  /* background-color: lightblue; */
+`;
+
+export const InspectorTitleWrapper = styled.div`
+  width: 1290px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const InspectorGrid = styled.div`
   background-color: seafoam;
   display: grid;
-  grid-template-columns: 500px 200px 100px 200px 200px;
+  grid-template-columns: 590px 200px 100px 200px 200px;
   grid-auto-flow: dense;
   border-top: 1px solid black;
   border-left: 1px solid black;

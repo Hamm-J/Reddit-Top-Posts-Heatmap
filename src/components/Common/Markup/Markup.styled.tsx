@@ -10,4 +10,6 @@ export const List = styled.ul``;
 
 export const ListItem = styled.li``;
 
-export const Anchor = styled.a``;
+export const Anchor = styled.a`
+  text-decoration: none;
+`;
