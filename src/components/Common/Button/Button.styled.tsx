@@ -11,5 +11,6 @@ export const ButtonField = styled.button<IButtonField>`
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.fontColor};
   border-style: none;
+  padding: 0.3rem 0.4rem 0.3rem 0.4rem;
   cursor: pointer;
 `;
