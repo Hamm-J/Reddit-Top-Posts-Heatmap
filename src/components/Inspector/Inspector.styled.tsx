@@ -29,8 +29,9 @@ export const InspectorGrid = styled.div`
 export const ColumnTitle = styled.div`
   border-bottom: 1px solid black;
   border-right: 1px solid black;
+  font-size: 1.1rem;
   font-weight: bold;
-  padding: 5px;
+  padding: 0.5rem 0 0.5rem 0.5rem;
 `;
 
 export const RowValue = styled.div`

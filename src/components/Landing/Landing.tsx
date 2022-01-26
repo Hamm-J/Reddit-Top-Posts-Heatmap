@@ -13,7 +13,8 @@ const Landing = () => {
     <LandingContainer>
       <SectionTitle>How it works</SectionTitle>
       <List>
-        <ListItem>We find the time 50 posts from the last year.</ListItem>
+        <ListItem>Search a subreddit.</ListItem>
+        <ListItem>We find the top 100 posts from the last year.</ListItem>
         <ListItem>
           We visualize the data in a heatmap that is grouped by weekday and hour
           of the day.
