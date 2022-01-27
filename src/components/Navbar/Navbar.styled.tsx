@@ -1,11 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Nav = styled.nav`
+export const NavbarContainer = styled.div`
+  background-color: gray;
+  padding: 5px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #FF4500;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
 `;

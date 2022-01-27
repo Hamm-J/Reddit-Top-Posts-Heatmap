@@ -11,7 +11,11 @@ const Radio = ({ label, radioGroup, onChange }: Props): any => {
     <>
       <Label>
         {/* Pass "label" as lower case "value" for query */}
-        <RadioField name={radioGroup} value={label.toLocaleLowerCase()} onChange={onChange}/>
+        <RadioField
+          name={radioGroup}
+          value={label.toLocaleLowerCase()}
+          onChange={onChange}
+        />
         {label}
       </Label>
     </>

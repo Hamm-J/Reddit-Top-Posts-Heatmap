@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const HeatmapContainer = styled.div`
+  margin-top: 30px;
+  margin-bottom: 30px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,15 +21,15 @@ export const HeatmapGrid = styled.div`
 export const Cell = styled.button<{ cellCount: number }>`
   background-color: ${(props) => {
     switch (true) {
-      case (props.cellCount === 1):
+      case props.cellCount === 1:
         return "lightorange";
-      case (props.cellCount === 2):
+      case props.cellCount === 2:
         return "lightyellow";
-      case (props.cellCount === 3):
+      case props.cellCount === 3:
         return "lightgreen";
-      case (props.cellCount > 3):
-        return "lightblue"
-      case (props.cellCount === 0):
+      case props.cellCount > 3:
+        return "lightblue";
+      case props.cellCount === 0:
         return "lightgray";
       default:
         return "lightgray";

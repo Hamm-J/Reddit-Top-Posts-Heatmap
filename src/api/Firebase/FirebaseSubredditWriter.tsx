@@ -6,6 +6,7 @@ import {
   newDateToUTC,
   unixToCalendarDateTime,
 } from "../../helpers/UTCConversions";
+import Button from "../../components/common/Button/Button";
 
 const FirebaseSubredditWriter = () => {
   const { posts, postCounts, comments, subreddit } =
@@ -44,7 +45,13 @@ const FirebaseSubredditWriter = () => {
 
   return (
     <>
-      <button onClick={createSubreddit}>Save Post Data</button>
+      {/* <button onClick={createSubreddit}>Save Post Data</button> */}
+      <Button
+        label="Save Subreddit Data?"
+        onClick={createSubreddit}
+        remFontSize={1.2}
+        backgroundColor="orange"
+      ></Button>
     </>
   );
 };

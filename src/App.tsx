@@ -3,22 +3,32 @@ import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
 import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
 import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
-import Navbar from "./components/Navbar/Navbar";
+import SearchSubreddit from "./components/SearchSubreddit/SearchSubreddit";
 import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
 import Landing from "./components/Landing/Landing";
+import BannerTitle from "./components/BannerTitle/BannerTitle";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  // reddit API
   const [posts, setPosts] = useState<any>({});
   const [postCounts, setPostCounts] = useState<any>({});
-  const [subreddit, setSubreddit] = useState<string>("halo");
+  const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(5);
+  const [limit, setLimit] = useState<number>(100);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
+
+  // Inspector
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
+
+  // Landing page
   const [showLanding, setShowLanding] = useState<boolean>(true);
+
+  // Firebase user
+  const [user, setUser] = useState({});
 
   const contextValues = {
     topPostsUrl,
@@ -39,21 +49,28 @@ function App() {
     setComments,
     showLanding,
     setShowLanding,
+    user,
+    setUser,
   };
   return (
     <div>
       <FetcherContext.Provider value={contextValues}>
+        <Navbar></Navbar>
         <RedditTopPostsFetcher></RedditTopPostsFetcher>
         <RedditCommentsFetcher></RedditCommentsFetcher>
-        <FirebaseSubredditWriter></FirebaseSubredditWriter>
-        <FirebaseAuth></FirebaseAuth>
-        <Navbar></Navbar>
+        {/* <FirebaseAuth></FirebaseAuth> */}
+        <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
         {showLanding ? (
-          <Landing></Landing>
+          <>
+            <SearchSubreddit></SearchSubreddit>
+            <Landing></Landing>
+          </>
         ) : (
           <>
+            <SearchSubreddit></SearchSubreddit>
             <Heatmap></Heatmap>
             <Inspector></Inspector>
+            <Landing></Landing>
           </>
         )}
       </FetcherContext.Provider>
