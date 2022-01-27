@@ -3,6 +3,7 @@ interface Props {
   label: string;
   onClick: () => any;
   innerRef?: React.RefObject<HTMLButtonElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLButtonElement>;
   remFontSize?: IButtonField["remFontSize"];
   backgroundColor?: IButtonField["backgroundColor"];
   fontColor?: IButtonField["fontColor"];
@@ -15,6 +16,7 @@ const Button = ({
   remFontSize = 1,
   backgroundColor = "black",
   fontColor = "white",
+  onKeyUp,
 }: Props): any => {
   return (
     <ButtonField
@@ -23,6 +25,7 @@ const Button = ({
       remFontSize={remFontSize}
       backgroundColor={backgroundColor}
       fontColor={fontColor}
+      onKeyUp={onKeyUp}
     >
       {label}
     </ButtonField>
