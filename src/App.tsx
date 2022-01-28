@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import UserDashboard from "./pages/UserDashboard";
+import ErrorPage from "./pages/404";
 import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
 import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
-import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
 import SearchSubreddit from "./components/SearchSubreddit/SearchSubreddit";
-import FirebaseAuth from "./api/Firebase/FirebaseAuth";
 import Heatmap from "./components/Heatmap/Heatmap";
 import Inspector from "./components/Inspector/Inspector";
 import Landing from "./components/Landing/Landing";
@@ -54,26 +56,33 @@ function App() {
   };
   return (
     <div>
-      <FetcherContext.Provider value={contextValues}>
-        <Navbar></Navbar>
-        <RedditTopPostsFetcher></RedditTopPostsFetcher>
-        <RedditCommentsFetcher></RedditCommentsFetcher>
-        {/* <FirebaseAuth></FirebaseAuth> */}
-        <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
-        {showLanding ? (
-          <>
-            <SearchSubreddit></SearchSubreddit>
-            <Landing></Landing>
-          </>
-        ) : (
-          <>
-            <SearchSubreddit></SearchSubreddit>
-            <Heatmap></Heatmap>
-            <Inspector></Inspector>
-            <Landing></Landing>
-          </>
-        )}
-      </FetcherContext.Provider>
+      <Router>
+        <FetcherContext.Provider value={contextValues}>
+          <Navbar></Navbar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user_dashboard" element={<UserDashboard />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+          <RedditTopPostsFetcher></RedditTopPostsFetcher>
+          <RedditCommentsFetcher></RedditCommentsFetcher>
+          {/* <FirebaseAuth></FirebaseAuth> */}
+          <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
+          {showLanding ? (
+            <>
+              <SearchSubreddit></SearchSubreddit>
+              <Landing></Landing>
+            </>
+          ) : (
+            <>
+              <SearchSubreddit></SearchSubreddit>
+              <Heatmap></Heatmap>
+              <Inspector></Inspector>
+              <Landing></Landing>
+            </>
+          )}
+        </FetcherContext.Provider>
+      </Router>
     </div>
   );
 }
