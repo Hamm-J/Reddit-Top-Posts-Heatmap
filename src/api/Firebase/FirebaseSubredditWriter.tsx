@@ -9,7 +9,7 @@ import {
 import Button from "../../components/common/Button/Button";
 
 const FirebaseSubredditWriter = () => {
-  const { posts, postCounts, comments, subreddit } =
+  const { posts, postCounts, comments, subreddit, user } =
     useContext<any>(FetcherContext);
 
   const createSubreddit = async () => {
@@ -17,19 +17,19 @@ const FirebaseSubredditWriter = () => {
 
     const postsSnapshotsCollectionRef = doc(
       db,
-      "subreddit_posts_snapshots",
+      `${user?.uid}_subreddit_posts_snapshots`,
       `${subreddit}_${saveTime}`
     );
 
     const postCountsSnapshotsCollectionRef = doc(
       db,
-      "subreddit_post_counts_snapshots",
+      `${user?.uid}_subreddit_post_counts_snapshots`,
       `${subreddit}_${saveTime}`
     );
 
     const commentsSnapshotCollectionRef = doc(
       db,
-      "subreddit_comments_snapshots",
+      `${user?.uid}_subreddit_comments_snapshots`,
       `${subreddit}_${saveTime}`
     );
 
