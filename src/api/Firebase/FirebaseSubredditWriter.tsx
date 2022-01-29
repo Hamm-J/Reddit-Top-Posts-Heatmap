@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase-config";
+import { db, auth } from "../../firebase-config";
 import {
   newDateToUTC,
   unixToCalendarDateTime,
@@ -13,24 +13,28 @@ const FirebaseSubredditWriter = () => {
     useContext<any>(FetcherContext);
 
   const createSubreddit = async () => {
+    if (auth.currentUser === null) {
+      return alert("You must sign in to save the data!");
+    }
+
     const saveTime = newDateToUTC(new Date());
 
     const postsSnapshotsCollectionRef = doc(
       db,
-      `${user?.uid}_subreddit_posts_snapshots`,
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_posts_${saveTime}`
     );
 
     const postCountsSnapshotsCollectionRef = doc(
       db,
-      `${user?.uid}_subreddit_post_counts_snapshots`,
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_post_counts_${saveTime}`
     );
 
     const commentsSnapshotCollectionRef = doc(
       db,
-      `${user?.uid}_subreddit_comments_snapshots`,
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_comments_${saveTime}`
     );
 
     alert(
