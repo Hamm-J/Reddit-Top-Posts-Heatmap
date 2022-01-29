@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FetcherContext } from "../contexts/FetcherContext";
+import SearchSubreddit from "../components/SearchSubreddit/SearchSubreddit";
+import Heatmap from "../components/Heatmap/Heatmap";
+import Inspector from "../components/Inspector/Inspector";
+import Landing from "../components/Landing/Landing";
+import BannerTitle from "../components/BannerTitle/BannerTitle";
 
 const Home = () => {
-  return <h1>home</h1>;
+  const { showLanding } = useContext<any>(FetcherContext);
+
+  return (
+    <>
+      <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
+      {showLanding ? (
+        <>
+          <SearchSubreddit></SearchSubreddit>
+          <Landing></Landing>
+        </>
+      ) : (
+        <>
+          <SearchSubreddit></SearchSubreddit>
+          <Heatmap></Heatmap>
+          <Inspector></Inspector>
+          <Landing></Landing>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Home;
