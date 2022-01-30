@@ -10,11 +10,11 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   // reddit API
-  const [posts, setPosts] = useState<any>({});
+  const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(30);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Inspector

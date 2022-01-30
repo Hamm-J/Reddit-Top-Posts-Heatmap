@@ -10,8 +10,16 @@ import {
   Description,
 } from "./Heatmap.styled";
 
-const Heatmap = () => {
-  const { posts, setSelectedCell } = useContext<any>(FetcherContext);
+// TODO: 2022_01_30
+// Cast and type the posts and postCounts objects and then pass those interfaces
+// here.
+interface IProps {
+  posts: {};
+  postCounts: {};
+}
+
+const Heatmap = ({ posts, postCounts }: IProps) => {
+  const { setSelectedCell } = useContext<any>(FetcherContext);
 
   // Create each day's row with 24 elements (1 for each hour) and set the
   // elements' value to the keys of what the fetcherTransform returns
@@ -63,108 +71,108 @@ const Heatmap = () => {
         <DayValue>Friday</DayValue>
         <DayValue>Saturday</DayValue>
 
-        {sundayRow.map((postTime: any, postTimeIdx: number) => (
+        {sundayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {mondayRow.map((postTime: any, postTimeIdx: number) => (
+        {mondayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {tuesdayRow.map((postTime: any, postTimeIdx: number) => (
+        {tuesdayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {wednesdayRow.map((postTime: any, postTimeIdx: number) => (
+        {wednesdayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {thursdayRow.map((postTime: any, postTimeIdx: number) => (
+        {thursdayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {fridayRow.map((postTime: any, postTimeIdx: number) => (
+        {fridayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
 
-        {saturdayRow.map((postTime: any, postTimeIdx: number) => (
+        {saturdayRow.map((postTime: string, postTimeIdx: number) => (
           <Cell
             key={postTimeIdx}
             id={postTime}
-            cellCount={postTime in posts ? posts[postTime].length : 0}
+            cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
               postTime in posts
-                ? setSelectedCell(posts[postTime])
+                ? setSelectedCell(posts[postTime as keyof {}])
                 : alert(`There were no posts at ${postTime}.`)
             }
           >
-            {postTime in posts ? posts[postTime].length : 0}
+            {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
       </HeatmapGrid>
