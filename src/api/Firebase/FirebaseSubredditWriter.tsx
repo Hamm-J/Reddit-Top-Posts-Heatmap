@@ -19,13 +19,13 @@ const FirebaseSubredditWriter = () => {
 
     const saveTime = newDateToUTC(new Date());
 
-    const postsSnapshotsCollectionRef = doc(
+    const postsSnapshotcollectionRef = doc(
       db,
       user.uid,
       `${subreddit}_posts_${saveTime}`
     );
 
-    const postCountsSnapshotsCollectionRef = doc(
+    const postCountsSnapshotCollectionRef = doc(
       db,
       user.uid,
       `${subreddit}_post_counts_${saveTime}`
@@ -42,8 +42,8 @@ const FirebaseSubredditWriter = () => {
         saveTime
       )}`
     );
-    setDoc(postsSnapshotsCollectionRef, posts, { merge: true });
-    setDoc(postCountsSnapshotsCollectionRef, postCounts, { merge: true });
+    setDoc(postsSnapshotcollectionRef, posts, { merge: true });
+    setDoc(postCountsSnapshotCollectionRef, postCounts, { merge: true });
     setDoc(commentsSnapshotCollectionRef, comments, { merge: true });
   };
 
