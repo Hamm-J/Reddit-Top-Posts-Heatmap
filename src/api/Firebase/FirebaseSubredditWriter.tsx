@@ -19,6 +19,23 @@ const FirebaseSubredditWriter = () => {
 
     const saveTime = newDateToUTC(new Date());
 
+    // package the posts, postCounts, and comments with `docType` property for
+    // query filtering
+    const postsPackaged = {
+      docType: "posts",
+      data: posts,
+    };
+
+    const postCountsPackaged = {
+      docType: "postCounts",
+      data: postCounts,
+    };
+
+    const commentsPackaged = {
+      docType: "comments",
+      data: comments,
+    };
+
     const postsSnapshotcollectionRef = doc(
       db,
       user.uid,
@@ -42,9 +59,11 @@ const FirebaseSubredditWriter = () => {
         saveTime
       )}`
     );
-    setDoc(postsSnapshotcollectionRef, posts, { merge: true });
-    setDoc(postCountsSnapshotCollectionRef, postCounts, { merge: true });
-    setDoc(commentsSnapshotCollectionRef, comments, { merge: true });
+    setDoc(postsSnapshotcollectionRef, postsPackaged, { merge: true });
+    setDoc(postCountsSnapshotCollectionRef, postCountsPackaged, {
+      merge: true,
+    });
+    setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
   };
 
   return (

@@ -14,7 +14,7 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(30);
+  const [limit, setLimit] = useState<number>(10);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Inspector
@@ -24,8 +24,11 @@ function App() {
   // Landing page
   const [showLanding, setShowLanding] = useState<boolean>(true);
 
-  // Firebase user
+  // Firebase
   const [user, setUser] = useState({});
+  const [postsSnapshot, setPostsSnapshot] = useState({});
+  const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
+  const [commentsSnapshot, setCommentsShapshot] = useState({});
 
   const contextValues = {
     topPostsUrl,
@@ -48,6 +51,12 @@ function App() {
     setShowLanding,
     user,
     setUser,
+    postsSnapshot,
+    setPostsSnapshot,
+    postCountsSnapshot,
+    setPostCountsSnapshot,
+    commentsSnapshot,
+    setCommentsShapshot,
   };
   return (
     <div>
