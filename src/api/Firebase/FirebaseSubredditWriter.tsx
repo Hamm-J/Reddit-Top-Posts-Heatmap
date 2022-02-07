@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase-config";
+import { db, auth } from "../../firebase-config";
 import {
   newDateToUTC,
   unixToCalendarDateTime,
@@ -9,28 +9,49 @@ import {
 import Button from "../../components/common/Button/Button";
 
 const FirebaseSubredditWriter = () => {
-  const { posts, postCounts, comments, subreddit } =
+  const { posts, postCounts, comments, subreddit, user } =
     useContext<any>(FetcherContext);
 
   const createSubreddit = async () => {
+    if (auth.currentUser === null) {
+      return alert("You must sign in to save the data!");
+    }
+
     const saveTime = newDateToUTC(new Date());
 
-    const postsSnapshotsCollectionRef = doc(
+    // package the posts, postCounts, and comments with `docType` property for
+    // query filtering
+    const postsPackaged = {
+      docType: "posts",
+      data: posts,
+    };
+
+    const postCountsPackaged = {
+      docType: "postCounts",
+      data: postCounts,
+    };
+
+    const commentsPackaged = {
+      docType: "comments",
+      data: comments,
+    };
+
+    const postsSnapshotcollectionRef = doc(
       db,
-      "subreddit_posts_snapshots",
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_posts_${saveTime}`
     );
 
-    const postCountsSnapshotsCollectionRef = doc(
+    const postCountsSnapshotCollectionRef = doc(
       db,
-      "subreddit_post_counts_snapshots",
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_postCounts_${saveTime}`
     );
 
     const commentsSnapshotCollectionRef = doc(
       db,
-      "subreddit_comments_snapshots",
-      `${subreddit}_${saveTime}`
+      user.uid,
+      `${subreddit}_comments_${saveTime}`
     );
 
     alert(
@@ -38,9 +59,11 @@ const FirebaseSubredditWriter = () => {
         saveTime
       )}`
     );
-    setDoc(postsSnapshotsCollectionRef, posts, { merge: true });
-    setDoc(postCountsSnapshotsCollectionRef, postCounts, { merge: true });
-    setDoc(commentsSnapshotCollectionRef, comments, { merge: true });
+    setDoc(postsSnapshotcollectionRef, postsPackaged, { merge: true });
+    setDoc(postCountsSnapshotCollectionRef, postCountsPackaged, {
+      merge: true,
+    });
+    setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
   };
 
   return (

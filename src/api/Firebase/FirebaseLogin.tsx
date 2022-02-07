@@ -51,6 +51,7 @@ const FirebaseLogin = () => {
         <Button label="Login" onClick={login}></Button>
       )}
       {user && <p>{user?.email}</p>}
+      {user && <p>{user?.uid}</p>}
     </div>
   );
 };

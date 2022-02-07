@@ -1,23 +1,20 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import UserDashboard from "./pages/UserDashboard";
+import ErrorPage from "./pages/404";
 import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
 import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
-import FirebaseSubredditWriter from "./api/Firebase/FirebaseSubredditWriter";
 import { FetcherContext } from "./contexts/FetcherContext";
-import SearchSubreddit from "./components/SearchSubreddit/SearchSubreddit";
-import FirebaseAuth from "./api/Firebase/FirebaseAuth";
-import Heatmap from "./components/Heatmap/Heatmap";
-import Inspector from "./components/Inspector/Inspector";
-import Landing from "./components/Landing/Landing";
-import BannerTitle from "./components/BannerTitle/BannerTitle";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   // reddit API
-  const [posts, setPosts] = useState<any>({});
+  const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(100);
+  const [limit, setLimit] = useState<number>(10);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Inspector
@@ -27,8 +24,11 @@ function App() {
   // Landing page
   const [showLanding, setShowLanding] = useState<boolean>(true);
 
-  // Firebase user
+  // Firebase
   const [user, setUser] = useState({});
+  const [postsSnapshot, setPostsSnapshot] = useState({});
+  const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
+  const [commentsSnapshot, setCommentsShapshot] = useState({});
 
   const contextValues = {
     topPostsUrl,
@@ -51,29 +51,27 @@ function App() {
     setShowLanding,
     user,
     setUser,
+    postsSnapshot,
+    setPostsSnapshot,
+    postCountsSnapshot,
+    setPostCountsSnapshot,
+    commentsSnapshot,
+    setCommentsShapshot,
   };
   return (
     <div>
-      <FetcherContext.Provider value={contextValues}>
-        <Navbar></Navbar>
-        <RedditTopPostsFetcher></RedditTopPostsFetcher>
-        <RedditCommentsFetcher></RedditCommentsFetcher>
-        {/* <FirebaseAuth></FirebaseAuth> */}
-        <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
-        {showLanding ? (
-          <>
-            <SearchSubreddit></SearchSubreddit>
-            <Landing></Landing>
-          </>
-        ) : (
-          <>
-            <SearchSubreddit></SearchSubreddit>
-            <Heatmap></Heatmap>
-            <Inspector></Inspector>
-            <Landing></Landing>
-          </>
-        )}
-      </FetcherContext.Provider>
+      <Router>
+        <FetcherContext.Provider value={contextValues}>
+          <RedditTopPostsFetcher></RedditTopPostsFetcher>
+          <RedditCommentsFetcher></RedditCommentsFetcher>
+          <Navbar></Navbar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user_dashboard" element={<UserDashboard />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </FetcherContext.Provider>
+      </Router>
     </div>
   );
 }
