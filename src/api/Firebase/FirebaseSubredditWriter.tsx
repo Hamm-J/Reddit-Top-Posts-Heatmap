@@ -45,7 +45,7 @@ const FirebaseSubredditWriter = () => {
     const postCountsSnapshotCollectionRef = doc(
       db,
       user.uid,
-      `${subreddit}_post_counts_${saveTime}`
+      `${subreddit}_postCounts_${saveTime}`
     );
 
     const commentsSnapshotCollectionRef = doc(
