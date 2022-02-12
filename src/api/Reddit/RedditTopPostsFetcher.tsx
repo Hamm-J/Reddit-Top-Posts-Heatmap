@@ -23,32 +23,32 @@ const RedditTopPostsFetcher = () => {
       let postDate = unixToDayHour(post.created_utc);
       let postFieldsOfInterest = {
         // subreddit info
-        subreddit: post.subreddit,
-        subredditId: post.subreddit_id,
-        subredditNamePrefixed: post.subreddit_name_prefixed,
-        subredditSubscribers: post.subreddit_subscribers,
+        subreddit: String(post.subreddit),
+        subredditId: String(post.subreddit_id),
+        subredditNamePrefixed: String(post.subreddit_name_prefixed),
+        subredditSubscribers: String(post.subreddit_subscribers),
 
         // post info
-        author: post.author,
-        date: post.created_utc,
-        id: post.id,
-        title: post.title,
-        permalink: post.permalink,
-        url: post.url,
-        thumbnail: post.thumbnail,
-        thumbnailHeight: post.thumbnail_height,
-        thumbnailWidth: post.thumbnail_width,
+        author: String(post.author),
+        date: String(post.created_utc),
+        id: String(post.id),
+        title: String(post.title),
+        permalink: String(post.permalink),
+        url: String(post.url),
+        thumbnail: String(post.thumbnail),
+        thumbnailHeight: String(post.thumbnail_height),
+        thumbnailWidth: String(post.thumbnail_width),
 
         // post stats
-        ups: post.ups,
-        upvoteRatio: post.upvote_ratio,
-        totalAwardsReceived: post.total_awards_received,
-        numComments: post.num_comments,
-        pinned: post.pinned,
-        // cast to string so that `undefined` can be POSTed to firestore
+        ups: String(post.ups),
+        upvoteRatio: String(post.upvote_ratio),
+        totalAwardsReceived: String(post.total_awards_received),
+        numComments: String(post.num_comments),
+        pinned: String(post.pinned),
+
         postHint: String(post.post_hint),
-        stickied: post.stickied,
-        spoiler: post.spoiler,
+        stickied: String(post.stickied),
+        spoiler: String(post.spoiler),
       };
 
       if (!data[postDate]) {
