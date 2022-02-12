@@ -7,13 +7,13 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 
 const Home = () => {
-  const { showLanding, posts, postCounts, selectedCell } =
+  const { showHeatmap, posts, postCounts, selectedCell } =
     useContext<any>(FetcherContext);
 
   return (
     <>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
-      {showLanding ? (
+      {showHeatmap ? (
         <>
           <SearchSubreddit></SearchSubreddit>
           <Landing></Landing>

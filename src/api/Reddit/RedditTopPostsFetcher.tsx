@@ -3,7 +3,7 @@ import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const RedditTopPostsFetcher = () => {
-  const { topPostsUrl, setPosts, setPostCounts, setShowLanding } =
+  const { topPostsUrl, setPosts, setPostCounts, setShowHeatmap } =
     useContext<any>(FetcherContext);
 
   const fetchData = async () => {
@@ -87,7 +87,7 @@ const RedditTopPostsFetcher = () => {
         const postCounts = getPostCounts(transformedPosts);
         setPosts(transformedPosts);
         setPostCounts(postCounts);
-        setShowLanding(false);
+        setShowHeatmap(false);
       });
   }, [topPostsUrl]);
   return <></>;

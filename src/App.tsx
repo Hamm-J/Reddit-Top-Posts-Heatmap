@@ -25,7 +25,7 @@ function App() {
   const [comments, setComments] = useState<any>({});
 
   // Landing page
-  const [showLanding, setShowLanding] = useState<boolean>(true);
+  const [showHeatmap, setShowHeatmap] = useState<boolean>(true);
 
   // Firebase
   const [user, setUser] = useState({});
@@ -52,8 +52,8 @@ function App() {
     setSelectedCell,
     comments,
     setComments,
-    showLanding,
-    setShowLanding,
+    showHeatmap,
+    setShowHeatmap,
     user,
     setUser,
     postsSnapshot,
