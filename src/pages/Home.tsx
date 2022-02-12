@@ -7,7 +7,8 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 
 const Home = () => {
-  const { showLanding, posts, postCounts } = useContext<any>(FetcherContext);
+  const { showLanding, posts, postCounts, selectedCell } =
+    useContext<any>(FetcherContext);
 
   return (
     <>
@@ -21,7 +22,7 @@ const Home = () => {
         <>
           <SearchSubreddit></SearchSubreddit>
           <Heatmap posts={posts} postCounts={postCounts}></Heatmap>
-          <Inspector></Inspector>
+          {selectedCell.length > 0 ? <Inspector></Inspector> : <></>}
           <Landing></Landing>
         </>
       )}

@@ -13,7 +13,7 @@ import { Anchor, SectionTitle } from "../common/Markup/Markup.styled";
 
 const Inspector = () => {
   const { selectedCell } = useContext<any>(FetcherContext);
-  console.log(selectedCell);
+  // console.log(selectedCell);
   return (
     <InspectorContainer>
       <InspectorTitleWrapper>
