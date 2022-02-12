@@ -40,10 +40,12 @@ export const Cell = styled.button<{ cellCount: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.cellCount > 0 ? "pointer" : "default")};
 
   &:hover {
-    background-color: coral;
+    /* background-color: coral; */
+    background-color: ${(props) =>
+      props.cellCount > 0 ? "lightgreen" : "lightgray"};
   }
 `;
 

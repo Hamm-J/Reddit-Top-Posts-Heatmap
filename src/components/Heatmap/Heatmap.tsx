@@ -79,9 +79,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -94,9 +92,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -109,9 +105,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -124,9 +118,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -139,9 +131,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -154,9 +144,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -169,9 +157,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
