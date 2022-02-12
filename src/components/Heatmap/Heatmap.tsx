@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
+import FirebaseSubredditWriter from "../../api/Firebase/FirebaseSubredditWriter";
 import {
   HeatmapContainer,
   HeatmapGrid,
@@ -8,6 +9,7 @@ import {
   DayValue,
   Spacer,
   Description,
+  BottomWrapper,
 } from "./Heatmap.styled";
 
 // TODO: 2022_01_30
@@ -176,7 +178,10 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
           </Cell>
         ))}
       </HeatmapGrid>
-      <Description>All times are shown in [ADD TIMEZONE]</Description>
+      <BottomWrapper>
+        <Description>All times are shown in [ADD TIMEZONE]</Description>
+        <FirebaseSubredditWriter></FirebaseSubredditWriter>
+      </BottomWrapper>
     </HeatmapContainer>
   );
 };

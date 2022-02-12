@@ -18,9 +18,9 @@ const Inspector = () => {
     <InspectorContainer>
       <InspectorTitleWrapper>
         {selectedCell.length > 0 && <SectionTitle>Posts</SectionTitle>}
-        {selectedCell.length > 0 && (
+        {/* {selectedCell.length > 0 && (
           <FirebaseSubredditWriter></FirebaseSubredditWriter>
-        )}
+        )} */}
       </InspectorTitleWrapper>
       <InspectorGrid>
         {selectedCell.length > 0 && (
