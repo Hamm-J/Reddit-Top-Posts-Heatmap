@@ -37,6 +37,7 @@ const SearchSubreddit = () => {
           onChange={(event: void) => searchHandler(event)}
           innerRef={inputRef}
           remFontSize={2}
+          value={subreddit}
           borderThickness="medium"
         />
         <Button
