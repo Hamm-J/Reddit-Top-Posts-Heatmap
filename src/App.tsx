@@ -14,7 +14,7 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(100);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Subreddit Search
@@ -68,7 +68,7 @@ function App() {
       <Router>
         <FetcherContext.Provider value={contextValues}>
           <RedditTopPostsFetcher></RedditTopPostsFetcher>
-          <RedditCommentsFetcher></RedditCommentsFetcher>
+          {/* <RedditCommentsFetcher></RedditCommentsFetcher> */}
           <Navbar></Navbar>
           <Routes>
             <Route path="/" element={<Home />} />

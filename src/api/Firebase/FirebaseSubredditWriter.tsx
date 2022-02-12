@@ -31,10 +31,10 @@ const FirebaseSubredditWriter = () => {
       data: postCounts,
     };
 
-    const commentsPackaged = {
-      docType: "comments",
-      data: comments,
-    };
+    // const commentsPackaged = {
+    //   docType: "comments",
+    //   data: comments,
+    // };
 
     const postsSnapshotcollectionRef = doc(
       db,
@@ -48,11 +48,11 @@ const FirebaseSubredditWriter = () => {
       `${subreddit}_postCounts_${saveTime}`
     );
 
-    const commentsSnapshotCollectionRef = doc(
-      db,
-      user.uid,
-      `${subreddit}_comments_${saveTime}`
-    );
+    // const commentsSnapshotCollectionRef = doc(
+    //   db,
+    //   user.uid,
+    //   `${subreddit}_comments_${saveTime}`
+    // );
 
     alert(
       `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
@@ -63,7 +63,7 @@ const FirebaseSubredditWriter = () => {
     setDoc(postCountsSnapshotCollectionRef, postCountsPackaged, {
       merge: true,
     });
-    setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
+    // setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
   };
 
   return (
