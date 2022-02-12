@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
@@ -9,25 +9,36 @@ import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
 
 const SearchSubreddit = () => {
-  const { setTopPostsUrl, subreddit, setSubreddit, time, limit } =
-    useContext<any>(FetcherContext);
+  const {
+    setTopPostsUrl,
+    subreddit,
+    setSubreddit,
+    input,
+    setInput,
+    time,
+    limit,
+  } = useContext<any>(FetcherContext);
 
-  const inputRef = useRef<any>("");
+  const inputFieldRef = useRef<any>("");
 
   const searchHandler = (event: any) => {
-    setSubreddit(event.target.value);
+    setInput(event.target.value);
   };
 
   const submitHandler = () => {
-    if (subreddit == "") {
-      inputRef.current.focus();
+    if (input == "") {
+      inputFieldRef.current.focus();
       return alert("Please enter a subreddit to search.");
     }
 
+    setSubreddit(input);
+  };
+
+  useEffect(() => {
     setTopPostsUrl(
       `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
     );
-  };
+  }, [subreddit]);
   return (
     <SearchSubredditContainer>
       <FlexContainer>
@@ -35,9 +46,9 @@ const SearchSubreddit = () => {
         <InputText
           placeholder="search..."
           onChange={(event: void) => searchHandler(event)}
-          innerRef={inputRef}
+          innerRef={inputFieldRef}
           remFontSize={2}
-          value={subreddit}
+          value={input}
           borderThickness="medium"
         />
         <Button

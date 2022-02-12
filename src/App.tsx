@@ -17,6 +17,9 @@ function App() {
   const [limit, setLimit] = useState<number>(10);
   const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
+  // Subreddit Search
+  const [input, setInput] = useState("");
+
   // Inspector
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
@@ -39,6 +42,8 @@ function App() {
     setPostCounts,
     subreddit,
     setSubreddit,
+    input,
+    setInput,
     time,
     setTime,
     limit,
