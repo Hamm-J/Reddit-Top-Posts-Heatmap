@@ -66,11 +66,12 @@ function App() {
     commentsSnapshot,
     setCommentsShapshot,
   };
+  console.log("app rendered");
   return (
     <div>
       <Router>
         <FetcherContext.Provider value={contextValues}>
-          <RedditTopPostsFetcher></RedditTopPostsFetcher>
+          {/* <RedditTopPostsFetcher></RedditTopPostsFetcher> */}
           {/* <RedditCommentsFetcher></RedditCommentsFetcher> */}
           <Navbar></Navbar>
           <Routes>

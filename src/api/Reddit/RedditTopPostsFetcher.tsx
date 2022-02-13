@@ -96,6 +96,7 @@ const RedditTopPostsFetcher = () => {
 
   const firstUpdate = useRef(true);
 
+  console.log(firstUpdate);
   console.log("rendered");
   useEffect(() => {
     if (firstUpdate.current) {

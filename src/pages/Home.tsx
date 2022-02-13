@@ -5,6 +5,7 @@ import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
+import RedditTopPostsFetcher from "../api/Reddit/RedditTopPostsFetcher";
 
 const Home = () => {
   const { showHeatmap, posts, postCounts, selectedCell } =
@@ -12,6 +13,7 @@ const Home = () => {
 
   return (
     <>
+      <RedditTopPostsFetcher></RedditTopPostsFetcher>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
       {showHeatmap ? (
         <>
