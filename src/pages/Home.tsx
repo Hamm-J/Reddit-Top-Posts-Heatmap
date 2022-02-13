@@ -22,6 +22,11 @@ const Home = () => {
 
   const firstSearch = useRef(true);
 
+  // reset the selectedCell whenever a a new set of posts is fetched
+  useEffect(() => {
+    setSelectedCell([]);
+  }, [posts]);
+
   // show Heatmap after the first search returns posts
   useEffect(() => {
     if (firstSearch.current && Object.keys(posts).length > 0) {
@@ -38,7 +43,6 @@ const Home = () => {
       {showHeatmap ? (
         <>
           <SearchSubreddit
-            setSelectedCell={setSelectedCell}
             setPosts={setPosts}
             setPostCounts={setPostCounts}
           ></SearchSubreddit>
@@ -58,7 +62,6 @@ const Home = () => {
       ) : (
         <>
           <SearchSubreddit
-            setSelectedCell={setSelectedCell}
             setPosts={setPosts}
             setPostCounts={setPostCounts}
           ></SearchSubreddit>

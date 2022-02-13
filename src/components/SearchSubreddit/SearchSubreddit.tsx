@@ -9,16 +9,11 @@ import Button from "../common/Button/Button";
 import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
-  setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
   setPosts: React.Dispatch<React.SetStateAction<{}>>;
   setPostCounts: React.Dispatch<any>;
 }
 
-const SearchSubreddit = ({
-  setSelectedCell,
-  setPosts,
-  setPostCounts,
-}: ISearchSubreddit) => {
+const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   // fetcher URL states
   const [subreddit, setSubreddit] = useState("");
   const [time, setTime] = useState("month");
@@ -64,12 +59,6 @@ const SearchSubreddit = ({
     setTopPostsUrl(
       `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
     );
-
-    // set the selected heatmap cell to [] again so that the inspector does not
-    // show
-    // setPosts(fetchedPosts);
-    // setPostCounts(fetchedPostCounts);
-    setSelectedCell([]);
   }, [subreddit]);
   return (
     <SearchSubredditContainer>
