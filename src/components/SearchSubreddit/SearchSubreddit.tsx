@@ -10,22 +10,14 @@ import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
 const SearchSubreddit = () => {
-  const {
-    // setTopPostsUrl,
-    // subreddit,
-    // setSubreddit,
-    input,
-    setInput,
-    // time,
-    // limit,
-    setSelectedCell,
-    loading,
-  } = useContext<any>(FetcherContext);
+  const { setSelectedCell, loading } = useContext<any>(FetcherContext);
 
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [time, setTime] = useState("month");
   const [limit, setLimit] = useState(100);
+
+  const [input, setInput] = useState("");
 
   const inputFieldRef = useRef<any>("");
 

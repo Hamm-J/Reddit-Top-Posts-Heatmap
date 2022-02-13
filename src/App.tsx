@@ -14,7 +14,6 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
 
   // Subreddit Search
-  const [input, setInput] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
   // Inspector
@@ -35,8 +34,6 @@ function App() {
     setPosts,
     postCounts,
     setPostCounts,
-    input,
-    setInput,
     loading,
     setLoading,
     selectedCell,
