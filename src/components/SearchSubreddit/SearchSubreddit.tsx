@@ -11,11 +11,15 @@ import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 export interface ISearchSubreddit {
   setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
   setShowHeatmap: React.Dispatch<React.SetStateAction<boolean>>;
+  setPosts: React.Dispatch<React.SetStateAction<{}>>;
+  setPostCounts: React.Dispatch<any>;
 }
 
 const SearchSubreddit = ({
   setSelectedCell,
   setShowHeatmap,
+  setPosts,
+  setPostCounts,
 }: ISearchSubreddit) => {
   // fetcher URL states
   const [topPostsUrl, setTopPostsUrl] = useState("");
@@ -60,6 +64,8 @@ const SearchSubreddit = ({
         topPostsUrl={topPostsUrl}
         setLoading={setLoading}
         setShowHeatmap={setShowHeatmap}
+        setPosts={setPosts}
+        setPostCounts={setPostCounts}
       ></RedditTopPostsFetcher>
       <FlexContainer>
         <R>r /</R>

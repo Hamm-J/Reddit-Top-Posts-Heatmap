@@ -8,9 +8,15 @@ import {
 } from "../../helpers/UTCConversions";
 import Button from "../../components/common/Button/Button";
 
-const FirebaseSubredditWriter = () => {
-  const { posts, postCounts, comments, subreddit, user } =
-    useContext<any>(FetcherContext);
+interface IFirebaseSubredditWriter {
+  posts: {};
+  postCounts: any;
+}
+const FirebaseSubredditWriter = ({
+  posts,
+  postCounts,
+}: IFirebaseSubredditWriter) => {
+  const { comments, subreddit, user } = useContext<any>(FetcherContext);
 
   const createSubreddit = async () => {
     if (auth.currentUser === null) {

@@ -7,7 +7,10 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 
 const Home = () => {
-  const { posts, postCounts } = useContext<any>(FetcherContext);
+  // const { posts, postCounts } = useContext<any>(FetcherContext);
+  // reddit API
+  const [posts, setPosts] = useState({});
+  const [postCounts, setPostCounts] = useState<any>({});
 
   // Set the state of which cell of the heatmap is clicked
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
@@ -23,6 +26,8 @@ const Home = () => {
           <SearchSubreddit
             setSelectedCell={setSelectedCell}
             setShowHeatmap={setShowHeatmap}
+            setPosts={setPosts}
+            setPostCounts={setPostCounts}
           ></SearchSubreddit>
           <Heatmap
             posts={posts}
@@ -42,6 +47,8 @@ const Home = () => {
           <SearchSubreddit
             setSelectedCell={setSelectedCell}
             setShowHeatmap={setShowHeatmap}
+            setPosts={setPosts}
+            setPostCounts={setPostCounts}
           ></SearchSubreddit>
           <Landing></Landing>
         </>

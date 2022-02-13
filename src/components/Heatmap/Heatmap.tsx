@@ -161,7 +161,10 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
       </HeatmapGrid>
       <BottomWrapper>
         <Description>All times are shown in [ADD TIMEZONE]</Description>
-        <FirebaseSubredditWriter></FirebaseSubredditWriter>
+        <FirebaseSubredditWriter
+          posts={posts}
+          postCounts={postCounts}
+        ></FirebaseSubredditWriter>
       </BottomWrapper>
     </HeatmapContainer>
   );

@@ -8,8 +8,6 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   // reddit API
-  const [posts, setPosts] = useState({});
-  const [postCounts, setPostCounts] = useState<any>({});
   const [comments, setComments] = useState<any>({});
 
   // Firebase
@@ -19,10 +17,6 @@ function App() {
   const [commentsSnapshot, setCommentsShapshot] = useState({});
 
   const contextValues = {
-    posts,
-    setPosts,
-    postCounts,
-    setPostCounts,
     comments,
     setComments,
     user,

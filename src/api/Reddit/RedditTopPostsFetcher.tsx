@@ -1,21 +1,21 @@
 import { useEffect, useContext, useRef } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 import { ISearchSubreddit } from "../../components/SearchSubreddit/SearchSubreddit";
 interface IRedditTopPostsFetcher {
   topPostsUrl: string;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setShowHeatmap: ISearchSubreddit["setShowHeatmap"];
+  setPosts: ISearchSubreddit["setPosts"];
+  setPostCounts: ISearchSubreddit["setPostCounts"];
 }
 
 const RedditTopPostsFetcher = ({
   topPostsUrl,
   setLoading,
   setShowHeatmap,
+  setPosts,
+  setPostCounts,
 }: IRedditTopPostsFetcher) => {
-  const { setPosts, setPostCounts } = useContext<any>(FetcherContext);
-
-  // console.log(loading);
   const fetchData = async () => {
     try {
       setLoading(true);
