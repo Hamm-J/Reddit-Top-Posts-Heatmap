@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FetcherContext } from "../contexts/FetcherContext";
 import FirebaseSubredditReader from "../api/Firebase/FirebaseSubredditReader";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import Button from "../components/common/Button/Button";
+import useFirebaseReader from "../api/Firebase/useFirebaseReader";
+import { db } from "../firebase-config";
 
 const UserDashboard = () => {
   // Firebase states
@@ -16,6 +19,17 @@ const UserDashboard = () => {
   const [selectedComments, setSelectedComments] = useState({});
 
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
+
+  const { user } = useContext<any>(FetcherContext);
+
+  // Read snapshots from firebase
+  useFirebaseReader(
+    db,
+    user,
+    setPostsSnapshot,
+    setPostCountsSnapshot,
+    setCommentsShapshot
+  );
 
   // TODO:
   // pass the posts to the heatmap
@@ -40,11 +54,6 @@ const UserDashboard = () => {
   return (
     <>
       <h1>user dashboard</h1>
-      <FirebaseSubredditReader
-        setPostsSnapshot={setPostsSnapshot}
-        setPostCountsSnapshot={setPostCountsSnapshot}
-        setCommentsShapshot={setCommentsShapshot}
-      ></FirebaseSubredditReader>
       {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
         <React.Fragment key={docIdx}>
           <Button

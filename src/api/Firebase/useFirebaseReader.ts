@@ -76,7 +76,7 @@ const useFirebaseReader = (
     getPosts();
     getPostCounts();
     getComments();
-  }, []);
+  }, [user]);
 };
 
 export default useFirebaseReader;
