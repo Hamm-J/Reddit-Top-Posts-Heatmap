@@ -12,8 +12,6 @@ function App() {
   // reddit API
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
-  const [time, setTime] = useState<string>("month");
-  const [limit, setLimit] = useState<number>(100);
 
   // Subreddit Search
   const [input, setInput] = useState("");
@@ -41,10 +39,6 @@ function App() {
     setInput,
     loading,
     setLoading,
-    time,
-    setTime,
-    limit,
-    setLimit,
     selectedCell,
     setSelectedCell,
     comments,

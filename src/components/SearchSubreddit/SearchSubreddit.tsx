@@ -12,6 +12,10 @@ import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 export interface ISearchSubreddit {
   subreddit: string;
   setSubreddit: React.Dispatch<React.SetStateAction<string>>;
+  time: string;
+  setTime: React.Dispatch<React.SetStateAction<string>>;
+  limit: number;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
   topPostsUrl: string;
   setTopPostsUrl: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -19,6 +23,10 @@ export interface ISearchSubreddit {
 const SearchSubreddit = ({
   subreddit,
   setSubreddit,
+  time,
+  setTime,
+  limit,
+  setLimit,
   topPostsUrl,
   setTopPostsUrl,
 }: ISearchSubreddit) => {
@@ -28,8 +36,8 @@ const SearchSubreddit = ({
     // setSubreddit,
     input,
     setInput,
-    time,
-    limit,
+    // time,
+    // limit,
     setSelectedCell,
     loading,
   } = useContext<any>(FetcherContext);

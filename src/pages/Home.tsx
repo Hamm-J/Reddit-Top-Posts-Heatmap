@@ -12,6 +12,8 @@ const Home = () => {
 
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
+  const [time, setTime] = useState("month");
+  const [limit, setLimit] = useState(100);
 
   return (
     <>
@@ -21,6 +23,10 @@ const Home = () => {
           <SearchSubreddit
             subreddit={subreddit}
             setSubreddit={setSubreddit}
+            time={time}
+            setTime={setTime}
+            limit={limit}
+            setLimit={setLimit}
             topPostsUrl={topPostsUrl}
             setTopPostsUrl={setTopPostsUrl}
           ></SearchSubreddit>
@@ -31,6 +37,10 @@ const Home = () => {
           <SearchSubreddit
             subreddit={subreddit}
             setSubreddit={setSubreddit}
+            time={time}
+            setTime={setTime}
+            limit={limit}
+            setLimit={setLimit}
             topPostsUrl={topPostsUrl}
             setTopPostsUrl={setTopPostsUrl}
           ></SearchSubreddit>
