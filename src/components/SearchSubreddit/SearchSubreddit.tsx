@@ -6,18 +6,16 @@ import {
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
-import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
+import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
   setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
-  setShowHeatmap: React.Dispatch<React.SetStateAction<boolean>>;
   setPosts: React.Dispatch<React.SetStateAction<{}>>;
   setPostCounts: React.Dispatch<any>;
 }
 
 const SearchSubreddit = ({
   setSelectedCell,
-  setShowHeatmap,
   setPosts,
   setPostCounts,
 }: ISearchSubreddit) => {
@@ -35,6 +33,15 @@ const SearchSubreddit = ({
 
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
+
+  // fetch top posts
+  const [fetchedPosts, fetchedPostCounts] = useTopPostsFetcher(
+    topPostsUrl,
+    setLoading
+  );
+
+  setPosts(fetchedPosts);
+  setPostCounts(fetchedPostCounts);
 
   const searchHandler = (event: any) => {
     setInput(event.target.value);
@@ -60,13 +67,6 @@ const SearchSubreddit = ({
   }, [subreddit]);
   return (
     <SearchSubredditContainer>
-      <RedditTopPostsFetcher
-        topPostsUrl={topPostsUrl}
-        setLoading={setLoading}
-        setShowHeatmap={setShowHeatmap}
-        setPosts={setPosts}
-        setPostCounts={setPostCounts}
-      ></RedditTopPostsFetcher>
       <FlexContainer>
         <R>r /</R>
         <InputText

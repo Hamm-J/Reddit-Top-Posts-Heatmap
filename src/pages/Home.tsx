@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { FetcherContext } from "../contexts/FetcherContext";
+import React, { useState, useEffect, useRef } from "react";
 import SearchSubreddit from "../components/SearchSubreddit/SearchSubreddit";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
@@ -18,6 +17,21 @@ const Home = () => {
   // State so that the Heatmap is only shown on Home after the first search
   const [showHeatmap, setShowHeatmap] = useState(false);
 
+  console.log(posts);
+  console.log(postCounts);
+
+  const firstSearch = useRef(true);
+
+  // show Heatmap after the first search returns posts
+  useEffect(() => {
+    if (firstSearch.current && Object.keys(posts).length > 0) {
+      firstSearch.current = false;
+      setShowHeatmap(true);
+    } else {
+      // pass
+      return;
+    }
+  }, [posts]);
   return (
     <>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
@@ -25,7 +39,6 @@ const Home = () => {
         <>
           <SearchSubreddit
             setSelectedCell={setSelectedCell}
-            setShowHeatmap={setShowHeatmap}
             setPosts={setPosts}
             setPostCounts={setPostCounts}
           ></SearchSubreddit>
@@ -46,7 +59,6 @@ const Home = () => {
         <>
           <SearchSubreddit
             setSelectedCell={setSelectedCell}
-            setShowHeatmap={setShowHeatmap}
             setPosts={setPosts}
             setPostCounts={setPostCounts}
           ></SearchSubreddit>

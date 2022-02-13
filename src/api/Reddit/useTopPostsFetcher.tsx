@@ -1,29 +1,22 @@
-import { useEffect, useContext, useRef } from "react";
+import { useState, useEffect } from "react";
 import { unixToDayHour } from "../../helpers/UTCConversions";
-import { ISearchSubreddit } from "../../components/SearchSubreddit/SearchSubreddit";
-interface IRedditTopPostsFetcher {
-  topPostsUrl: string;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  // setShowHeatmap: ISearchSubreddit["setShowHeatmap"];
-  setPosts: ISearchSubreddit["setPosts"];
-  setPostCounts: ISearchSubreddit["setPostCounts"];
-}
 
-const RedditTopPostsFetcher = ({
-  topPostsUrl,
-  setLoading,
-  // setShowHeatmap,
-  setPosts,
-  setPostCounts,
-}: IRedditTopPostsFetcher) => {
+const useTopPostsFetcher = (
+  url: string,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  const [posts, setPosts] = useState({});
+  const [postCounts, setPostCounts] = useState({});
+
   const fetchData = async () => {
     try {
       setLoading(true);
 
-      const response: any = await fetch(topPostsUrl);
+      const response: any = await fetch(url);
       console.log(response);
 
       const data = await response.json();
+      console.log(data);
 
       const topPostsArray = data.data.children;
       const transformedPosts = transformData(topPostsArray);
@@ -31,7 +24,6 @@ const RedditTopPostsFetcher = ({
 
       setPosts(transformedPosts);
       setPostCounts(postCounts);
-      // setShowHeatmap(true);
 
       setLoading(false);
 
@@ -47,6 +39,8 @@ const RedditTopPostsFetcher = ({
     responseArray.forEach((obj) => {
       let post = obj.data;
       let postDate = unixToDayHour(post.created_utc);
+
+      // cast all of the fields to string to avoid Firebase POSTing problems
       let postFieldsOfInterest = {
         // subreddit info
         subreddit: String(post.subreddit),
@@ -95,17 +89,11 @@ const RedditTopPostsFetcher = ({
     return counts;
   };
 
-  const firstUpdate = useRef(true);
-
-  console.log(firstUpdate);
   useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
     fetchData();
-  }, [topPostsUrl]);
-  return <></>;
+  }, [url]);
+
+  return [posts, postCounts];
 };
 
-export default RedditTopPostsFetcher;
+export default useTopPostsFetcher;
