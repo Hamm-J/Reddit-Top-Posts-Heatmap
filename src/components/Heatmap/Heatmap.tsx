@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
 import FirebaseSubredditWriter from "../../api/Firebase/FirebaseSubredditWriter";
 import {
   HeatmapContainer,
@@ -15,14 +13,13 @@ import {
 // TODO: 2022_01_30
 // Cast and type the posts and postCounts objects and then pass those interfaces
 // here.
-interface IProps {
+interface IHeatmap {
   posts: {};
   postCounts: {};
+  setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-const Heatmap = ({ posts, postCounts }: IProps) => {
-  const { setSelectedCell } = useContext<any>(FetcherContext);
-
+const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
   // Create each day's row with 24 elements (1 for each hour) and set the
   // elements' value to the keys of what the fetcherTransform returns
   let sundayRow = Array.from({ length: 24 }, (ele, val) => val).map(

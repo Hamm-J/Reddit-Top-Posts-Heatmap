@@ -1,5 +1,4 @@
-import { useContext, useRef, useState, useEffect } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
+import { useRef, useState, useEffect } from "react";
 import {
   SearchSubredditContainer,
   FlexContainer,
@@ -9,9 +8,11 @@ import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
-const SearchSubreddit = () => {
-  const { setSelectedCell } = useContext<any>(FetcherContext);
+interface ISearchSubreddit {
+  setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
+}
 
+const SearchSubreddit = ({ setSelectedCell }: ISearchSubreddit) => {
   // fetcher URL states
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");

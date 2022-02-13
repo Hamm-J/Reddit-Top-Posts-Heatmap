@@ -13,11 +13,7 @@ function App() {
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
 
-  // Subreddit Search
-  // const [loading, setLoading] = useState<boolean>(false);
-
   // Inspector
-  const [selectedCell, setSelectedCell] = useState<any[]>([]);
   const [comments, setComments] = useState<any>({});
 
   // Landing page
@@ -34,10 +30,6 @@ function App() {
     setPosts,
     postCounts,
     setPostCounts,
-    // loading,
-    // setLoading,
-    selectedCell,
-    setSelectedCell,
     comments,
     setComments,
     showHeatmap,

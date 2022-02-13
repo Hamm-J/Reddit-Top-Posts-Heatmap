@@ -7,22 +7,31 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 
 const Home = () => {
-  const { showHeatmap, posts, postCounts, selectedCell } =
-    useContext<any>(FetcherContext);
+  const { showHeatmap, posts, postCounts } = useContext<any>(FetcherContext);
+
+  const [selectedCell, setSelectedCell] = useState<any[]>([]);
 
   return (
     <>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
       {showHeatmap ? (
         <>
-          <SearchSubreddit></SearchSubreddit>
+          <SearchSubreddit setSelectedCell={setSelectedCell}></SearchSubreddit>
           <Landing></Landing>
         </>
       ) : (
         <>
-          <SearchSubreddit></SearchSubreddit>
-          <Heatmap posts={posts} postCounts={postCounts}></Heatmap>
-          {selectedCell.length > 0 ? <Inspector></Inspector> : <></>}
+          <SearchSubreddit setSelectedCell={setSelectedCell}></SearchSubreddit>
+          <Heatmap
+            posts={posts}
+            postCounts={postCounts}
+            setSelectedCell={setSelectedCell}
+          ></Heatmap>
+          {selectedCell.length > 0 ? (
+            <Inspector selectedCell={selectedCell}></Inspector>
+          ) : (
+            <></>
+          )}
           <Landing></Landing>
         </>
       )}

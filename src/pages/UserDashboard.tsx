@@ -13,6 +13,8 @@ const UserDashboard = () => {
   const [selectedPostCounts, setSelectedPostCounts] = useState({});
   const [selectedComments, setSelectedComments] = useState({});
 
+  const [selectedCell, setSelectedCell] = useState<any[]>([]);
+
   // TODO:
   // pass the posts to the heatmap
   // sort how to seperate the different types of saved data (i.e. posts, postCounts, and comments)
@@ -45,8 +47,12 @@ const UserDashboard = () => {
           ></Button>
         </React.Fragment>
       ))}
-      <Heatmap posts={selectedPosts} postCounts={selectedPostCounts}></Heatmap>
-      <Inspector></Inspector>
+      <Heatmap
+        posts={selectedPosts}
+        postCounts={selectedPostCounts}
+        setSelectedCell={setSelectedCell}
+      ></Heatmap>
+      <Inspector selectedCell={selectedCell}></Inspector>
     </>
   );
 };
