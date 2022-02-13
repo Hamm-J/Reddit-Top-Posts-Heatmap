@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../common/Button/Button";
 import useFirebaseWriter from "../../api/Firebase/useFirebaseWriter";
+import { SaveSubredditContainer } from "./SaveSubreddit.styled";
 
 interface ISaveSubreddit {
   posts: {};
@@ -16,12 +17,14 @@ const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
     setSave(!save);
   };
   return (
-    <Button
-      label={loading ? "Saving..." : "Save Subreddit Data?"}
-      onClick={saveSubreddit}
-      remFontSize={1.2}
-      backgroundColor="orange"
-    ></Button>
+    <SaveSubredditContainer>
+      <Button
+        label={loading ? "Saving..." : "Save Subreddit Data?"}
+        onClick={saveSubreddit}
+        remFontSize={1.2}
+        backgroundColor="orange"
+      ></Button>
+    </SaveSubredditContainer>
   );
 };
 
