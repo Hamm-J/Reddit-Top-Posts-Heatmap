@@ -12,14 +12,19 @@ import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 const SearchSubreddit = () => {
   const { setSelectedCell } = useContext<any>(FetcherContext);
 
+  // fetcher URL states
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [time, setTime] = useState("month");
   const [limit, setLimit] = useState(100);
 
+  // state of the current input value
   const [input, setInput] = useState("");
+
+  // state of if RedditTopPostsFetcher is fetching the posts
   const [loading, setLoading] = useState(false);
 
+  // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
 
   const searchHandler = (event: any) => {
