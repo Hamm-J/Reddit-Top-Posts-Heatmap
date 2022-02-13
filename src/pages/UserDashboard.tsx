@@ -45,7 +45,9 @@ const UserDashboard = () => {
         postCounts={selectedPostCounts}
         setSelectedCell={setSelectedCell}
       ></Heatmap>
-      <Inspector selectedCell={selectedCell}></Inspector>
+      {selectedCell.length > 0 && (
+        <Inspector selectedCell={selectedCell}></Inspector>
+      )}
     </>
   );
 };
