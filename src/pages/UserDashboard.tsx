@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { FetcherContext } from "../contexts/FetcherContext";
 import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
@@ -22,6 +22,10 @@ const UserDashboard = () => {
 
   const { user } = useContext<any>(FetcherContext);
 
+  const [showHeatmap, setShowHeatmap] = useState(false);
+
+  const firstSelect = useRef(true);
+
   // Read snapshots from firebase
   useFirebaseReader(
     db,
@@ -30,6 +34,19 @@ const UserDashboard = () => {
     setPostCountsSnapshot,
     setCommentsShapshot
   );
+
+  useEffect(() => {
+    setSelectedCell([]);
+  }, [selectedPosts]);
+
+  useEffect(() => {
+    if (firstSelect.current && Object.keys(selectedPosts).length > 0) {
+      setShowHeatmap(true);
+    } else {
+      // pass
+      return;
+    }
+  }, [selectedPosts]);
 
   return (
     <>
@@ -40,13 +57,17 @@ const UserDashboard = () => {
         setSelectedPosts={setSelectedPosts}
         setSelectedPostCounts={setSelectedPostCounts}
       ></SnapshotArray>
-      <Heatmap
-        posts={selectedPosts}
-        postCounts={selectedPostCounts}
-        setSelectedCell={setSelectedCell}
-      ></Heatmap>
-      {selectedCell.length > 0 && (
-        <Inspector selectedCell={selectedCell}></Inspector>
+      {showHeatmap && (
+        <>
+          <Heatmap
+            posts={selectedPosts}
+            postCounts={selectedPostCounts}
+            setSelectedCell={setSelectedCell}
+          ></Heatmap>
+          {selectedCell.length > 0 && (
+            <Inspector selectedCell={selectedCell}></Inspector>
+          )}
+        </>
       )}
     </>
   );
