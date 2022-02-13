@@ -44,8 +44,6 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
     (ele) => `Saturday_${ele}`
   );
 
-  let temp;
-
   return (
     <HeatmapContainer>
       <HeatmapGrid>

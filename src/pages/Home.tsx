@@ -9,7 +9,10 @@ import BannerTitle from "../components/BannerTitle/BannerTitle";
 const Home = () => {
   const { posts, postCounts } = useContext<any>(FetcherContext);
 
+  // Set the state of which cell of the heatmap is clicked
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
+
+  // State so that the Heatmap is only shown on Home after the first search
   const [showHeatmap, setShowHeatmap] = useState(false);
 
   return (

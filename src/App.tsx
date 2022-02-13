@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import UserDashboard from "./pages/UserDashboard";
 import ErrorPage from "./pages/404";
-import RedditTopPostsFetcher from "./api/Reddit/RedditTopPostsFetcher";
-import RedditCommentsFetcher from "./api/Reddit/RedditCommentsFetcher";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -12,8 +10,6 @@ function App() {
   // reddit API
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
-
-  // Inspector
   const [comments, setComments] = useState<any>({});
 
   // Firebase
@@ -43,8 +39,6 @@ function App() {
     <div>
       <Router>
         <FetcherContext.Provider value={contextValues}>
-          {/* <RedditTopPostsFetcher></RedditTopPostsFetcher> */}
-          {/* <RedditCommentsFetcher></RedditCommentsFetcher> */}
           <Navbar></Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
