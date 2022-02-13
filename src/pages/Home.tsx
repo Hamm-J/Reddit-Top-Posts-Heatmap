@@ -10,40 +10,17 @@ const Home = () => {
   const { showHeatmap, posts, postCounts, selectedCell } =
     useContext<any>(FetcherContext);
 
-  const [topPostsUrl, setTopPostsUrl] = useState("");
-  const [subreddit, setSubreddit] = useState("");
-  const [time, setTime] = useState("month");
-  const [limit, setLimit] = useState(100);
-
   return (
     <>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
       {showHeatmap ? (
         <>
-          <SearchSubreddit
-            subreddit={subreddit}
-            setSubreddit={setSubreddit}
-            time={time}
-            setTime={setTime}
-            limit={limit}
-            setLimit={setLimit}
-            topPostsUrl={topPostsUrl}
-            setTopPostsUrl={setTopPostsUrl}
-          ></SearchSubreddit>
+          <SearchSubreddit></SearchSubreddit>
           <Landing></Landing>
         </>
       ) : (
         <>
-          <SearchSubreddit
-            subreddit={subreddit}
-            setSubreddit={setSubreddit}
-            time={time}
-            setTime={setTime}
-            limit={limit}
-            setLimit={setLimit}
-            topPostsUrl={topPostsUrl}
-            setTopPostsUrl={setTopPostsUrl}
-          ></SearchSubreddit>
+          <SearchSubreddit></SearchSubreddit>
           <Heatmap posts={posts} postCounts={postCounts}></Heatmap>
           {selectedCell.length > 0 ? <Inspector></Inspector> : <></>}
           <Landing></Landing>

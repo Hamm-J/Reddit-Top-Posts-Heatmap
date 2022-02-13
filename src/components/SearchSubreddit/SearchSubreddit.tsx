@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
@@ -9,27 +9,7 @@ import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
-export interface ISearchSubreddit {
-  subreddit: string;
-  setSubreddit: React.Dispatch<React.SetStateAction<string>>;
-  time: string;
-  setTime: React.Dispatch<React.SetStateAction<string>>;
-  limit: number;
-  setLimit: React.Dispatch<React.SetStateAction<number>>;
-  topPostsUrl: string;
-  setTopPostsUrl: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const SearchSubreddit = ({
-  subreddit,
-  setSubreddit,
-  time,
-  setTime,
-  limit,
-  setLimit,
-  topPostsUrl,
-  setTopPostsUrl,
-}: ISearchSubreddit) => {
+const SearchSubreddit = () => {
   const {
     // setTopPostsUrl,
     // subreddit,
@@ -41,6 +21,11 @@ const SearchSubreddit = ({
     setSelectedCell,
     loading,
   } = useContext<any>(FetcherContext);
+
+  const [topPostsUrl, setTopPostsUrl] = useState("");
+  const [subreddit, setSubreddit] = useState("");
+  const [time, setTime] = useState("month");
+  const [limit, setLimit] = useState(100);
 
   const inputFieldRef = useRef<any>("");
 
