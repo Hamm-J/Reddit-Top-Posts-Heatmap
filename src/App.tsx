@@ -16,9 +16,6 @@ function App() {
   // Inspector
   const [comments, setComments] = useState<any>({});
 
-  // Landing page
-  const [showHeatmap, setShowHeatmap] = useState<boolean>(true);
-
   // Firebase
   const [user, setUser] = useState({});
   const [postsSnapshot, setPostsSnapshot] = useState({});
@@ -32,8 +29,6 @@ function App() {
     setPostCounts,
     comments,
     setComments,
-    showHeatmap,
-    setShowHeatmap,
     user,
     setUser,
     postsSnapshot,

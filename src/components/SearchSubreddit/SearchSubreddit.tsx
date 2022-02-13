@@ -8,11 +8,15 @@ import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
-interface ISearchSubreddit {
+export interface ISearchSubreddit {
   setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
+  setShowHeatmap: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchSubreddit = ({ setSelectedCell }: ISearchSubreddit) => {
+const SearchSubreddit = ({
+  setSelectedCell,
+  setShowHeatmap,
+}: ISearchSubreddit) => {
   // fetcher URL states
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
@@ -55,6 +59,7 @@ const SearchSubreddit = ({ setSelectedCell }: ISearchSubreddit) => {
       <RedditTopPostsFetcher
         topPostsUrl={topPostsUrl}
         setLoading={setLoading}
+        setShowHeatmap={setShowHeatmap}
       ></RedditTopPostsFetcher>
       <FlexContainer>
         <R>r /</R>
