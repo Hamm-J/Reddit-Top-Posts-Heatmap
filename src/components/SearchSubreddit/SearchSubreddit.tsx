@@ -10,7 +10,7 @@ import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
 const SearchSubreddit = () => {
-  const { setSelectedCell, loading } = useContext<any>(FetcherContext);
+  const { setSelectedCell } = useContext<any>(FetcherContext);
 
   const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
@@ -18,6 +18,7 @@ const SearchSubreddit = () => {
   const [limit, setLimit] = useState(100);
 
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const inputFieldRef = useRef<any>("");
 
@@ -45,7 +46,10 @@ const SearchSubreddit = () => {
   }, [subreddit]);
   return (
     <SearchSubredditContainer>
-      <RedditTopPostsFetcher topPostsUrl={topPostsUrl}></RedditTopPostsFetcher>
+      <RedditTopPostsFetcher
+        topPostsUrl={topPostsUrl}
+        setLoading={setLoading}
+      ></RedditTopPostsFetcher>
       <FlexContainer>
         <R>r /</R>
         <InputText

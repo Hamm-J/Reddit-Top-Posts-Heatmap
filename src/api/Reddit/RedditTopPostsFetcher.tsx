@@ -3,23 +3,26 @@ import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 interface IRedditTopPostsFetcher {
   topPostsUrl: string;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const RedditTopPostsFetcher = ({ topPostsUrl }: IRedditTopPostsFetcher) => {
+const RedditTopPostsFetcher = ({
+  topPostsUrl,
+  setLoading,
+}: IRedditTopPostsFetcher) => {
   const {
     // topPostsUrl,
     setPosts,
     setPostCounts,
     setShowHeatmap,
-    setLoading,
-    loading,
+    // setLoading,
+    // loading,
   } = useContext<any>(FetcherContext);
 
   // console.log(loading);
   const fetchData = async () => {
     try {
       setLoading(true);
-      console.log("before, loading: " + loading);
 
       const response: any = await fetch(topPostsUrl);
       console.log(response);
@@ -35,7 +38,6 @@ const RedditTopPostsFetcher = ({ topPostsUrl }: IRedditTopPostsFetcher) => {
       setShowHeatmap(false);
 
       setLoading(false);
-      console.log("after, loading: " + loading);
 
       // return response;
     } catch (error: any) {

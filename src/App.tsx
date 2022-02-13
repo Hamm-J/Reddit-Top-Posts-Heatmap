@@ -14,7 +14,7 @@ function App() {
   const [postCounts, setPostCounts] = useState<any>({});
 
   // Subreddit Search
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
 
   // Inspector
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
@@ -34,8 +34,8 @@ function App() {
     setPosts,
     postCounts,
     setPostCounts,
-    loading,
-    setLoading,
+    // loading,
+    // setLoading,
     selectedCell,
     setSelectedCell,
     comments,
