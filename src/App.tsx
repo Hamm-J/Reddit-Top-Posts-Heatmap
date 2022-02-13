@@ -19,6 +19,7 @@ function App() {
 
   // Subreddit Search
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Inspector
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
@@ -44,6 +45,8 @@ function App() {
     setSubreddit,
     input,
     setInput,
+    loading,
+    setLoading,
     time,
     setTime,
     limit,

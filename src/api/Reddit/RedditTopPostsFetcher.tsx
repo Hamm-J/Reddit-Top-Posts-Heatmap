@@ -3,13 +3,38 @@ import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const RedditTopPostsFetcher = () => {
-  const { topPostsUrl, setPosts, setPostCounts, setShowHeatmap } =
-    useContext<any>(FetcherContext);
+  const {
+    topPostsUrl,
+    setPosts,
+    setPostCounts,
+    setShowHeatmap,
+    setLoading,
+    loading,
+  } = useContext<any>(FetcherContext);
 
+  // console.log(loading);
   const fetchData = async () => {
     try {
+      setLoading(true);
+      console.log("before, loading: " + loading);
+
       const response: any = await fetch(topPostsUrl);
-      return response;
+      console.log(response);
+
+      const data = await response.json();
+
+      const topPostsArray = data.data.children;
+      const transformedPosts = transformData(topPostsArray);
+      const postCounts = getPostCounts(transformedPosts);
+
+      setPosts(transformedPosts);
+      setPostCounts(postCounts);
+      setShowHeatmap(false);
+
+      setLoading(false);
+      console.log("after, loading: " + loading);
+
+      // return response;
     } catch (error: any) {
       console.error(error.message, error.stack);
     }
@@ -71,24 +96,13 @@ const RedditTopPostsFetcher = () => {
 
   const firstUpdate = useRef(true);
 
+  console.log("rendered");
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
       return;
     }
-    fetchData()
-      .then((response) => {
-        const data = response.json();
-        return data;
-      })
-      .then((data) => {
-        const topPostsArray = data.data.children;
-        const transformedPosts = transformData(topPostsArray);
-        const postCounts = getPostCounts(transformedPosts);
-        setPosts(transformedPosts);
-        setPostCounts(postCounts);
-        setShowHeatmap(false);
-      });
+    fetchData();
   }, [topPostsUrl]);
   return <></>;
 };

@@ -18,6 +18,7 @@ const SearchSubreddit = () => {
     time,
     limit,
     setSelectedCell,
+    loading,
   } = useContext<any>(FetcherContext);
 
   const inputFieldRef = useRef<any>("");
@@ -57,7 +58,7 @@ const SearchSubreddit = () => {
           borderThickness="medium"
         />
         <Button
-          label="Search"
+          label={loading ? "..." : "Search"}
           onClick={submitHandler}
           remFontSize={2}
           backgroundColor="orange"
