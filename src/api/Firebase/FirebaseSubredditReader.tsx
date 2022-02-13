@@ -5,16 +5,18 @@ import { db } from "../../firebase-config";
 
 import Button from "../../components/common/Button/Button";
 
-const FirebaseSubredditReader = () => {
-  const {
-    user,
-    postsSnapshot,
-    setPostsSnapshot,
-    postCountsSnapshot,
-    setPostCountsSnapshot,
-    commentsSnapshot,
-    setCommentsShapshot,
-  } = useContext<any>(FetcherContext);
+interface IFirebaseSubredditReader {
+  setPostsSnapshot: React.Dispatch<React.SetStateAction<{}>>;
+  setPostCountsSnapshot: React.Dispatch<React.SetStateAction<{}>>;
+  setCommentsShapshot: React.Dispatch<React.SetStateAction<{}>>;
+}
+
+const FirebaseSubredditReader = ({
+  setPostsSnapshot,
+  setPostCountsSnapshot,
+  setCommentsShapshot,
+}: IFirebaseSubredditReader) => {
+  const { user } = useContext<any>(FetcherContext);
 
   const getPosts = async () => {
     const qPosts = query(

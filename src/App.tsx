@@ -12,21 +12,12 @@ function App() {
 
   // Firebase
   const [user, setUser] = useState({});
-  const [postsSnapshot, setPostsSnapshot] = useState({});
-  const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
-  const [commentsSnapshot, setCommentsShapshot] = useState({});
 
   const contextValues = {
     comments,
     setComments,
     user,
     setUser,
-    postsSnapshot,
-    setPostsSnapshot,
-    postCountsSnapshot,
-    setPostCountsSnapshot,
-    commentsSnapshot,
-    setCommentsShapshot,
   };
   console.log("app rendered");
   return (
