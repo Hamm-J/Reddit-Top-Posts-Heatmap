@@ -15,7 +15,6 @@ function App() {
   const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(100);
-  const [topPostsUrl, setTopPostsUrl] = useState<string>(``);
 
   // Subreddit Search
   const [input, setInput] = useState("");
@@ -35,8 +34,6 @@ function App() {
   const [commentsSnapshot, setCommentsShapshot] = useState({});
 
   const contextValues = {
-    topPostsUrl,
-    setTopPostsUrl,
     posts,
     setPosts,
     postCounts,

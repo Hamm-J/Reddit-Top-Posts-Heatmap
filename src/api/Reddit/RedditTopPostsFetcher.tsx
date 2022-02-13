@@ -1,10 +1,14 @@
 import { useEffect, useContext, useRef, useMemo } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { unixToDayHour } from "../../helpers/UTCConversions";
+import { ISearchSubreddit } from "../../components/SearchSubreddit/SearchSubreddit";
+interface IRedditTopPostsFetcher {
+  topPostsUrl: ISearchSubreddit["topPostsUrl"];
+}
 
-const RedditTopPostsFetcher = () => {
+const RedditTopPostsFetcher = ({ topPostsUrl }: IRedditTopPostsFetcher) => {
   const {
-    topPostsUrl,
+    // topPostsUrl,
     setPosts,
     setPostCounts,
     setShowHeatmap,

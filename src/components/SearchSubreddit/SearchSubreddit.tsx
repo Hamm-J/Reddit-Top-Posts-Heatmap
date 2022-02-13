@@ -7,10 +7,16 @@ import {
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
+import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
-const SearchSubreddit = () => {
+export interface ISearchSubreddit {
+  topPostsUrl: string;
+  setTopPostsUrl: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchSubreddit = ({ topPostsUrl, setTopPostsUrl }: ISearchSubreddit) => {
   const {
-    setTopPostsUrl,
+    // setTopPostsUrl,
     subreddit,
     setSubreddit,
     input,
@@ -47,6 +53,7 @@ const SearchSubreddit = () => {
   }, [subreddit]);
   return (
     <SearchSubredditContainer>
+      <RedditTopPostsFetcher topPostsUrl={topPostsUrl}></RedditTopPostsFetcher>
       <FlexContainer>
         <R>r /</R>
         <InputText

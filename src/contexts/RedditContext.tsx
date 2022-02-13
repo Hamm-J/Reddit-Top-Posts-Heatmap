@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const RedditContext = createContext([]);
+export const RedditContext = createContext<Object>([]);
