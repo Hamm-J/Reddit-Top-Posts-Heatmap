@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const useTopPostsFetcher = (
@@ -7,6 +7,8 @@ const useTopPostsFetcher = (
 ) => {
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState({});
+
+  const firstRender = useRef(true);
 
   const fetchData = async () => {
     try {
@@ -90,6 +92,11 @@ const useTopPostsFetcher = (
   };
 
   useEffect(() => {
+    // prevent execution on inital render
+    if (firstRender.current == true) {
+      firstRender.current = false;
+      return;
+    }
     fetchData();
   }, [url]);
 

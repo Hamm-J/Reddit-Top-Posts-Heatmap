@@ -20,11 +20,14 @@ const SearchSubreddit = ({
   setPostCounts,
 }: ISearchSubreddit) => {
   // fetcher URL states
-  const [topPostsUrl, setTopPostsUrl] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [time, setTime] = useState("month");
   const [limit, setLimit] = useState(100);
+  const [topPostsUrl, setTopPostsUrl] = useState(
+    `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
+  );
 
+  console.log(topPostsUrl);
   // state of the current input value
   const [input, setInput] = useState("");
 
@@ -40,9 +43,6 @@ const SearchSubreddit = ({
     setLoading
   );
 
-  setPosts(fetchedPosts);
-  setPostCounts(fetchedPostCounts);
-
   const searchHandler = (event: any) => {
     setInput(event.target.value);
   };
@@ -55,6 +55,10 @@ const SearchSubreddit = ({
 
     setSubreddit(input);
   };
+  useEffect(() => {
+    setPosts(fetchedPosts);
+    setPostCounts(fetchedPostCounts);
+  }, [fetchedPosts, fetchedPostCounts]);
 
   useEffect(() => {
     setTopPostsUrl(
@@ -63,6 +67,8 @@ const SearchSubreddit = ({
 
     // set the selected heatmap cell to [] again so that the inspector does not
     // show
+    // setPosts(fetchedPosts);
+    // setPostCounts(fetchedPostCounts);
     setSelectedCell([]);
   }, [subreddit]);
   return (
