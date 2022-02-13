@@ -1,4 +1,4 @@
-import FirebaseSubredditWriter from "../../api/Firebase/FirebaseSubredditWriter";
+import SaveSubreddit from "../SaveSubreddit/SaveSubreddit";
 import {
   HeatmapContainer,
   HeatmapGrid,
@@ -161,10 +161,7 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
       </HeatmapGrid>
       <BottomWrapper>
         <Description>All times are shown in [ADD TIMEZONE]</Description>
-        <FirebaseSubredditWriter
-          posts={posts}
-          postCounts={postCounts}
-        ></FirebaseSubredditWriter>
+        <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit>
       </BottomWrapper>
     </HeatmapContainer>
   );

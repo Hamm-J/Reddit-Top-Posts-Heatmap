@@ -1,19 +1,20 @@
 import React from "react";
-import Button from "../../components/common/Button/Button";
+import Button from "../common/Button/Button";
+import { SnapshotArrayContainer } from "./SnapshotArray.styled";
 
-interface IFirebaseSubredditReader {
+interface ISnapshotArray {
   postsSnapshot: {};
   postCountsSnapshot: {};
   setSelectedPosts: React.Dispatch<React.SetStateAction<{}>>;
   setSelectedPostCounts: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-const FirebaseSubredditReader = ({
+const SnapshotArray = ({
   postsSnapshot,
   postCountsSnapshot,
   setSelectedPosts,
   setSelectedPostCounts,
-}: IFirebaseSubredditReader) => {
+}: ISnapshotArray) => {
   const showPosts = (doc: any, posts: any, postCounts: any) => {
     // split the doc to get the different parts of the doc info
     const docSplit = doc.split("_");
@@ -31,7 +32,7 @@ const FirebaseSubredditReader = ({
     setSelectedPostCounts(pc);
   };
   return (
-    <>
+    <SnapshotArrayContainer>
       {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
         <React.Fragment key={docIdx}>
           <Button
@@ -40,8 +41,8 @@ const FirebaseSubredditReader = ({
           ></Button>
         </React.Fragment>
       ))}
-    </>
+    </SnapshotArrayContainer>
   );
 };
 
-export default FirebaseSubredditReader;
+export default SnapshotArray;

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import Button from "../../components/common/Button/Button";
-import useFirebaseWriter from "./useFirebaseWriter";
+import Button from "../common/Button/Button";
+import useFirebaseWriter from "../../api/Firebase/useFirebaseWriter";
 
-interface IFirebaseSubredditWriter {
+interface ISaveSubreddit {
   posts: {};
   postCounts: any;
 }
-const FirebaseSubredditWriter = ({
-  posts,
-  postCounts,
-}: IFirebaseSubredditWriter) => {
+const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
   const [save, setSave] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -28,4 +25,4 @@ const FirebaseSubredditWriter = ({
   );
 };
 
-export default FirebaseSubredditWriter;
+export default SaveSubreddit;

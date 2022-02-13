@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { FetcherContext } from "../contexts/FetcherContext";
-import FirebaseSubredditReader from "../api/Firebase/FirebaseSubredditReader";
+import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import Button from "../components/common/Button/Button";
@@ -34,12 +34,12 @@ const UserDashboard = () => {
   return (
     <>
       <h1>user dashboard</h1>
-      <FirebaseSubredditReader
+      <SnapshotArray
         postsSnapshot={postsSnapshot}
         postCountsSnapshot={postCountsSnapshot}
         setSelectedPosts={setSelectedPosts}
         setSelectedPostCounts={setSelectedPostCounts}
-      ></FirebaseSubredditReader>
+      ></SnapshotArray>
       <Heatmap
         posts={selectedPosts}
         postCounts={selectedPostCounts}
