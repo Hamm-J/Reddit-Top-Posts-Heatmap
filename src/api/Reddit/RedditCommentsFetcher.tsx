@@ -37,8 +37,8 @@ const RedditCommentsFetcher = () => {
             permalink: String(arrayOfComments[comment].data.permalink),
             author: String(arrayOfComments[comment].data.author),
             created_utc: String(arrayOfComments[comment].data.created_utc),
-            ups: Number(arrayOfComments[comment].data.ups),
-            downs: Number(arrayOfComments[comment].data.downs),
+            ups: String(arrayOfComments[comment].data.ups),
+            downs: String(arrayOfComments[comment].data.downs),
             body: String(arrayOfComments[comment].data.body),
           };
           if (!postComments[postId]) {

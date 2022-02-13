@@ -9,10 +9,10 @@ const Login = () => {
   const { user } = useContext<any>(FetcherContext);
   const [isOpen, setIsOpen] = useState(false);
   const register = () => {
-    if (isOpen === false) {
-      setIsOpen(true);
+    if (isOpen === !isOpen) {
+      setIsOpen(!isOpen);
     } else {
-      setIsOpen(false);
+      setIsOpen(!isOpen);
     }
   };
   return (

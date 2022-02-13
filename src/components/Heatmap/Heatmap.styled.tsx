@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const HeatmapContainer = styled.div`
+  width: 100%;
   margin-top: 30px;
   margin-bottom: 30px;
   position: relative;
@@ -39,10 +40,12 @@ export const Cell = styled.button<{ cellCount: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.cellCount > 0 ? "pointer" : "default")};
 
   &:hover {
-    background-color: coral;
+    /* background-color: coral; */
+    background-color: ${(props) =>
+      props.cellCount > 0 ? "lightgreen" : "lightgray"};
   }
 `;
 
@@ -61,3 +64,11 @@ export const DayValue = styled.label`
 export const Spacer = styled.span``;
 
 export const Description = styled.div``;
+
+export const BottomWrapper = styled.div`
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;

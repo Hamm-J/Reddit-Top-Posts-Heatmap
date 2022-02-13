@@ -22,14 +22,14 @@ const RegisterScreen = ({ open, onClose }: Props) => {
 
   return ReactDom.createPortal(
     <>
-      <OverlayStyles></OverlayStyles>
+      <OverlayStyles onClick={onClose}></OverlayStyles>
       <RegisterScreenContainer>
         <CloseWindowWrapper>
           <SubSectionTitle>Sign up!</SubSectionTitle>
           <Button onClick={onClose} label="X"></Button>
         </CloseWindowWrapper>
         <Para>It's easy and quick!</Para>
-        <FirebaseRegister></FirebaseRegister>
+        <FirebaseRegister onClose={onClose}></FirebaseRegister>
       </RegisterScreenContainer>
     </>,
     registerPortal

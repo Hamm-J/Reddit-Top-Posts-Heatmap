@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
-import FirebaseSubredditWriter from "../../api/Firebase/FirebaseSubredditWriter";
+import React from "react";
 import {
   InspectorContainer,
   InspectorTitleWrapper,
@@ -11,16 +9,15 @@ import {
 import { unixToCalendarDateTime } from "../../helpers/UTCConversions";
 import { Anchor, SectionTitle } from "../common/Markup/Markup.styled";
 
-const Inspector = () => {
-  const { selectedCell } = useContext<any>(FetcherContext);
-  console.log(selectedCell);
+interface IInspector {
+  selectedCell: any[];
+}
+
+const Inspector = ({ selectedCell }: IInspector) => {
   return (
     <InspectorContainer>
       <InspectorTitleWrapper>
         {selectedCell.length > 0 && <SectionTitle>Posts</SectionTitle>}
-        {selectedCell.length > 0 && (
-          <FirebaseSubredditWriter></FirebaseSubredditWriter>
-        )}
       </InspectorTitleWrapper>
       <InspectorGrid>
         {selectedCell.length > 0 && (

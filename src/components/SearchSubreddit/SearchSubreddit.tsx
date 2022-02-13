@@ -1,5 +1,4 @@
-import { useContext, useRef } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
+import { useRef, useState, useEffect } from "react";
 import {
   SearchSubredditContainer,
   FlexContainer,
@@ -7,27 +6,60 @@ import {
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
+import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
-const SearchSubreddit = () => {
-  const { setTopPostsUrl, subreddit, setSubreddit, time, limit } =
-    useContext<any>(FetcherContext);
+export interface ISearchSubreddit {
+  setPosts: React.Dispatch<React.SetStateAction<{}>>;
+  setPostCounts: React.Dispatch<any>;
+}
 
-  const inputRef = useRef<any>("");
+const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
+  // fetcher URL states
+  const [subreddit, setSubreddit] = useState("");
+  const [time, setTime] = useState("month");
+  const [limit, setLimit] = useState(100);
+  const [topPostsUrl, setTopPostsUrl] = useState(
+    `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
+  );
+
+  console.log(topPostsUrl);
+  // state of the current input value
+  const [input, setInput] = useState("");
+
+  // state of if RedditTopPostsFetcher is fetching the posts
+  const [loading, setLoading] = useState(false);
+
+  // ref for targeting the input field
+  const inputFieldRef = useRef<any>("");
+
+  // fetch top posts
+  const [fetchedPosts, fetchedPostCounts] = useTopPostsFetcher(
+    topPostsUrl,
+    setLoading
+  );
 
   const searchHandler = (event: any) => {
-    setSubreddit(event.target.value);
+    setInput(event.target.value);
   };
 
   const submitHandler = () => {
-    if (subreddit == "") {
-      inputRef.current.focus();
+    if (input == "") {
+      inputFieldRef.current.focus();
       return alert("Please enter a subreddit to search.");
     }
 
+    setSubreddit(input);
+  };
+  useEffect(() => {
+    setPosts(fetchedPosts);
+    setPostCounts(fetchedPostCounts);
+  }, [fetchedPosts, fetchedPostCounts]);
+
+  useEffect(() => {
     setTopPostsUrl(
       `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
     );
-  };
+  }, [subreddit]);
   return (
     <SearchSubredditContainer>
       <FlexContainer>
@@ -35,12 +67,13 @@ const SearchSubreddit = () => {
         <InputText
           placeholder="search..."
           onChange={(event: void) => searchHandler(event)}
-          innerRef={inputRef}
+          innerRef={inputFieldRef}
           remFontSize={2}
+          value={input}
           borderThickness="medium"
         />
         <Button
-          label="Search"
+          label={loading ? "..." : "Search"}
           onClick={submitHandler}
           remFontSize={2}
           backgroundColor="orange"

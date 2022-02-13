@@ -7,6 +7,7 @@ interface Props {
   innerRef?: React.RefObject<HTMLInputElement>;
   remFontSize?: IInputField["remFontSize"];
   borderThickness?: IInputField["borderThickness"];
+  value?: string;
 }
 
 const InputText = ({
@@ -15,6 +16,7 @@ const InputText = ({
   innerRef,
   remFontSize = 1,
   borderThickness = "thin",
+  value,
 }: Props): any => {
   return (
     <>
@@ -24,6 +26,7 @@ const InputText = ({
         ref={innerRef}
         remFontSize={remFontSize}
         borderThickness={borderThickness}
+        value={value}
       />
     </>
   );

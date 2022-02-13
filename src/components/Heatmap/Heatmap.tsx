@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
+import FirebaseSubredditWriter from "../../api/Firebase/FirebaseSubredditWriter";
 import {
   HeatmapContainer,
   HeatmapGrid,
@@ -8,19 +7,19 @@ import {
   DayValue,
   Spacer,
   Description,
+  BottomWrapper,
 } from "./Heatmap.styled";
 
 // TODO: 2022_01_30
 // Cast and type the posts and postCounts objects and then pass those interfaces
 // here.
-interface IProps {
+interface IHeatmap {
   posts: {};
   postCounts: {};
+  setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-const Heatmap = ({ posts, postCounts }: IProps) => {
-  const { setSelectedCell } = useContext<any>(FetcherContext);
-
+const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
   // Create each day's row with 24 elements (1 for each hour) and set the
   // elements' value to the keys of what the fetcherTransform returns
   let sundayRow = Array.from({ length: 24 }, (ele, val) => val).map(
@@ -44,8 +43,6 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
   let saturdayRow = Array.from({ length: 24 }, (ele, val) => val).map(
     (ele) => `Saturday_${ele}`
   );
-
-  let temp;
 
   return (
     <HeatmapContainer>
@@ -77,9 +74,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -92,9 +87,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -107,9 +100,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -122,9 +113,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -137,9 +126,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -152,9 +139,7 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
@@ -167,16 +152,20 @@ const Heatmap = ({ posts, postCounts }: IProps) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts
-                ? setSelectedCell(posts[postTime as keyof {}])
-                : alert(`There were no posts at ${postTime}.`)
+              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
             }
           >
             {postTime in posts ? postCounts[postTime as keyof {}] : 0}
           </Cell>
         ))}
       </HeatmapGrid>
-      <Description>All times are shown in [ADD TIMEZONE]</Description>
+      <BottomWrapper>
+        <Description>All times are shown in [ADD TIMEZONE]</Description>
+        <FirebaseSubredditWriter
+          posts={posts}
+          postCounts={postCounts}
+        ></FirebaseSubredditWriter>
+      </BottomWrapper>
     </HeatmapContainer>
   );
 };
