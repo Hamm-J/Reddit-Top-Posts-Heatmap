@@ -10,15 +10,22 @@ import Button from "../common/Button/Button";
 import RedditTopPostsFetcher from "../../api/Reddit/RedditTopPostsFetcher";
 
 export interface ISearchSubreddit {
+  subreddit: string;
+  setSubreddit: React.Dispatch<React.SetStateAction<string>>;
   topPostsUrl: string;
   setTopPostsUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchSubreddit = ({ topPostsUrl, setTopPostsUrl }: ISearchSubreddit) => {
+const SearchSubreddit = ({
+  subreddit,
+  setSubreddit,
+  topPostsUrl,
+  setTopPostsUrl,
+}: ISearchSubreddit) => {
   const {
     // setTopPostsUrl,
-    subreddit,
-    setSubreddit,
+    // subreddit,
+    // setSubreddit,
     input,
     setInput,
     time,

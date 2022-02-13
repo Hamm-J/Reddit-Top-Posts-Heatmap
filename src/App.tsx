@@ -12,7 +12,6 @@ function App() {
   // reddit API
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState<any>({});
-  const [subreddit, setSubreddit] = useState<string>("");
   const [time, setTime] = useState<string>("month");
   const [limit, setLimit] = useState<number>(100);
 
@@ -38,8 +37,6 @@ function App() {
     setPosts,
     postCounts,
     setPostCounts,
-    subreddit,
-    setSubreddit,
     input,
     setInput,
     loading,

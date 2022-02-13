@@ -11,6 +11,7 @@ const Home = () => {
     useContext<any>(FetcherContext);
 
   const [topPostsUrl, setTopPostsUrl] = useState("");
+  const [subreddit, setSubreddit] = useState("");
 
   return (
     <>
@@ -18,6 +19,8 @@ const Home = () => {
       {showHeatmap ? (
         <>
           <SearchSubreddit
+            subreddit={subreddit}
+            setSubreddit={setSubreddit}
             topPostsUrl={topPostsUrl}
             setTopPostsUrl={setTopPostsUrl}
           ></SearchSubreddit>
@@ -26,6 +29,8 @@ const Home = () => {
       ) : (
         <>
           <SearchSubreddit
+            subreddit={subreddit}
+            setSubreddit={setSubreddit}
             topPostsUrl={topPostsUrl}
             setTopPostsUrl={setTopPostsUrl}
           ></SearchSubreddit>
