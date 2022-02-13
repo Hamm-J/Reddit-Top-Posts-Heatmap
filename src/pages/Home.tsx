@@ -51,12 +51,9 @@ const Home = () => {
             postCounts={postCounts}
             setSelectedCell={setSelectedCell}
           ></Heatmap>
-          {selectedCell.length > 0 ? (
+          {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
-          ) : (
-            <></>
           )}
-
           <Landing></Landing>
         </>
       ) : (
