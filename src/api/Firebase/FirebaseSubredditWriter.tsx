@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/common/Button/Button";
+import useFirebaseWriter from "./useFirebaseWriter";
 
 interface IFirebaseSubredditWriter {
   posts: {};
@@ -9,13 +10,17 @@ const FirebaseSubredditWriter = ({
   posts,
   postCounts,
 }: IFirebaseSubredditWriter) => {
-  const saveSubreddit = async () => {
-    console.log(posts);
-    console.log(postCounts);
+  const [save, setSave] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useFirebaseWriter(save, posts, postCounts, setLoading);
+
+  const saveSubreddit = () => {
+    setSave(!save);
   };
   return (
     <Button
-      label="Save Subreddit Data?"
+      label={loading ? "Saving..." : "Save Subreddit Data?"}
       onClick={saveSubreddit}
       remFontSize={1.2}
       backgroundColor="orange"
