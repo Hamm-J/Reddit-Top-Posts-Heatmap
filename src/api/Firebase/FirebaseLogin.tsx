@@ -39,11 +39,11 @@ const FirebaseLogin = () => {
     <div>
       <InputText
         onChange={(event) => setLoginEmail(event.target.value)}
-        placeholder="Login: Username"
+        placeholder="Username..."
       ></InputText>
       <InputText
         onChange={(event) => setLoginPassword(event.target.value)}
-        placeholder="Login: Password"
+        placeholder="Password..."
       ></InputText>
       {user ? (
         <Button label="Logout" onClick={logout}></Button>
