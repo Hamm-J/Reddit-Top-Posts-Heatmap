@@ -38,7 +38,10 @@ const FirebaseLogin = () => {
   return (
     <div>
       {user ? (
-        <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
+        <>
+          <p>Logged into: {user?.email}</p>
+          <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
+        </>
       ) : (
         <>
           <InputText
@@ -54,8 +57,6 @@ const FirebaseLogin = () => {
           <Button label="Login" onClick={login} remFontSize={1.1}></Button>
         </>
       )}
-      {user && <p>{user?.email}</p>}
-      {user && <p>{user?.uid}</p>}
     </div>
   );
 };
