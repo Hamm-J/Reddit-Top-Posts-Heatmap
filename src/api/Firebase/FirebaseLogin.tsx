@@ -40,15 +40,17 @@ const FirebaseLogin = () => {
       <InputText
         onChange={(event) => setLoginEmail(event.target.value)}
         placeholder="Username..."
+        remFontSize={1.2}
       ></InputText>
       <InputText
         onChange={(event) => setLoginPassword(event.target.value)}
         placeholder="Password..."
+        remFontSize={1.2}
       ></InputText>
       {user ? (
-        <Button label="Logout" onClick={logout}></Button>
+        <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
       ) : (
-        <Button label="Login" onClick={login}></Button>
+        <Button label="Login" onClick={login} remFontSize={1.1}></Button>
       )}
       {user && <p>{user?.email}</p>}
       {user && <p>{user?.uid}</p>}

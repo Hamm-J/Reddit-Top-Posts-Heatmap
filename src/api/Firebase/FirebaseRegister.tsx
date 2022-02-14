@@ -31,12 +31,14 @@ const FirebaseRegister = ({ onClose }: Props) => {
       <InputText
         onChange={(event) => setRegisterEmail(event.target.value)}
         placeholder="Username..."
+        remFontSize={1.2}
       ></InputText>
       <InputText
         onChange={(event) => setRegisterPassword(event.target.value)}
         placeholder="Password..."
+        remFontSize={1.2}
       ></InputText>
-      <Button onClick={register} label="Register"></Button>
+      <Button onClick={register} label="Register" remFontSize={1.1}></Button>
     </div>
   );
 };

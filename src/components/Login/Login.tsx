@@ -18,7 +18,9 @@ const Login = () => {
   return (
     <LoginContainer>
       <FirebaseLogin></FirebaseLogin>
-      {!user && <Button label="Sign up?" onClick={register}></Button>}
+      {!user && (
+        <Button label="Sign up?" onClick={register} remFontSize={1.1}></Button>
+      )}
       <RegisterScreen
         open={isOpen}
         onClose={() => setIsOpen(false)}
