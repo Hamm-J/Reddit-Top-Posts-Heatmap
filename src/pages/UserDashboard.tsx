@@ -3,7 +3,8 @@ import { FetcherContext } from "../contexts/FetcherContext";
 import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
-import Button from "../components/common/Button/Button";
+import UserDashboardDescription from "../components/UserDashboardDescription/UserDashboardDescription";
+import BannerTitle from "../components/BannerTitle/BannerTitle";
 import useFirebaseReader from "../api/Firebase/useFirebaseReader";
 import { db } from "../firebase-config";
 
@@ -50,7 +51,8 @@ const UserDashboard = () => {
 
   return (
     <>
-      <h1>user dashboard</h1>
+      <BannerTitle>User Dashboard</BannerTitle>
+      <UserDashboardDescription></UserDashboardDescription>
       <SnapshotArray
         postsSnapshot={postsSnapshot}
         postCountsSnapshot={postCountsSnapshot}
