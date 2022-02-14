@@ -20,10 +20,17 @@ const Landing = () => {
           of the day.
         </ListItem>
         <ListItem>
+          Click on a heatmap cell to inspect the posts from that day and time.
+        </ListItem>
+        <ListItem>
           Instantly find out when to post on{" "}
           <Anchor href="https://www.reddit.com/" target="_blank">
             Reddit
           </Anchor>
+        </ListItem>
+        <ListItem>
+          If you have an account, you can then save the subreddit post data to
+          revisualize at a later time.
         </ListItem>
       </List>
       <SectionTitle>About</SectionTitle>
