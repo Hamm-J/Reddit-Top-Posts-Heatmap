@@ -1,17 +1,30 @@
-import React from "react";
-import { NavbarContainer } from "./Navbar.styled";
+import React, { useContext } from "react";
+import { FetcherContext } from "../../contexts/FetcherContext";
+import {
+  NavbarContainer,
+  NavbarLink,
+  ImgAnchor,
+  LinkWrapper,
+  LoginWrapper,
+} from "./Navbar.styled";
 import Login from "../Login/Login";
 import redditLogo from "../../images/redditLogo.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const { user } = useContext<any>(FetcherContext);
   return (
     <NavbarContainer>
-      <img src={redditLogo} alt="reddit logo" height="50px" width="50px" />
-      <Link to="/">Home</Link>
-      <Link to="/user_dashboard">User Dashboard</Link>
-
-      <Login></Login>
+      <LinkWrapper>
+        <ImgAnchor href="https://www.reddit.com/" target="_blank">
+          <img src={redditLogo} alt="reddit logo" height="50px" width="50px" />
+        </ImgAnchor>
+        <NavbarLink to="/">Home</NavbarLink>
+        <NavbarLink to="/user_dashboard">User Dashboard</NavbarLink>
+      </LinkWrapper>
+      <LoginWrapper>
+        <Login></Login>
+      </LoginWrapper>
     </NavbarContainer>
   );
 };
