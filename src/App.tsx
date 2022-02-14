@@ -5,6 +5,7 @@ import UserDashboard from "./pages/UserDashboard";
 import ErrorPage from "./pages/404";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   // reddit API
@@ -27,7 +28,9 @@ function App() {
           <Navbar></Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/user_dashboard" element={<UserDashboard />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/user_dashboard" element={<UserDashboard />} />
+            </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </FetcherContext.Provider>
