@@ -13,12 +13,15 @@ function App() {
 
   // Firebase
   const [user, setUser] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   const contextValues = {
     comments,
     setComments,
     user,
     setUser,
+    isOpen,
+    setIsOpen,
   };
   console.log("app rendered");
   return (
