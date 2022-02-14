@@ -1,58 +1,76 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { FetcherContext } from "../contexts/FetcherContext";
-import FirebaseSubredditReader from "../api/Firebase/FirebaseSubredditReader";
+import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
-import Button from "../components/common/Button/Button";
+import UserDashboardDescription from "../components/UserDashboardDescription/UserDashboardDescription";
+import BannerTitle from "../components/BannerTitle/BannerTitle";
+import useFirebaseReader from "../api/Firebase/useFirebaseReader";
+import { db } from "../firebase-config";
 
 const UserDashboard = () => {
-  const { postsSnapshot, postCountsSnapshot, commentsSnapshot } =
-    useContext<any>(FetcherContext);
+  // Firebase states
+  const [postsSnapshot, setPostsSnapshot] = useState({});
+  const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
+  const [commentsSnapshot, setCommentsShapshot] = useState({});
 
+  // Heatmap states
   const [selectedPosts, setSelectedPosts] = useState({});
   const [selectedPostCounts, setSelectedPostCounts] = useState({});
   const [selectedComments, setSelectedComments] = useState({});
 
   const [selectedCell, setSelectedCell] = useState<any[]>([]);
 
-  // TODO:
-  // pass the posts to the heatmap
-  // sort how to seperate the different types of saved data (i.e. posts, postCounts, and comments)
-  const showPosts = (doc: any, posts: any, postCounts: any) => {
-    // split the doc to get the different parts of the doc info
-    const docSplit = doc.split("_");
-    const subreddit = docSplit[0];
-    const docType = docSplit[1];
-    const docSaveTime = docSplit[2];
+  const { user } = useContext<any>(FetcherContext);
 
-    // get the posts for this doc
-    const p = posts[`${subreddit}_posts_${docSaveTime}`].data;
-    // get the postCounts for this doc
-    const pc = postCounts[`${subreddit}_postCounts_${docSaveTime}`].data;
+  const [showHeatmap, setShowHeatmap] = useState(false);
 
-    // set the selectedPosts and selectedPostCounts to the selected doc
-    setSelectedPosts(p);
-    setSelectedPostCounts(pc);
-  };
+  const firstSelect = useRef(true);
+
+  // Read snapshots from firebase
+  useFirebaseReader(
+    db,
+    user,
+    setPostsSnapshot,
+    setPostCountsSnapshot,
+    setCommentsShapshot
+  );
+
+  useEffect(() => {
+    setSelectedCell([]);
+  }, [selectedPosts]);
+
+  useEffect(() => {
+    if (firstSelect.current && Object.keys(selectedPosts).length > 0) {
+      setShowHeatmap(true);
+    } else {
+      // pass
+      return;
+    }
+  }, [selectedPosts]);
 
   return (
     <>
-      <h1>user dashboard</h1>
-      <FirebaseSubredditReader></FirebaseSubredditReader>
-      {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
-        <React.Fragment key={docIdx}>
-          <Button
-            label={`${doc}`}
-            onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
-          ></Button>
-        </React.Fragment>
-      ))}
-      <Heatmap
-        posts={selectedPosts}
-        postCounts={selectedPostCounts}
-        setSelectedCell={setSelectedCell}
-      ></Heatmap>
-      <Inspector selectedCell={selectedCell}></Inspector>
+      <BannerTitle>User Dashboard</BannerTitle>
+      <UserDashboardDescription></UserDashboardDescription>
+      <SnapshotArray
+        postsSnapshot={postsSnapshot}
+        postCountsSnapshot={postCountsSnapshot}
+        setSelectedPosts={setSelectedPosts}
+        setSelectedPostCounts={setSelectedPostCounts}
+      ></SnapshotArray>
+      {showHeatmap && (
+        <>
+          <Heatmap
+            posts={selectedPosts}
+            postCounts={selectedPostCounts}
+            setSelectedCell={setSelectedCell}
+          ></Heatmap>
+          {selectedCell.length > 0 && (
+            <Inspector selectedCell={selectedCell}></Inspector>
+          )}
+        </>
+      )}
     </>
   );
 };

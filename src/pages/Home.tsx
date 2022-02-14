@@ -40,34 +40,23 @@ const Home = () => {
   return (
     <>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
-      {showHeatmap ? (
+      <SearchSubreddit
+        setPosts={setPosts}
+        setPostCounts={setPostCounts}
+      ></SearchSubreddit>
+      {showHeatmap && (
         <>
-          <SearchSubreddit
-            setPosts={setPosts}
-            setPostCounts={setPostCounts}
-          ></SearchSubreddit>
           <Heatmap
             posts={posts}
             postCounts={postCounts}
             setSelectedCell={setSelectedCell}
           ></Heatmap>
-          {selectedCell.length > 0 ? (
+          {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
-          ) : (
-            <></>
           )}
-
-          <Landing></Landing>
-        </>
-      ) : (
-        <>
-          <SearchSubreddit
-            setPosts={setPosts}
-            setPostCounts={setPostCounts}
-          ></SearchSubreddit>
-          <Landing></Landing>
         </>
       )}
+      <Landing></Landing>
     </>
   );
 };
