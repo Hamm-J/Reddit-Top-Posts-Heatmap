@@ -4,6 +4,11 @@ import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
 import InputEmail from "../../components/common/InputEmail/InputEmail";
+import {
+  FirebaseRegisterContainer,
+  ErrorMessage,
+} from "../Firebase/FirebaseRegister.styled";
+
 interface Props {
   onClose: () => void;
 }
@@ -46,7 +51,7 @@ const FirebaseRegister = ({ onClose }: Props) => {
   };
 
   return (
-    <>
+    <FirebaseRegisterContainer>
       <form onSubmit={register}>
         <InputEmail
           onChange={(event) => setRegisterEmail(event.target.value)}
@@ -66,8 +71,8 @@ const FirebaseRegister = ({ onClose }: Props) => {
           remFontSize={1.1}
         ></Button>
       </form>
-      {error && <p>{error}</p>}
-    </>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </FirebaseRegisterContainer>
   );
 };
 
