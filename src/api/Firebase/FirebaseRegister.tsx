@@ -29,6 +29,7 @@ const FirebaseRegister = ({ onClose }: Props) => {
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
+      setLoading(false);
       switch (error.message) {
         case "Firebase: Password should be at least 6 characters (auth/weak-password).":
           setError("Password must be at least 6 characters in length...");
