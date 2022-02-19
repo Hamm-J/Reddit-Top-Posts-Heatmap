@@ -12,3 +12,19 @@ export const ErrorMessage = styled.div`
   font-weight: bold;
   color: red;
 `;
+
+export const LoggedInContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+`;
+
+export const LoggedOutContainer = styled.div`
+  display: flex;
+`;
+
+export const LoggedInMessage = styled.div`
+  margin-right: 15px;
+  font-size: 20px;
+`;

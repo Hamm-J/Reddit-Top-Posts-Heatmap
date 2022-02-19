@@ -9,7 +9,13 @@ import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
 import InputEmail from "../../components/common/InputEmail/InputEmail";
-import { FirebaseLoginContainer, ErrorMessage } from "./FirebaseLogin.styled";
+import {
+  FirebaseLoginContainer,
+  ErrorMessage,
+  LoggedInContainer,
+  LoggedOutContainer,
+  LoggedInMessage,
+} from "./FirebaseLogin.styled";
 
 const FirebaseLogin = () => {
   const { user, setUser } = useContext<any>(FetcherContext);
@@ -59,12 +65,14 @@ const FirebaseLogin = () => {
   return (
     <FirebaseLoginContainer>
       {user ? (
-        <>
-          <p>Logged into: {user?.email}</p>
-          <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
-        </>
+        <LoggedInContainer>
+          <LoggedInMessage>{user?.email}</LoggedInMessage>
+          <div>
+            <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
+          </div>
+        </LoggedInContainer>
       ) : (
-        <>
+        <LoggedOutContainer>
           <form onSubmit={login}>
             <InputEmail
               onChange={(event) => setLoginEmail(event.target.value)}
@@ -85,7 +93,7 @@ const FirebaseLogin = () => {
             ></Button>
           </form>
           {error != "" && <ErrorMessage>{error}</ErrorMessage>}
-        </>
+        </LoggedOutContainer>
       )}
     </FirebaseLoginContainer>
   );
