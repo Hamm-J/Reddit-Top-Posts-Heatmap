@@ -12,17 +12,20 @@ const FirebaseRegister = ({ onClose }: Props) => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const register = async (e: any) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
       onClose();
+      setLoading(false);
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
@@ -56,7 +59,11 @@ const FirebaseRegister = ({ onClose }: Props) => {
           remFontSize={1.2}
           required
         ></InputText>
-        <Button type="submit" label="Register" remFontSize={1.1}></Button>
+        <Button
+          type="submit"
+          label={loading ? "..." : "Login"}
+          remFontSize={1.1}
+        ></Button>
       </form>
       {error && <p>{error}</p>}
     </>
