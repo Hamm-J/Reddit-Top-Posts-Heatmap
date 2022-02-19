@@ -37,6 +37,7 @@ const FirebaseLogin = () => {
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
+      setLoading(false);
       switch (error.message) {
         case "Firebase: Error (auth/wrong-password).":
           setError("Incorrect Password...");
