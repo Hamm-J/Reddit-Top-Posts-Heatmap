@@ -15,6 +15,7 @@ const FirebaseLogin = () => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [error, setError] = useState("");
 
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
@@ -32,6 +33,18 @@ const FirebaseLogin = () => {
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
+      switch (error.message) {
+        case "Firebase: Error (auth/wrong-password).":
+          setError("Incorrect Password...");
+          break;
+
+        case "Firebase: Error (auth/user-not-found).":
+          setError("Incorrect Email...");
+          break;
+
+        default:
+          setError("Incorrect. Please try again...");
+      }
     }
   };
 
@@ -46,21 +59,24 @@ const FirebaseLogin = () => {
           <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
         </>
       ) : (
-        <form onSubmit={login}>
-          <InputEmail
-            onChange={(event) => setLoginEmail(event.target.value)}
-            placeholder="Email..."
-            remFontSize={1.2}
-            required
-          ></InputEmail>
-          <InputText
-            onChange={(event) => setLoginPassword(event.target.value)}
-            placeholder="Password..."
-            remFontSize={1.2}
-            required
-          ></InputText>
-          <Button label="Login" type="submit" remFontSize={1.1}></Button>
-        </form>
+        <>
+          <form onSubmit={login}>
+            <InputEmail
+              onChange={(event) => setLoginEmail(event.target.value)}
+              placeholder="Email..."
+              remFontSize={1.2}
+              required
+            ></InputEmail>
+            <InputText
+              onChange={(event) => setLoginPassword(event.target.value)}
+              placeholder="Password..."
+              remFontSize={1.2}
+              required
+            ></InputText>
+            <Button label="Login" type="submit" remFontSize={1.1}></Button>
+          </form>
+          {error != "" && <p>{error}</p>}
+        </>
       )}
     </div>
   );
