@@ -10,6 +10,5 @@ export const ErrorMessage = styled.div`
   position: absolute;
   top: 30px;
   font-weight: bold;
-  /* color: red; */
-  /* left: 0; */
+  color: red;
 `;
