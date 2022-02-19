@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
-
+import InputEmail from "../../components/common/InputEmail/InputEmail";
 interface Props {
   onClose: () => void;
 }
@@ -12,7 +12,9 @@ const FirebaseRegister = ({ onClose }: Props) => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
-  const register = async () => {
+  const register = async (e: any) => {
+    e.preventDefault();
+
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -27,19 +29,21 @@ const FirebaseRegister = ({ onClose }: Props) => {
   };
 
   return (
-    <div>
-      <InputText
+    <form onSubmit={register}>
+      <InputEmail
         onChange={(event) => setRegisterEmail(event.target.value)}
-        placeholder="Username..."
+        placeholder="Email..."
         remFontSize={1.2}
-      ></InputText>
+        required
+      ></InputEmail>
       <InputText
         onChange={(event) => setRegisterPassword(event.target.value)}
         placeholder="Password..."
         remFontSize={1.2}
+        required
       ></InputText>
-      <Button onClick={register} label="Register" remFontSize={1.1}></Button>
-    </div>
+      <Button type="submit" label="Register" remFontSize={1.1}></Button>
+    </form>
   );
 };
 
