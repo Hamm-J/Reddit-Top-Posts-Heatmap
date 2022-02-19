@@ -9,6 +9,7 @@ import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
 import InputEmail from "../../components/common/InputEmail/InputEmail";
+import { FirebaseLoginContainer, ErrorMessage } from "./FirebaseLogin.styled";
 
 const FirebaseLogin = () => {
   const { user, setUser } = useContext<any>(FetcherContext);
@@ -55,7 +56,7 @@ const FirebaseLogin = () => {
     await signOut(auth);
   };
   return (
-    <div>
+    <FirebaseLoginContainer>
       {user ? (
         <>
           <p>Logged into: {user?.email}</p>
@@ -82,10 +83,10 @@ const FirebaseLogin = () => {
               remFontSize={1.1}
             ></Button>
           </form>
-          {error != "" && <p>{error}</p>}
+          {error != "" && <ErrorMessage>{error}</ErrorMessage>}
         </>
       )}
-    </div>
+    </FirebaseLoginContainer>
   );
 };
 
