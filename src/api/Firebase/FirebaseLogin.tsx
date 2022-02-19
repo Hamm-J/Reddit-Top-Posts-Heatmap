@@ -16,6 +16,7 @@ const FirebaseLogin = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
@@ -25,11 +26,13 @@ const FirebaseLogin = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
+      setLoading(false);
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
@@ -73,7 +76,11 @@ const FirebaseLogin = () => {
               remFontSize={1.2}
               required
             ></InputText>
-            <Button label="Login" type="submit" remFontSize={1.1}></Button>
+            <Button
+              label={loading ? "..." : "Login"}
+              type="submit"
+              remFontSize={1.1}
+            ></Button>
           </form>
           {error != "" && <p>{error}</p>}
         </>
