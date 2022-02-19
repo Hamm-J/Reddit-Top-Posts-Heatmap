@@ -11,6 +11,7 @@ interface Props {
 const FirebaseRegister = ({ onClose }: Props) => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [error, setError] = useState("");
 
   const register = async (e: any) => {
     e.preventDefault();
@@ -25,25 +26,40 @@ const FirebaseRegister = ({ onClose }: Props) => {
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
+      switch (error.message) {
+        case "Firebase: Password should be at least 6 characters (auth/weak-password).":
+          setError("Password must be at least 6 characters in length...");
+          break;
+
+        case "Firebase: Error (auth/email-already-in-use).":
+          setError("Email already in use...");
+          break;
+
+        default:
+          setError("Incorrect. Please try again...");
+      }
     }
   };
 
   return (
-    <form onSubmit={register}>
-      <InputEmail
-        onChange={(event) => setRegisterEmail(event.target.value)}
-        placeholder="Email..."
-        remFontSize={1.2}
-        required
-      ></InputEmail>
-      <InputText
-        onChange={(event) => setRegisterPassword(event.target.value)}
-        placeholder="Password..."
-        remFontSize={1.2}
-        required
-      ></InputText>
-      <Button type="submit" label="Register" remFontSize={1.1}></Button>
-    </form>
+    <>
+      <form onSubmit={register}>
+        <InputEmail
+          onChange={(event) => setRegisterEmail(event.target.value)}
+          placeholder="Email..."
+          remFontSize={1.2}
+          required
+        ></InputEmail>
+        <InputText
+          onChange={(event) => setRegisterPassword(event.target.value)}
+          placeholder="Password..."
+          remFontSize={1.2}
+          required
+        ></InputText>
+        <Button type="submit" label="Register" remFontSize={1.1}></Button>
+      </form>
+      {error && <p>{error}</p>}
+    </>
   );
 };
 
