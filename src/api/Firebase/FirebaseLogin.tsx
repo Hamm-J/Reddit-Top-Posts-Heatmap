@@ -8,6 +8,7 @@ import {
 import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
+import InputEmail from "../../components/common/InputEmail/InputEmail";
 
 const FirebaseLogin = () => {
   const { user, setUser } = useContext<any>(FetcherContext);
@@ -19,7 +20,9 @@ const FirebaseLogin = () => {
     setUser(currentUser);
   });
 
-  const login = async () => {
+  const login = async (e: any) => {
+    e.preventDefault();
+
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -43,19 +46,21 @@ const FirebaseLogin = () => {
           <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
         </>
       ) : (
-        <>
-          <InputText
+        <form onSubmit={login}>
+          <InputEmail
             onChange={(event) => setLoginEmail(event.target.value)}
-            placeholder="Username..."
+            placeholder="Email..."
             remFontSize={1.2}
-          ></InputText>
+            required
+          ></InputEmail>
           <InputText
             onChange={(event) => setLoginPassword(event.target.value)}
             placeholder="Password..."
             remFontSize={1.2}
+            required
           ></InputText>
-          <Button label="Login" onClick={login} remFontSize={1.1}></Button>
-        </>
+          <Button label="Login" type="submit" remFontSize={1.1}></Button>
+        </form>
       )}
     </div>
   );

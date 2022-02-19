@@ -1,4 +1,4 @@
-import { InputField, IInputField } from "./InputText.styled";
+import { InputField, IInputField } from "./InputEmail.styled";
 
 interface Props {
   placeholder: string;
