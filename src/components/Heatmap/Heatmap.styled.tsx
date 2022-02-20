@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeatmapContainer = styled.div`
   width: 100%;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -62,13 +62,3 @@ export const DayValue = styled.label`
 `;
 
 export const Spacer = styled.span``;
-
-export const Description = styled.div``;
-
-export const BottomWrapper = styled.div`
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;

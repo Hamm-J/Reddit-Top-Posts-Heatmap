@@ -6,8 +6,6 @@ import {
   TimeValue,
   DayValue,
   Spacer,
-  Description,
-  BottomWrapper,
 } from "./Heatmap.styled";
 
 // TODO: 2022_01_30
@@ -159,10 +157,6 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
           </Cell>
         ))}
       </HeatmapGrid>
-      <BottomWrapper>
-        {/* <Description>All times are shown in [ADD TIMEZONE]</Description> */}
-        {/* <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit> */}
-      </BottomWrapper>
     </HeatmapContainer>
   );
 };

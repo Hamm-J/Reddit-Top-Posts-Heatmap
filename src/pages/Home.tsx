@@ -6,6 +6,7 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 import SaveSubreddit from "../components/SaveSubreddit/SaveSubreddit";
 import TimeZone from "../components/TimeZone/TimeZone";
+import { Description } from "../layouts/Home.styled";
 
 const Home = () => {
   // const { posts, postCounts } = useContext<any>(FetcherContext);
@@ -53,8 +54,13 @@ const Home = () => {
             postCounts={postCounts}
             setSelectedCell={setSelectedCell}
           ></Heatmap>
-          <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit>
-          <TimeZone></TimeZone>
+          <Description>
+            <TimeZone></TimeZone>
+            <SaveSubreddit
+              posts={posts}
+              postCounts={postCounts}
+            ></SaveSubreddit>
+          </Description>
           {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
           )}
