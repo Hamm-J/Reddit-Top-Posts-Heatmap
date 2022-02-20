@@ -7,6 +7,8 @@ import UserDashboardDescription from "../components/UserDashboardDescription/Use
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 import useFirebaseReader from "../api/Firebase/useFirebaseReader";
 import { db } from "../firebase-config";
+import TimeZone from "../components/TimeZone/TimeZone";
+import { Description } from "../layouts/UserDashboard.styled";
 
 const UserDashboard = () => {
   // Firebase states
@@ -66,6 +68,9 @@ const UserDashboard = () => {
             postCounts={selectedPostCounts}
             setSelectedCell={setSelectedCell}
           ></Heatmap>
+          <Description>
+            <TimeZone></TimeZone>
+          </Description>
           {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
           )}
