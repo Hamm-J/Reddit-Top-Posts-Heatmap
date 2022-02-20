@@ -8,7 +8,11 @@ import BannerTitle from "../components/BannerTitle/BannerTitle";
 import useFirebaseReader from "../api/Firebase/useFirebaseReader";
 import { db } from "../firebase-config";
 import TimeZone from "../components/TimeZone/TimeZone";
-import { Description } from "../layouts/UserDashboard.styled";
+import {
+  Description,
+  UserDashboardContainer,
+  TopWrapper,
+} from "../layouts/UserDashboard.styled";
 
 const UserDashboard = () => {
   // Firebase states
@@ -52,15 +56,17 @@ const UserDashboard = () => {
   }, [selectedPosts]);
 
   return (
-    <>
-      <BannerTitle>User Dashboard</BannerTitle>
-      <UserDashboardDescription></UserDashboardDescription>
-      <SnapshotArray
-        postsSnapshot={postsSnapshot}
-        postCountsSnapshot={postCountsSnapshot}
-        setSelectedPosts={setSelectedPosts}
-        setSelectedPostCounts={setSelectedPostCounts}
-      ></SnapshotArray>
+    <UserDashboardContainer>
+      <TopWrapper>
+        <BannerTitle>User Dashboard</BannerTitle>
+        <UserDashboardDescription></UserDashboardDescription>
+        <SnapshotArray
+          postsSnapshot={postsSnapshot}
+          postCountsSnapshot={postCountsSnapshot}
+          setSelectedPosts={setSelectedPosts}
+          setSelectedPostCounts={setSelectedPostCounts}
+        ></SnapshotArray>
+      </TopWrapper>
       {showHeatmap && (
         <>
           <Heatmap
@@ -76,7 +82,7 @@ const UserDashboard = () => {
           )}
         </>
       )}
-    </>
+    </UserDashboardContainer>
   );
 };
 

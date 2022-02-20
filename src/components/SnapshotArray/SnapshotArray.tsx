@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../common/Button/Button";
-import { SnapshotArrayContainer } from "./SnapshotArray.styled";
+import { SnapshotArrayContainer, Array } from "./SnapshotArray.styled";
 
 interface ISnapshotArray {
   postsSnapshot: {};
@@ -33,14 +33,15 @@ const SnapshotArray = ({
   };
   return (
     <SnapshotArrayContainer>
-      {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
-        <React.Fragment key={docIdx}>
+      <Array>
+        {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
           <Button
+            key={docIdx}
             label={`${doc}`}
             onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
           ></Button>
-        </React.Fragment>
-      ))}
+        ))}
+      </Array>
     </SnapshotArrayContainer>
   );
 };
