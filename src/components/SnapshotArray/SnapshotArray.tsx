@@ -7,6 +7,8 @@ interface ISnapshotArray {
   postCountsSnapshot: {};
   setSelectedPosts: React.Dispatch<React.SetStateAction<{}>>;
   setSelectedPostCounts: React.Dispatch<React.SetStateAction<{}>>;
+  setPostsSnapshotDoc: React.Dispatch<React.SetStateAction<string>>;
+  setPostCountsSnapshot: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SnapshotArray = ({
@@ -14,6 +16,8 @@ const SnapshotArray = ({
   postCountsSnapshot,
   setSelectedPosts,
   setSelectedPostCounts,
+  setPostsSnapshotDoc,
+  setPostCountsSnapshot,
 }: ISnapshotArray) => {
   const showPosts = (doc: any, posts: any, postCounts: any) => {
     // split the doc to get the different parts of the doc info
@@ -30,6 +34,9 @@ const SnapshotArray = ({
     // set the selectedPosts and selectedPostCounts to the selected doc
     setSelectedPosts(p);
     setSelectedPostCounts(pc);
+
+    setPostsSnapshotDoc(`${subreddit}_posts_${docSaveTime}`);
+    setPostCountsSnapshot(`${subreddit}_postCounts_${docSaveTime}`);
   };
   return (
     <SnapshotArrayContainer>

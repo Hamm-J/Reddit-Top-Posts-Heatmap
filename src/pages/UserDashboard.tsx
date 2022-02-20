@@ -20,6 +20,8 @@ const UserDashboard = () => {
   const [postsSnapshot, setPostsSnapshot] = useState({});
   const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
   const [commentsSnapshot, setCommentsShapshot] = useState({});
+  const [postsSnapshotDoc, setPostsSnapshostDoc] = useState("");
+  const [postCountsSnapshotDoc, setPostCountsSnapshotDoc] = useState("");
 
   // Heatmap states
   const [selectedPosts, setSelectedPosts] = useState({});
@@ -66,6 +68,8 @@ const UserDashboard = () => {
           postCountsSnapshot={postCountsSnapshot}
           setSelectedPosts={setSelectedPosts}
           setSelectedPostCounts={setSelectedPostCounts}
+          setPostsSnapshotDoc={setPostsSnapshostDoc}
+          setPostCountsSnapshot={setPostCountsSnapshotDoc}
         ></SnapshotArray>
       </TopWrapper>
       {showHeatmap && (
@@ -77,7 +81,10 @@ const UserDashboard = () => {
           ></Heatmap>
           <Description>
             <TimeZone></TimeZone>
-            <DeleteSubreddit></DeleteSubreddit>
+            <DeleteSubreddit
+              postsSnapshotDoc={postsSnapshotDoc}
+              postCountsSnapshotDoc={postCountsSnapshotDoc}
+            ></DeleteSubreddit>
           </Description>
           {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
