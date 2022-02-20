@@ -13,6 +13,7 @@ import {
   UserDashboardContainer,
   TopWrapper,
 } from "../layouts/UserDashboard.styled";
+import DeleteSubreddit from "../components/DeleteSubreddit/DeleteSubreddit";
 
 const UserDashboard = () => {
   // Firebase states
@@ -76,6 +77,7 @@ const UserDashboard = () => {
           ></Heatmap>
           <Description>
             <TimeZone></TimeZone>
+            <DeleteSubreddit></DeleteSubreddit>
           </Description>
           {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
