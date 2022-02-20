@@ -33,7 +33,7 @@ const SnapshotArray = ({
   };
   return (
     <SnapshotArrayContainer>
-      <Array>
+      <Array arrayLength={Object.keys(postsSnapshot).length}>
         {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
           <Button
             key={docIdx}

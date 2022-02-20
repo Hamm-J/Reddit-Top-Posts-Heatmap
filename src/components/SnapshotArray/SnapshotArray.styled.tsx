@@ -4,7 +4,14 @@ export const SnapshotArrayContainer = styled.div`
   width: 1290px;
 `;
 
-export const Array = styled.div`
+interface IArray {
+  arrayLength: number;
+}
+export const Array = styled.div<IArray>`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  grid-template-columns: ${(props) =>
+    props.arrayLength > 4
+      ? "repeat(auto-fit, minmax(250px, 1fr))"
+      : "repeat(auto-fit, 250px)"};
 `;
