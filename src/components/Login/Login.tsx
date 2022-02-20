@@ -6,8 +6,8 @@ import RegisterScreen from "../RegisterScreen/RegisterScreen";
 import Button from "../common/Button/Button";
 
 const Login = () => {
-  const { user } = useContext<any>(FetcherContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const { user, isOpen, setIsOpen } = useContext<any>(FetcherContext);
+  // const [isOpen, setIsOpen] = useState(false);
   const register = () => {
     if (isOpen === !isOpen) {
       setIsOpen(!isOpen);
@@ -18,7 +18,9 @@ const Login = () => {
   return (
     <LoginContainer>
       <FirebaseLogin></FirebaseLogin>
-      {!user && <Button label="Sign up?" onClick={register}></Button>}
+      {!user && (
+        <Button label="Sign up?" onClick={register} remFontSize={1.1}></Button>
+      )}
       <RegisterScreen
         open={isOpen}
         onClose={() => setIsOpen(false)}

@@ -1,12 +1,13 @@
 import { ButtonField, IButtonField } from "./Button.styled";
 interface Props {
   label: string;
-  onClick: () => any;
+  onClick?: () => any;
   innerRef?: React.RefObject<HTMLButtonElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLButtonElement>;
   remFontSize?: IButtonField["remFontSize"];
   backgroundColor?: IButtonField["backgroundColor"];
   fontColor?: IButtonField["fontColor"];
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const Button = ({
@@ -17,9 +18,11 @@ const Button = ({
   backgroundColor = "black",
   fontColor = "white",
   onKeyUp,
+  type = undefined,
 }: Props): any => {
   return (
     <ButtonField
+      type={type}
       onClick={onClick}
       ref={innerRef}
       remFontSize={remFontSize}

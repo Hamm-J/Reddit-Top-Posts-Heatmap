@@ -5,6 +5,7 @@ import UserDashboard from "./pages/UserDashboard";
 import ErrorPage from "./pages/404";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   // reddit API
@@ -12,12 +13,15 @@ function App() {
 
   // Firebase
   const [user, setUser] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   const contextValues = {
     comments,
     setComments,
     user,
     setUser,
+    isOpen,
+    setIsOpen,
   };
   console.log("app rendered");
   return (
@@ -27,7 +31,9 @@ function App() {
           <Navbar></Navbar>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/user_dashboard" element={<UserDashboard />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/user_dashboard" element={<UserDashboard />} />
+            </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </FetcherContext.Provider>
