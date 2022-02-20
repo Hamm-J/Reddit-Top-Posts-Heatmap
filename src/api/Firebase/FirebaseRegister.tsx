@@ -29,8 +29,8 @@ const FirebaseRegister = ({ onClose }: Props) => {
         registerEmail,
         registerPassword
       );
-      onClose();
       setLoading(false);
+      onClose();
       console.log(user);
     } catch (error: any) {
       console.log(error.message);
