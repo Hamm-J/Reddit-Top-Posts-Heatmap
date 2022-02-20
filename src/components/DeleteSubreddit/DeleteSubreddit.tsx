@@ -8,11 +8,15 @@ import { db } from "../../firebase-config";
 interface IDeleteSubreddit {
   postsSnapshotDoc: string;
   postCountsSnapshotDoc: string;
+  docDeleted: boolean;
+  setDocDeleted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DeleteSubreddit = ({
   postsSnapshotDoc,
   postCountsSnapshotDoc,
+  docDeleted,
+  setDocDeleted,
 }: IDeleteSubreddit) => {
   const { user } = useContext<any>(FetcherContext);
   const [remove, setRemove] = useState(false); // use "remove" instead of "delete" because of strictmode conventions
@@ -24,7 +28,9 @@ const DeleteSubreddit = ({
     user,
     postsSnapshotDoc,
     postCountsSnapshotDoc,
-    setLoading
+    setLoading,
+    docDeleted,
+    setDocDeleted
   );
 
   const deleteSubreddit = () => {

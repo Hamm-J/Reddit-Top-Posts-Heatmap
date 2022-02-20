@@ -7,7 +7,9 @@ const useFirebaseDeleter = (
   user: any,
   postsSnapshotDoc: string,
   postCountsSnapshotDoc: string,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  docDeleted: boolean,
+  setDocDeleted: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const firstRender = useRef(true);
 
@@ -16,6 +18,7 @@ const useFirebaseDeleter = (
       setLoading(true);
       await deleteDoc(doc(database, user.uid, postsSnapshotDoc));
       setLoading(false);
+      setDocDeleted(!docDeleted);
     } catch (error: any) {
       console.log(error.message, error.stack);
       setLoading(false);
@@ -27,6 +30,7 @@ const useFirebaseDeleter = (
       setLoading(true);
       await deleteDoc(doc(database, user.uid, postCountsSnapshotDoc));
       setLoading(false);
+      setDocDeleted(!docDeleted);
     } catch (error: any) {
       console.log(error.message, error.stack);
       setLoading(false);

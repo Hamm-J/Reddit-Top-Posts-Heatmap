@@ -22,6 +22,7 @@ const UserDashboard = () => {
   const [commentsSnapshot, setCommentsShapshot] = useState({});
   const [postsSnapshotDoc, setPostsSnapshostDoc] = useState("");
   const [postCountsSnapshotDoc, setPostCountsSnapshotDoc] = useState("");
+  const [docDeleted, setDocDeleted] = useState(false);
 
   // Heatmap states
   const [selectedPosts, setSelectedPosts] = useState({});
@@ -42,7 +43,8 @@ const UserDashboard = () => {
     user,
     setPostsSnapshot,
     setPostCountsSnapshot,
-    setCommentsShapshot
+    setCommentsShapshot,
+    docDeleted
   );
 
   useEffect(() => {
@@ -84,6 +86,8 @@ const UserDashboard = () => {
             <DeleteSubreddit
               postsSnapshotDoc={postsSnapshotDoc}
               postCountsSnapshotDoc={postCountsSnapshotDoc}
+              docDeleted={docDeleted}
+              setDocDeleted={setDocDeleted}
             ></DeleteSubreddit>
           </Description>
           {selectedCell.length > 0 && (
