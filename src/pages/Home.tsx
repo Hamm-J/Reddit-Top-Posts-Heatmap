@@ -4,6 +4,8 @@ import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
+import SaveSubreddit from "../components/SaveSubreddit/SaveSubreddit";
+import TimeZone from "../components/TimeZone/TimeZone";
 
 const Home = () => {
   // const { posts, postCounts } = useContext<any>(FetcherContext);
@@ -51,6 +53,8 @@ const Home = () => {
             postCounts={postCounts}
             setSelectedCell={setSelectedCell}
           ></Heatmap>
+          <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit>
+          <TimeZone></TimeZone>
           {selectedCell.length > 0 && (
             <Inspector selectedCell={selectedCell}></Inspector>
           )}

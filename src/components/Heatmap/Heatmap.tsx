@@ -160,8 +160,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
         ))}
       </HeatmapGrid>
       <BottomWrapper>
-        <Description>All times are shown in [ADD TIMEZONE]</Description>
-        <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit>
+        {/* <Description>All times are shown in [ADD TIMEZONE]</Description> */}
+        {/* <SaveSubreddit posts={posts} postCounts={postCounts}></SaveSubreddit> */}
       </BottomWrapper>
     </HeatmapContainer>
   );
