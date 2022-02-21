@@ -3,7 +3,8 @@ import { unixToDayHour } from "../../helpers/UTCConversions";
 
 const useTopPostsFetcher = (
   url: string,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setError: React.Dispatch<React.SetStateAction<string>>
 ) => {
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState({});
@@ -28,10 +29,22 @@ const useTopPostsFetcher = (
       setPostCounts(postCounts);
 
       setLoading(false);
+      setError("");
 
       // return response;
     } catch (error: any) {
-      console.error(error.message, error.stack);
+      setLoading(false);
+      console.error(error.message);
+
+      switch (error.message) {
+        case "Failed to fetch":
+          setError("Sorry could not find that subreddit...");
+          break;
+        default:
+          setError("Oops. There was an error. Please try again...");
+      }
+
+      // setError(error.message);
     }
   };
 
