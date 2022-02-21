@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FetcherContext } from "../contexts/FetcherContext";
 import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
@@ -35,8 +35,6 @@ const UserDashboard = () => {
 
   const [showHeatmap, setShowHeatmap] = useState(false);
 
-  const firstSelect = useRef(true);
-
   // Read snapshots from firebase
   useFirebaseReader(
     db,
@@ -52,13 +50,16 @@ const UserDashboard = () => {
   }, [selectedPosts]);
 
   useEffect(() => {
-    if (firstSelect.current && Object.keys(selectedPosts).length > 0) {
+    if (Object.keys(selectedPosts).length > 0) {
       setShowHeatmap(true);
     } else {
-      // pass
-      return;
+      setShowHeatmap(false);
     }
   }, [selectedPosts]);
+
+  useEffect(() => {
+    setShowHeatmap(false);
+  }, [docDeleted]);
 
   return (
     <UserDashboardContainer>
