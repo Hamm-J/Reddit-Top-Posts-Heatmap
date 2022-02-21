@@ -12,7 +12,8 @@ const useFirebaseReader = (
   user: any,
   setPostsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
   setPostCountsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
-  setCommentsSnapshot: React.Dispatch<React.SetStateAction<{}>>
+  setCommentsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
+  docDeleted: boolean
 ) => {
   const getPosts = async () => {
     try {
@@ -76,7 +77,7 @@ const useFirebaseReader = (
     getPosts();
     getPostCounts();
     getComments();
-  }, [user]);
+  }, [user, docDeleted]);
 };
 
 export default useFirebaseReader;

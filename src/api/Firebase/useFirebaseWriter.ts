@@ -30,6 +30,7 @@ const useFirebaseWriter = (
 
   console.log("useFirebaseWriter: ");
   console.log(posts);
+  console.log(subreddit);
 
   // const commentsPackaged = {
   //   docType: "comments",

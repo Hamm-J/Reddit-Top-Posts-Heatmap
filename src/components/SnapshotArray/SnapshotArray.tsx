@@ -1,12 +1,14 @@
 import React from "react";
 import Button from "../common/Button/Button";
-import { SnapshotArrayContainer } from "./SnapshotArray.styled";
+import { SnapshotArrayContainer, Array } from "./SnapshotArray.styled";
 
 interface ISnapshotArray {
   postsSnapshot: {};
   postCountsSnapshot: {};
   setSelectedPosts: React.Dispatch<React.SetStateAction<{}>>;
   setSelectedPostCounts: React.Dispatch<React.SetStateAction<{}>>;
+  setPostsSnapshotDoc: React.Dispatch<React.SetStateAction<string>>;
+  setPostCountsSnapshot: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SnapshotArray = ({
@@ -14,6 +16,8 @@ const SnapshotArray = ({
   postCountsSnapshot,
   setSelectedPosts,
   setSelectedPostCounts,
+  setPostsSnapshotDoc,
+  setPostCountsSnapshot,
 }: ISnapshotArray) => {
   const showPosts = (doc: any, posts: any, postCounts: any) => {
     // split the doc to get the different parts of the doc info
@@ -30,17 +34,21 @@ const SnapshotArray = ({
     // set the selectedPosts and selectedPostCounts to the selected doc
     setSelectedPosts(p);
     setSelectedPostCounts(pc);
+
+    setPostsSnapshotDoc(`${subreddit}_posts_${docSaveTime}`);
+    setPostCountsSnapshot(`${subreddit}_postCounts_${docSaveTime}`);
   };
   return (
     <SnapshotArrayContainer>
-      {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
-        <React.Fragment key={docIdx}>
+      <Array arrayLength={Object.keys(postsSnapshot).length}>
+        {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
           <Button
+            key={docIdx}
             label={`${doc}`}
             onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
           ></Button>
-        </React.Fragment>
-      ))}
+        ))}
+      </Array>
     </SnapshotArrayContainer>
   );
 };

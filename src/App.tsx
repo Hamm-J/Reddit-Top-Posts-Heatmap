@@ -10,6 +10,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 function App() {
   // reddit API
   const [comments, setComments] = useState<any>({});
+  const [subreddit, setSubreddit] = useState("");
 
   // Firebase
   const [user, setUser] = useState({});
@@ -18,6 +19,8 @@ function App() {
   const contextValues = {
     comments,
     setComments,
+    subreddit,
+    setSubreddit,
     user,
     setUser,
     isOpen,

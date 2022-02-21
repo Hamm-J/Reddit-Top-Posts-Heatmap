@@ -1,4 +1,5 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
   FlexContainer,
@@ -15,7 +16,8 @@ export interface ISearchSubreddit {
 
 const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   // fetcher URL states
-  const [subreddit, setSubreddit] = useState("");
+  // const [subreddit, setSubreddit] = useState("");
+  const { subreddit, setSubreddit } = useContext<any>(FetcherContext);
   const [time, setTime] = useState("month");
   const [limit, setLimit] = useState(100);
   const [topPostsUrl, setTopPostsUrl] = useState(
