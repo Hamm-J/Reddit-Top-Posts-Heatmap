@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const SearchSubredditContainer = styled.div`
   position: relative;
   width: 100%;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,4 +19,10 @@ export const R = styled.p`
   padding-bottom: 0.5rem;
   margin: 0;
   font-size: 2rem;
+`;
+
+export const Error = styled.div`
+  margin-top: 15px;
+  color: red;
+  font-weight: bold;
 `;

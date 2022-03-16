@@ -4,6 +4,7 @@ import {
   SearchSubredditContainer,
   FlexContainer,
   R,
+  Error,
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
@@ -31,13 +32,17 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   // state of if RedditTopPostsFetcher is fetching the posts
   const [loading, setLoading] = useState(false);
 
+  // state of error for error handling
+  const [error, setError] = useState("");
+
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
 
   // fetch top posts
   const [fetchedPosts, fetchedPostCounts] = useTopPostsFetcher(
     topPostsUrl,
-    setLoading
+    setLoading,
+    setError
   );
 
   const searchHandler = (event: any) => {
@@ -47,10 +52,12 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   const submitHandler = () => {
     if (input == "") {
       inputFieldRef.current.focus();
-      return alert("Please enter a subreddit to search.");
+      setError("Please type in a subreddit...");
     }
 
-    setSubreddit(input);
+    // remove spaces in from input
+    let inputNoSpace = input.replace(/\s/g, "");
+    setSubreddit(inputNoSpace);
   };
   useEffect(() => {
     setPosts(fetchedPosts);
@@ -81,6 +88,7 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
           backgroundColor="orange"
         ></Button>
       </FlexContainer>
+      {error && <Error>{error}</Error>}
     </SearchSubredditContainer>
   );
 };
