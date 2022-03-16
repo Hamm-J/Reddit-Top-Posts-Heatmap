@@ -6,6 +6,9 @@ interface Props {
   onKeyUp?: React.KeyboardEventHandler<HTMLButtonElement>;
   remFontSize?: IButtonField["remFontSize"];
   backgroundColor?: IButtonField["backgroundColor"];
+  borderColor?: IButtonField["borderColor"];
+  borderColorHover?: IButtonField["borderColorHover"];
+  borderColorActive?: IButtonField["borderColorActive"];
   fontColor?: IButtonField["fontColor"];
   type?: "button" | "submit" | "reset" | undefined;
 }
@@ -16,6 +19,9 @@ const Button = ({
   innerRef,
   remFontSize = 1,
   backgroundColor = "black",
+  borderColor = "black",
+  borderColorHover = "black",
+  borderColorActive = "black",
   fontColor = "white",
   onKeyUp,
   type = undefined,
@@ -27,6 +33,9 @@ const Button = ({
       ref={innerRef}
       remFontSize={remFontSize}
       backgroundColor={backgroundColor}
+      borderColor={borderColor}
+      borderColorHover={borderColorHover}
+      borderColorActive={borderColorActive}
       fontColor={fontColor}
       onKeyUp={onKeyUp}
     >
