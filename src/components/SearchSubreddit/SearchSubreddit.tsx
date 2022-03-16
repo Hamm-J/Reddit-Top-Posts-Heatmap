@@ -83,7 +83,7 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
         />
         <Button
           label={loading ? "..." : "Search"}
-          onClick={submitHandler}
+          onClick={() => submitHandler()}
           remFontSize={2}
           backgroundColor="orange"
         ></Button>

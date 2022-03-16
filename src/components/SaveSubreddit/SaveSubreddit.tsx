@@ -27,7 +27,7 @@ const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
     <SaveSubredditContainer>
       <Button
         label={loading ? "Saving..." : "Save Subreddit Data?"}
-        onClick={saveSubreddit}
+        onClick={() => saveSubreddit()}
         remFontSize={1.2}
         backgroundColor="orange"
       ></Button>
