@@ -73,15 +73,15 @@ const FirebaseLogin = () => {
         </LoggedInContainer>
       ) : (
         <LoggedOutContainer>
-          <form onSubmit={login}>
+          <form onSubmit={(e) => login(e)}>
             <InputEmail
-              onChange={(event) => setLoginEmail(event.target.value)}
+              onChange={(e) => setLoginEmail(e.target.value)}
               placeholder="Email..."
               remFontSize={1.2}
               required
             ></InputEmail>
             <InputText
-              onChange={(event) => setLoginPassword(event.target.value)}
+              onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password..."
               remFontSize={1.2}
               required
