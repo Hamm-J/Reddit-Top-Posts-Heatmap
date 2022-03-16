@@ -7,6 +7,7 @@ export interface IButtonField {
   borderColor: string;
   borderColorHover: string;
   borderColorActive: string;
+  minWidth: number | undefined;
 }
 
 export const ButtonField = styled.button<IButtonField>`
@@ -17,7 +18,7 @@ export const ButtonField = styled.button<IButtonField>`
     ${(props) => props.borderColor};
   padding: 0.3rem 0.4rem 0.3rem 0.4rem;
   cursor: pointer;
-  min-width: 100px;
+  min-width: ${(props) => props.minWidth}px;
   border-radius: 4px;
   outline: none;
 

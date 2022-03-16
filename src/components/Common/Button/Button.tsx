@@ -11,6 +11,7 @@ interface Props {
   borderColorActive?: IButtonField["borderColorActive"];
   fontColor?: IButtonField["fontColor"];
   type?: "button" | "submit" | "reset" | undefined;
+  minWidth?: IButtonField["minWidth"];
 }
 
 const Button = ({
@@ -25,6 +26,7 @@ const Button = ({
   fontColor = "white",
   onKeyUp,
   type = undefined,
+  minWidth,
 }: Props): any => {
   return (
     <ButtonField
@@ -38,6 +40,7 @@ const Button = ({
       borderColorActive={borderColorActive}
       fontColor={fontColor}
       onKeyUp={onKeyUp}
+      minWidth={minWidth}
     >
       {label}
     </ButtonField>
