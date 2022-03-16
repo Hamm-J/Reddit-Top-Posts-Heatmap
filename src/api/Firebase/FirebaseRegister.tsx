@@ -52,22 +52,22 @@ const FirebaseRegister = ({ onClose }: Props) => {
 
   return (
     <FirebaseRegisterContainer>
-      <form onSubmit={register}>
+      <form onSubmit={(e) => register(e)}>
         <InputEmail
-          onChange={(event) => setRegisterEmail(event.target.value)}
+          onChange={(e) => setRegisterEmail(e.target.value)}
           placeholder="Email..."
           remFontSize={1.2}
           required
         ></InputEmail>
         <InputText
-          onChange={(event) => setRegisterPassword(event.target.value)}
+          onChange={(e) => setRegisterPassword(e.target.value)}
           placeholder="Password..."
           remFontSize={1.2}
           required
         ></InputText>
         <Button
           type="submit"
-          label={loading ? "..." : "Login"}
+          label={loading ? "..." : "Register"}
           remFontSize={1.1}
         ></Button>
       </form>
