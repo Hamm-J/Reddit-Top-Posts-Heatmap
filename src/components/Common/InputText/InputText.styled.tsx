@@ -14,4 +14,5 @@ export const InputField = styled.input.attrs({ type: "text" })<IInputField>`
   padding-right: ${(props) => props.remFontSize / 4}rem;
   padding-top: ${(props) => props.remFontSize / 8}rem;
   padding-bottom: ${(props) => props.remFontSize / 8}rem;
+  border-radius: 4px;
 `;
