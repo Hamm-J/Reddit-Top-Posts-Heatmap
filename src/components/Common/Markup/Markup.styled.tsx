@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+export const BannerTitle = styled.h1`
+  font-family: "Trebuchet MS";
+`;
 export const SectionTitle = styled.h2`
   font-family: "Trebuchet MS";
 `;

@@ -3,7 +3,7 @@ import SearchSubreddit from "../components/SearchSubreddit/SearchSubreddit";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import Landing from "../components/Landing/Landing";
-import BannerTitle from "../components/BannerTitle/BannerTitle";
+import { BannerTitle } from "../components/common/Markup/Markup.styled";
 import SaveSubreddit from "../components/SaveSubreddit/SaveSubreddit";
 import TimeZone from "../components/TimeZone/TimeZone";
 import { HomeContainer, Description } from "../layouts/Home.styled";
