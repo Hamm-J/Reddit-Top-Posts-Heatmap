@@ -46,6 +46,8 @@ const SnapshotArray = ({
             key={docIdx}
             label={`${doc}`}
             onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
+            backgroundColor="orange"
+            borderColor="orange"
           ></Button>
         ))}
       </Array>
