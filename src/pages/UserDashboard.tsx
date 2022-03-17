@@ -4,7 +4,7 @@ import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import UserDashboardDescription from "../components/UserDashboardDescription/UserDashboardDescription";
-import BannerTitle from "../components/BannerTitle/BannerTitle";
+import { BannerTitle } from "../components/common/Markup/Markup.styled";
 import useFirebaseReader from "../api/Firebase/useFirebaseReader";
 import { db } from "../firebase-config";
 import TimeZone from "../components/TimeZone/TimeZone";
