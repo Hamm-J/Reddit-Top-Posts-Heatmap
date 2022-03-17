@@ -5,10 +5,10 @@ import { SectionTitle, Para } from "../common/Markup/Markup.styled";
 const UserDashboardDescription = () => {
   return (
     <UserDashboardDescriptionContainer>
-      <SectionTitle>Description</SectionTitle>
+      <SectionTitle>Subreddit Snapshots</SectionTitle>
       <Para>
-        Click on any of your following subreddit snapshots to revisualize the
-        post data.
+        Click on any of your following subreddit snapshots to revisualize your
+        saved top subreddit post data
       </Para>
     </UserDashboardDescriptionContainer>
   );

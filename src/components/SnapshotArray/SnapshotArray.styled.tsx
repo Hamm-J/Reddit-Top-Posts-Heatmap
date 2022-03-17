@@ -9,6 +9,7 @@ interface IArray {
 }
 export const Array = styled.div<IArray>`
   display: grid;
+  gap: 5px;
 
   grid-template-columns: ${(props) =>
     props.arrayLength > 4
