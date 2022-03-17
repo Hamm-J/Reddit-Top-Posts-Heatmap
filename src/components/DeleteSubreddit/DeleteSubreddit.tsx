@@ -45,6 +45,7 @@ const DeleteSubreddit = ({
         remFontSize={1.2}
         backgroundColor="orange"
         borderColor="orange"
+        minWidth={241}
       ></Button>
     </DeleteSubredditContainer>
   );

@@ -18,6 +18,7 @@ export const R = styled.p`
 
 export const Error = styled.div`
   margin-top: 15px;
+  margin-left: 45px;
   color: red;
   font-weight: bold;
   font-family: Verdana;

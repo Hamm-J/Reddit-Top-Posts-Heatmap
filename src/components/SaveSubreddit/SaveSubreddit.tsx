@@ -30,6 +30,8 @@ const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
         onClick={() => saveSubreddit()}
         remFontSize={1.2}
         backgroundColor="orange"
+        borderColor="orange"
+        minWidth={226}
       ></Button>
     </SaveSubredditContainer>
   );

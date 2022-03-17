@@ -74,7 +74,7 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
       <FlexContainer>
         <R>r /</R>
         <InputText
-          placeholder="search..."
+          placeholder="Subreddit..."
           onChange={(event: void) => searchHandler(event)}
           innerRef={inputFieldRef}
           remFontSize={2}
@@ -86,6 +86,8 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
           onClick={() => submitHandler()}
           remFontSize={2}
           backgroundColor="orange"
+          borderColor="orange"
+          minWidth={128}
         ></Button>
       </FlexContainer>
       {error && <Error>{error}</Error>}
