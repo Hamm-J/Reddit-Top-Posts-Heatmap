@@ -37,11 +37,13 @@ export const Cell = styled.button<{ cellCount: number }>`
   justify-content: center;
   cursor: ${(props) => (props.cellCount > 0 ? "pointer" : "default")};
   outline: none;
+  font-family: Verdana;
 
   &:hover,
   &:focus,
   &:active {
-    border: 2px solid ${(props) => (props.cellCount > 0 ? "blue" : "lightgray")};
+    border: 2px solid
+      ${(props) => (props.cellCount > 0 ? "black" : "lightgray")};
   }
 `;
 
@@ -51,6 +53,7 @@ export const TimeValue = styled.label`
   justify-self: center;
   font-weight: bold;
   padding-bottom: 8px;
+  font-family: "Trebuchet MS";
 `;
 
 export const DayValue = styled.label`
@@ -59,6 +62,7 @@ export const DayValue = styled.label`
   justify-self: center;
   font-weight: bold;
   padding-right: 16px;
+  font-family: "Trebuchet MS";
 `;
 
 export const Spacer = styled.span``;

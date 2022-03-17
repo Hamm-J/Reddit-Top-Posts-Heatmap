@@ -11,6 +11,7 @@ export const ErrorMessage = styled.div`
   top: 30px;
   font-weight: bold;
   color: red;
+  font-family: Verdana;
 `;
 
 export const LoggedInContainer = styled.div`
@@ -26,5 +27,7 @@ export const LoggedOutContainer = styled.div`
 
 export const LoggedInMessage = styled.div`
   margin-right: 15px;
-  font-size: 20px;
+  font-size: 22px;
+  font-family: "Trebuchet MS";
+  font-weight: bold;
 `;

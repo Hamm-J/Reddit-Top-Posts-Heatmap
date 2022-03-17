@@ -25,10 +25,12 @@ export const ColumnTitle = styled.div`
   font-size: 1.1rem;
   font-weight: bold;
   padding: 0.5rem 0 0.5rem 0.5rem;
+  font-family: "Trebuchet MS";
 `;
 
 export const RowValue = styled.div`
   border-bottom: 1px solid black;
   border-right: 1px solid black;
   padding: 5px;
+  font-family: Verdana;
 `;
