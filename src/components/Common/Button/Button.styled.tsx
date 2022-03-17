@@ -21,6 +21,7 @@ export const ButtonField = styled.button<IButtonField>`
   min-width: ${(props) => props.minWidth}px;
   border-radius: 4px;
   outline: none;
+  font-family: Verdana;
 
   &:hover,
   &:focus {

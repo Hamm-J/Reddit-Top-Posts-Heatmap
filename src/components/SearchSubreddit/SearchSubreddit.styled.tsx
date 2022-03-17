@@ -12,10 +12,13 @@ export const R = styled.p`
   padding-bottom: 0.5rem;
   margin: 0;
   font-size: 2rem;
+  font-family: "Trebuchet MS";
+  font-weight: bold;
 `;
 
 export const Error = styled.div`
   margin-top: 15px;
   color: red;
   font-weight: bold;
+  font-family: Verdana;
 `;

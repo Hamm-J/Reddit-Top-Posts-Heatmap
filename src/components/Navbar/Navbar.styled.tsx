@@ -21,8 +21,8 @@ export const NavbarLink = styled(Link)`
   text-decoration: none;
   margin-right: 40px;
   font-size: 26px;
-  /* font-weight: bold; */
   color: black;
+  font-family: "Trebuchet MS";
 
   &:hover {
     text-decoration: underline;
