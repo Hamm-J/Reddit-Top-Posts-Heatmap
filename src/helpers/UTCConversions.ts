@@ -1,29 +1,3 @@
-import { addAbortSignal } from "stream";
-
-export const unixToWeekDay = (unix: number) => {
-  let a = new Date(unix * 1000);
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let dayOfWeek = days[a.getDay()];
-  return dayOfWeek;
-};
-
-export const unixToCalendarDate = (unix: number) => {
-  let a = new Date(unix * 1000);
-  let year = a.getFullYear();
-  let month = a.getMonth();
-  let date = a.getDate();
-  let time = `${year}_${month}_${date}`;
-  return time;
-};
-
 export const unixToDayHour = (unix: number) => {
   let a = new Date(unix * 1000);
   let days = [
@@ -41,29 +15,36 @@ export const unixToDayHour = (unix: number) => {
   return time;
 };
 
-export const unixToCalendarDateTime = (unix: number) => {
+export const unixToCalendarDate = (unix: number) => {
   let a = new Date(unix * 1000);
   let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   let year = a.getFullYear();
   let month = months[a.getMonth()];
   let date = a.getDate();
+  let time = `${month} ${date}, ${year}`;
+
+  return time;
+};
+
+export const unixToTime = (unix: number) => {
+  let a = new Date(unix * 1000);
   let hour = a.getHours();
   let min = a.getMinutes();
-  let sec = a.getSeconds();
-  let time = `${date}_${month}_${year}_${hour}:${min}:${sec}`;
+  let time = `${hour}:${min}`;
+
   return time;
 };
 

@@ -6,7 +6,7 @@ import {
   ColumnTitle,
   RowValue,
 } from "./Inspector.styled";
-import { unixToCalendarDateTime } from "../../helpers/UTCConversions";
+import { unixToCalendarDate, unixToTime } from "../../helpers/UTCConversions";
 import { Anchor, SectionTitle } from "../common/Markup/Markup.styled";
 
 interface IInspector {
@@ -23,9 +23,10 @@ const Inspector = ({ selectedCell }: IInspector) => {
         {selectedCell.length > 0 && (
           <>
             <ColumnTitle>Title</ColumnTitle>
-            <ColumnTitle>Time Posted</ColumnTitle>
+            <ColumnTitle>Date</ColumnTitle>
+            <ColumnTitle>Time</ColumnTitle>
             <ColumnTitle>Upvotes</ColumnTitle>
-            <ColumnTitle>Number of Comments</ColumnTitle>
+            <ColumnTitle>Comments</ColumnTitle>
             <ColumnTitle>Author</ColumnTitle>
           </>
         )}
@@ -39,7 +40,8 @@ const Inspector = ({ selectedCell }: IInspector) => {
                 {post.title}
               </Anchor>
             </RowValue>
-            <RowValue>{unixToCalendarDateTime(post.date)}</RowValue>
+            <RowValue>{unixToCalendarDate(post.date)}</RowValue>
+            <RowValue>{unixToTime(post.date)}</RowValue>
             <RowValue>{post.ups}</RowValue>
             <RowValue>{post.numComments}</RowValue>
             <RowValue>{post.author}</RowValue>
