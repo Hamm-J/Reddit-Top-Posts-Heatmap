@@ -1,14 +1,8 @@
 import styled from "styled-components";
 
 export const HeatmapContainer = styled.div`
-  width: 100%;
   margin-top: 30px;
   margin-bottom: 20px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const HeatmapGrid = styled.div`

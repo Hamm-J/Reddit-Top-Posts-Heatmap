@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-export const InspectorContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-color: lightblue; */
-`;
+export const InspectorContainer = styled.div``;
 
 export const InspectorTitleWrapper = styled.div`
   width: 1290px;
