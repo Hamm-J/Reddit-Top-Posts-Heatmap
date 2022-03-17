@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import SearchSubreddit from "../components/SearchSubreddit/SearchSubreddit";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
@@ -23,17 +23,14 @@ const Home = () => {
   console.log(posts);
   console.log(postCounts);
 
-  const firstSearch = useRef(true);
-
   // reset the selectedCell whenever a a new set of posts is fetched
   useEffect(() => {
     setSelectedCell([]);
   }, [posts]);
 
-  // show Heatmap after the first search returns posts
+  // show Heatmap after posts have been fetched
   useEffect(() => {
-    if (firstSearch.current && Object.keys(posts).length > 0) {
-      firstSearch.current = false;
+    if (Object.keys(posts).length > 0) {
       setShowHeatmap(true);
     } else {
       // pass
