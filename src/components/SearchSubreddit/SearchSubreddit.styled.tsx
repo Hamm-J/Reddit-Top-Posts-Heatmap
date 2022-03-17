@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-export const SearchSubredditContainer = styled.div`
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+export const SearchSubredditContainer = styled.div``;
 
 export const FlexContainer = styled.div`
   display: flex;

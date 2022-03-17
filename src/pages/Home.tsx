@@ -6,7 +6,7 @@ import Landing from "../components/Landing/Landing";
 import BannerTitle from "../components/BannerTitle/BannerTitle";
 import SaveSubreddit from "../components/SaveSubreddit/SaveSubreddit";
 import TimeZone from "../components/TimeZone/TimeZone";
-import { Description } from "../layouts/Home.styled";
+import { HomeContainer, Description } from "../layouts/Home.styled";
 
 const Home = () => {
   // const { posts, postCounts } = useContext<any>(FetcherContext);
@@ -41,7 +41,7 @@ const Home = () => {
     }
   }, [posts]);
   return (
-    <>
+    <HomeContainer>
       <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
       <SearchSubreddit
         setPosts={setPosts}
@@ -67,7 +67,7 @@ const Home = () => {
         </>
       )}
       <Landing></Landing>
-    </>
+    </HomeContainer>
   );
 };
 
