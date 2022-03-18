@@ -4,7 +4,10 @@ import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
 import UserDashboardDescription from "../components/UserDashboardDescription/UserDashboardDescription";
-import { BannerTitle } from "../components/common/Markup/Markup.styled";
+import {
+  BannerTitle,
+  SectionTitle,
+} from "../components/common/Markup/Markup.styled";
 import useFirebaseReader from "../api/Firebase/useFirebaseReader";
 import { db } from "../firebase-config";
 import TimeZone from "../components/TimeZone/TimeZone";
@@ -35,6 +38,9 @@ const UserDashboard = () => {
 
   const [showHeatmap, setShowHeatmap] = useState(false);
 
+  // Snaphost array states
+  const [selectedSnapshot, setSelectedSnapshot] = useState("");
+
   // Read snapshots from firebase
   useFirebaseReader(
     db,
@@ -61,6 +67,7 @@ const UserDashboard = () => {
     setShowHeatmap(false);
   }, [docDeleted]);
 
+  console.log(selectedCell);
   return (
     <UserDashboardContainer>
       <TopWrapper>
@@ -73,10 +80,12 @@ const UserDashboard = () => {
           setSelectedPostCounts={setSelectedPostCounts}
           setPostsSnapshotDoc={setPostsSnapshostDoc}
           setPostCountsSnapshot={setPostCountsSnapshotDoc}
+          setSelectedSnapshot={setSelectedSnapshot}
         ></SnapshotArray>
       </TopWrapper>
       {showHeatmap && (
         <>
+          <SectionTitle>{selectedSnapshot}</SectionTitle>
           <Heatmap
             posts={selectedPosts}
             postCounts={selectedPostCounts}

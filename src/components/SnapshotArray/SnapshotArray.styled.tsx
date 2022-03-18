@@ -16,3 +16,9 @@ export const Array = styled.div<IArray>`
       ? "repeat(auto-fit, minmax(250px, 1fr))"
       : "repeat(auto-fit, 250px)"};
 `;
+
+export const LoadingSymbol = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
