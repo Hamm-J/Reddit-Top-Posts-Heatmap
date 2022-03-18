@@ -5,6 +5,7 @@ export const UserDashboardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  margin-bottom: 200px;
 `;
 
 export const Description = styled.div`
@@ -12,6 +13,7 @@ export const Description = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 20px;
 `;
 
 export const TopWrapper = styled.div`
@@ -20,4 +22,5 @@ export const TopWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 `;
