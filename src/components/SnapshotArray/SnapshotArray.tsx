@@ -5,6 +5,7 @@ import {
   Array,
   LoadingSymbol,
 } from "./SnapshotArray.styled";
+import { unixToTime, unixToCalendarDate } from "../../helpers/UTCConversions";
 
 interface ISnapshotArray {
   postsSnapshot: {};
@@ -13,6 +14,7 @@ interface ISnapshotArray {
   setSelectedPostCounts: React.Dispatch<React.SetStateAction<{}>>;
   setPostsSnapshotDoc: React.Dispatch<React.SetStateAction<string>>;
   setPostCountsSnapshot: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedSnapshot: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SnapshotArray = ({
@@ -22,6 +24,7 @@ const SnapshotArray = ({
   setSelectedPostCounts,
   setPostsSnapshotDoc,
   setPostCountsSnapshot,
+  setSelectedSnapshot,
 }: ISnapshotArray) => {
   const showPosts = (doc: any, posts: any, postCounts: any) => {
     // split the doc to get the different parts of the doc info
@@ -49,8 +52,17 @@ const SnapshotArray = ({
           {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
             <Button
               key={docIdx}
-              label={`${doc}`}
-              onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
+              label={`
+              r/${doc.split("_")[0]} on ${unixToCalendarDate(
+                doc.split("_")[2]
+              )} at ${unixToTime(doc.split("_")[2])}`}
+              onClick={() => {
+                showPosts(doc, postsSnapshot, postCountsSnapshot);
+                setSelectedSnapshot(`
+                  r/${doc.split("_")[0]} on ${unixToCalendarDate(
+                  doc.split("_")[2]
+                )} at ${unixToTime(doc.split("_")[2])}`);
+              }}
               backgroundColor="orange"
               borderColor="orange"
             ></Button>
