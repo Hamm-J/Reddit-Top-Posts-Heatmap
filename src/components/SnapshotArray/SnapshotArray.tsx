@@ -1,6 +1,10 @@
 import React from "react";
 import Button from "../common/Button/Button";
-import { SnapshotArrayContainer, Array } from "./SnapshotArray.styled";
+import {
+  SnapshotArrayContainer,
+  Array,
+  LoadingSymbol,
+} from "./SnapshotArray.styled";
 
 interface ISnapshotArray {
   postsSnapshot: {};
@@ -40,17 +44,21 @@ const SnapshotArray = ({
   };
   return (
     <SnapshotArrayContainer>
-      <Array arrayLength={Object.keys(postsSnapshot).length}>
-        {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
-          <Button
-            key={docIdx}
-            label={`${doc}`}
-            onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
-            backgroundColor="orange"
-            borderColor="orange"
-          ></Button>
-        ))}
-      </Array>
+      {Object.keys(postCountsSnapshot).length ? (
+        <Array arrayLength={Object.keys(postsSnapshot).length}>
+          {Object.keys(postsSnapshot).map((doc: any, docIdx: number) => (
+            <Button
+              key={docIdx}
+              label={`${doc}`}
+              onClick={() => showPosts(doc, postsSnapshot, postCountsSnapshot)}
+              backgroundColor="orange"
+              borderColor="orange"
+            ></Button>
+          ))}
+        </Array>
+      ) : (
+        <LoadingSymbol>...</LoadingSymbol>
+      )}
     </SnapshotArrayContainer>
   );
 };
