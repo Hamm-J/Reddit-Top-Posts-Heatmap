@@ -31,7 +31,7 @@ export const ColumnTitle = styled.div`
 export const RowValue = styled.div`
   border-bottom: 2px solid black;
   border-right: 2px solid black;
-  padding: 15px;
+  padding: 12px;
   font-family: Verdana;
   text-overflow: ellipsis;
   white-space: nowrap;

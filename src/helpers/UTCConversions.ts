@@ -43,7 +43,20 @@ export const unixToTime = (unix: number) => {
   let a = new Date(unix * 1000);
   let hour = a.getHours();
   let min = a.getMinutes();
-  let time = `${hour}:${min}`;
+
+  const zeroPad = (num: number, places: number) =>
+    String(num).padStart(places, "0");
+
+  // get 12 hour format hour
+  let hour12Format = ((hour + 11) % 12) + 1;
+
+  // add leading 0 to minutes sub 2 digits
+  let paddedMin = zeroPad(min, 2);
+
+  // get am or pm based on hour
+  let period = hour >= 12 ? "pm" : "am";
+
+  let time = `${hour12Format}:${paddedMin}${period}`;
 
   return time;
 };
