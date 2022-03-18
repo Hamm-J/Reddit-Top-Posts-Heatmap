@@ -1,29 +1,3 @@
-import { addAbortSignal } from "stream";
-
-export const unixToWeekDay = (unix: number) => {
-  let a = new Date(unix * 1000);
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let dayOfWeek = days[a.getDay()];
-  return dayOfWeek;
-};
-
-export const unixToCalendarDate = (unix: number) => {
-  let a = new Date(unix * 1000);
-  let year = a.getFullYear();
-  let month = a.getMonth();
-  let date = a.getDate();
-  let time = `${year}_${month}_${date}`;
-  return time;
-};
-
 export const unixToDayHour = (unix: number) => {
   let a = new Date(unix * 1000);
   let days = [
@@ -41,29 +15,49 @@ export const unixToDayHour = (unix: number) => {
   return time;
 };
 
-export const unixToCalendarDateTime = (unix: number) => {
+export const unixToCalendarDate = (unix: number) => {
   let a = new Date(unix * 1000);
   let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   let year = a.getFullYear();
   let month = months[a.getMonth()];
   let date = a.getDate();
+  let time = `${month} ${date}, ${year}`;
+
+  return time;
+};
+
+export const unixToTime = (unix: number) => {
+  let a = new Date(unix * 1000);
   let hour = a.getHours();
   let min = a.getMinutes();
-  let sec = a.getSeconds();
-  let time = `${date}_${month}_${year}_${hour}:${min}:${sec}`;
+
+  const zeroPad = (num: number, places: number) =>
+    String(num).padStart(places, "0");
+
+  // get 12 hour format hour
+  let hour12Format = ((hour + 11) % 12) + 1;
+
+  // add leading 0 to minutes sub 2 digits
+  let paddedMin = zeroPad(min, 2);
+
+  // get am or pm based on hour
+  let period = hour >= 12 ? "pm" : "am";
+
+  let time = `${hour12Format}:${paddedMin}${period}`;
+
   return time;
 };
 
