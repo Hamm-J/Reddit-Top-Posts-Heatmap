@@ -34,6 +34,7 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
 
   // state of error for error handling
   const [error, setError] = useState("");
+  const [refetch, setRefetch] = useState(false);
 
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
@@ -42,7 +43,8 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   const [fetchedPosts, fetchedPostCounts] = useTopPostsFetcher(
     topPostsUrl,
     setLoading,
-    setError
+    setError,
+    refetch
   );
 
   const searchHandler = (event: any) => {
@@ -50,15 +52,23 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   };
 
   const submitHandler = () => {
-    if (input == "") {
+    if (input === "") {
       inputFieldRef.current.focus();
       setError("Please type in a subreddit...");
     }
 
     // remove spaces in from input
     let inputNoSpace = input.replace(/\s/g, "");
-    setSubreddit(inputNoSpace);
+
+    // If the current input is the same as the currently set subreddit,
+    // refetch the data; else set the subreddit to the current input
+    if (inputNoSpace === subreddit) {
+      setRefetch(!refetch);
+    } else {
+      setSubreddit(inputNoSpace);
+    }
   };
+
   useEffect(() => {
     setPosts(fetchedPosts);
     setPostCounts(fetchedPostCounts);
@@ -68,7 +78,7 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
     setTopPostsUrl(
       `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
     );
-  }, [subreddit]);
+  }, [subreddit, refetch]);
   return (
     <SearchSubredditContainer>
       <FlexContainer>

@@ -4,7 +4,8 @@ import { unixToDayHour } from "../../helpers/UTCConversions";
 const useTopPostsFetcher = (
   url: string,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  setError: React.Dispatch<React.SetStateAction<string>>
+  setError: React.Dispatch<React.SetStateAction<string>>,
+  refetch?: boolean
 ) => {
   const [posts, setPosts] = useState({});
   const [postCounts, setPostCounts] = useState({});
@@ -111,7 +112,7 @@ const useTopPostsFetcher = (
       return;
     }
     fetchData();
-  }, [url]);
+  }, [url, refetch]);
 
   return [posts, postCounts];
 };
