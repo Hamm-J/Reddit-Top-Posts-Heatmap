@@ -7,7 +7,7 @@ import {
 } from "./RegisterScreen.styled";
 import FirebaseRegister from "../../api/Firebase/FirebaseRegister";
 import Button from "../common/Button/Button";
-import { SubSectionTitle, Para } from "../common/Markup/Markup.styled";
+import { SectionTitle, Para } from "../common/Markup/Markup.styled";
 
 interface Props {
   open: boolean;
@@ -25,8 +25,8 @@ const RegisterScreen = ({ open, onClose }: Props) => {
       <OverlayStyles onClick={onClose}></OverlayStyles>
       <RegisterScreenContainer>
         <CloseWindowWrapper>
-          <SubSectionTitle>Sign up!</SubSectionTitle>
-          <Button onClick={onClose} label="X"></Button>
+          <SectionTitle>Sign up!</SectionTitle>
+          <Button onClick={onClose} label="X" minWidth={31}></Button>
         </CloseWindowWrapper>
         <Para>It's easy and quick!</Para>
         <FirebaseRegister onClose={onClose}></FirebaseRegister>

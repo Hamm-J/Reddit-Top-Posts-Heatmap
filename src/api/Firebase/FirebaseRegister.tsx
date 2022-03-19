@@ -69,6 +69,11 @@ const FirebaseRegister = ({ onClose }: Props) => {
           type="submit"
           label={loading ? "..." : "Register"}
           remFontSize={1.1}
+          minWidth={88}
+          backgroundColor="orange"
+          borderColor="orange"
+          borderColorActive="black"
+          borderColorHover="black"
         ></Button>
       </form>
       {error && <ErrorMessage>{error}</ErrorMessage>}

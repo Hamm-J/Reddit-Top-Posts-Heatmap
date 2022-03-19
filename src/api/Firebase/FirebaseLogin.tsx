@@ -68,7 +68,15 @@ const FirebaseLogin = () => {
         <LoggedInContainer>
           <LoggedInMessage>{user?.email}</LoggedInMessage>
           <div>
-            <Button label="Logout" onClick={logout} remFontSize={1.1}></Button>
+            <Button
+              label="Logout"
+              onClick={logout}
+              remFontSize={1.1}
+              backgroundColor="orange"
+              borderColor="orange"
+              borderColorActive="black"
+              borderColorHover="black"
+            ></Button>
           </div>
         </LoggedInContainer>
       ) : (
@@ -90,6 +98,10 @@ const FirebaseLogin = () => {
               label={loading ? "..." : "Login"}
               type="submit"
               remFontSize={1.1}
+              backgroundColor="orange"
+              borderColor="orange"
+              borderColorActive="black"
+              borderColorHover="black"
             ></Button>
           </form>
           {error != "" && <ErrorMessage>{error}</ErrorMessage>}

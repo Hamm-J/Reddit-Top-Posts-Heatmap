@@ -7,19 +7,19 @@ import Button from "../common/Button/Button";
 
 const Login = () => {
   const { user, isOpen, setIsOpen } = useContext<any>(FetcherContext);
-  // const [isOpen, setIsOpen] = useState(false);
-  const register = () => {
-    if (isOpen === !isOpen) {
-      setIsOpen(!isOpen);
-    } else {
-      setIsOpen(!isOpen);
-    }
-  };
   return (
     <LoginContainer>
       <FirebaseLogin></FirebaseLogin>
       {!user && (
-        <Button label="Sign up?" onClick={register} remFontSize={1.1}></Button>
+        <Button
+          label="Sign up?"
+          onClick={() => setIsOpen(!isOpen)}
+          remFontSize={1.1}
+          backgroundColor="orange"
+          borderColor="orange"
+          borderColorActive="black"
+          borderColorHover="black"
+        ></Button>
       )}
       <RegisterScreen
         open={isOpen}
