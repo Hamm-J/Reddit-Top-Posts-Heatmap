@@ -8,6 +8,7 @@ import {
   FirebaseRegisterContainer,
   ErrorMessage,
 } from "../Firebase/FirebaseRegister.styled";
+import useFirebaseRegister from "./useFirebaseRegister";
 
 interface Props {
   onClose: () => void;
@@ -19,35 +20,18 @@ const FirebaseRegister = ({ onClose }: Props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const register = async (e: any) => {
+  const firebaseRegister = useFirebaseRegister(
+    auth,
+    registerEmail,
+    registerPassword,
+    onClose,
+    setError,
+    setLoading
+  );
+
+  const register = (e: any) => {
     e.preventDefault();
-
-    try {
-      setLoading(true);
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      setLoading(false);
-      onClose();
-      console.log(user);
-    } catch (error: any) {
-      console.log(error.message);
-      setLoading(false);
-      switch (error.message) {
-        case "Firebase: Password should be at least 6 characters (auth/weak-password).":
-          setError("Password must be at least 6 characters in length...");
-          break;
-
-        case "Firebase: Error (auth/email-already-in-use).":
-          setError("Email already in use...");
-          break;
-
-        default:
-          setError("Incorrect. Please try again...");
-      }
-    }
+    firebaseRegister();
   };
 
   return (
