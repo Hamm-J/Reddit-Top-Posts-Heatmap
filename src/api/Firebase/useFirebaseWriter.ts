@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase-config";
-import { newDateToUTC } from "../../helpers/UTCConversions";
+import { newDateToUnix } from "../../helpers/UTCConversions";
 
 const useFirebaseWriter = (
   execute: boolean,
@@ -14,7 +14,7 @@ const useFirebaseWriter = (
 
   const firstRender = useRef(true);
 
-  const saveTime = newDateToUTC(new Date());
+  const saveTime = newDateToUnix(new Date());
 
   // package the posts, postCounts, and comments with `docType` property for
   // query filtering
