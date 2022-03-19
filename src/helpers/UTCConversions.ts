@@ -61,14 +61,7 @@ export const unixToTime = (unix: number) => {
   return time;
 };
 
-export const newDateToUTC = (date: Date) => {
-  let timeUTC = Date.UTC(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
-    date.getUTCSeconds()
-  );
-  return timeUTC;
+export const newDateToUnix = (date: Date) => {
+  let timeUnix = Math.round(date.getTime() / 1000);
+  return timeUnix;
 };
