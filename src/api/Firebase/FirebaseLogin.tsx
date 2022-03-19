@@ -1,10 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
-import {
-  onAuthStateChanged,
-  signOut,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Button from "../../components/common/Button/Button";
 import InputText from "../../components/common/InputText/InputText";
@@ -16,6 +12,7 @@ import {
   LoggedOutContainer,
   LoggedInMessage,
 } from "./FirebaseLogin.styled";
+import useFirebaseLogin from "./useFirebaseLogin";
 
 const FirebaseLogin = () => {
   const { user, setUser } = useContext<any>(FetcherContext);
@@ -29,34 +26,17 @@ const FirebaseLogin = () => {
     setUser(currentUser);
   });
 
-  const login = async (e: any) => {
+  const firebaseLogin = useFirebaseLogin(
+    auth,
+    loginEmail,
+    loginPassword,
+    setUser,
+    setError,
+    setLoading
+  );
+  const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      setLoading(true);
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      setLoading(false);
-      console.log(user);
-    } catch (error: any) {
-      console.log(error.message);
-      setLoading(false);
-      switch (error.message) {
-        case "Firebase: Error (auth/wrong-password).":
-          setError("Incorrect Password...");
-          break;
-
-        case "Firebase: Error (auth/user-not-found).":
-          setError("Incorrect Email...");
-          break;
-
-        default:
-          setError("Incorrect. Please try again...");
-      }
-    }
+    firebaseLogin();
   };
 
   const logout = async () => {
@@ -81,7 +61,11 @@ const FirebaseLogin = () => {
         </LoggedInContainer>
       ) : (
         <LoggedOutContainer>
-          <form onSubmit={(e) => login(e)}>
+          <form
+            onSubmit={(e) => {
+              login(e);
+            }}
+          >
             <InputEmail
               onChange={(e) => setLoginEmail(e.target.value)}
               placeholder="Email..."
