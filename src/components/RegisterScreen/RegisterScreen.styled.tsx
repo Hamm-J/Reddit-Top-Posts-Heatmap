@@ -33,3 +33,8 @@ export const ErrorMessage = styled.div`
   font-weight: bold;
   color: red;
 `;
+
+export const RegisterForm = styled.form`
+  display: flex;
+  gap: 4px;
+`;

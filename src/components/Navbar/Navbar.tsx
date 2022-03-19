@@ -30,17 +30,6 @@ const Navbar = () => {
       </LinkWrapper>
       <LoginWrapper>
         <Login></Login>
-        {!user && (
-          <Button
-            label="Sign up?"
-            onClick={() => setIsOpen(!isOpen)}
-            remFontSize={1.1}
-            backgroundColor="orange"
-            borderColor="orange"
-            borderColorActive="black"
-            borderColorHover="black"
-          ></Button>
-        )}
         <RegisterScreen
           open={isOpen}
           onClose={() => setIsOpen(false)}

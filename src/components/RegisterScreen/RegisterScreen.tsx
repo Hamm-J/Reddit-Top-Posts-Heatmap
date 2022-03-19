@@ -7,6 +7,7 @@ import {
   OverlayStyles,
   CloseWindowWrapper,
   ErrorMessage,
+  RegisterForm,
 } from "./RegisterScreen.styled";
 import InputText from "../common/InputText/InputText";
 import InputEmail from "../common/InputEmail/InputEmail";
@@ -57,7 +58,7 @@ const RegisterScreen = ({ open, onClose }: Props) => {
           <Button onClick={onClose} label="X" minWidth={31}></Button>
         </CloseWindowWrapper>
         <Para>It's easy and quick!</Para>
-        <form onSubmit={(e) => register(e)}>
+        <RegisterForm onSubmit={(e) => register(e)}>
           <InputEmail
             onChange={(e) => setRegisterEmail(e.target.value)}
             placeholder="Email..."
@@ -80,7 +81,7 @@ const RegisterScreen = ({ open, onClose }: Props) => {
             borderColorActive="black"
             borderColorHover="black"
           ></Button>
-        </form>
+        </RegisterForm>
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </RegisterScreenContainer>
     </>,

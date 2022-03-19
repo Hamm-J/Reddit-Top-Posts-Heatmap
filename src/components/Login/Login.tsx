@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
@@ -10,12 +10,15 @@ import {
   ErrorMessage,
   LoggedInContainer,
   LoggedOutContainer,
+  LoginForm,
   LoggedInMessage,
+  InputWrapper,
+  ButtonWrapper,
 } from "./Login.styled";
 import useFirebaseLogin from "../../api/Firebase/useFirebaseLogin";
 
 const Login = () => {
-  const { user, setUser } = useContext<any>(FetcherContext);
+  const { user, setUser, isOpen, setIsOpen } = useContext<any>(FetcherContext);
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -42,6 +45,13 @@ const Login = () => {
   const logout = async () => {
     await signOut(auth);
   };
+
+  // clear error message when successfully logged in
+  useEffect(() => {
+    if (user) {
+      setError("");
+    }
+  }, [user]);
   return (
     <LoginContainer>
       {user ? (
@@ -61,34 +71,50 @@ const Login = () => {
         </LoggedInContainer>
       ) : (
         <LoggedOutContainer>
-          <form
+          <LoginForm
             onSubmit={(e) => {
               login(e);
             }}
           >
-            <InputEmail
-              onChange={(e) => setLoginEmail(e.target.value)}
-              placeholder="Email..."
-              remFontSize={1.2}
-              required
-            ></InputEmail>
-            <InputText
-              onChange={(e) => setLoginPassword(e.target.value)}
-              placeholder="Password..."
-              remFontSize={1.2}
-              required
-            ></InputText>
-            <Button
-              label={loading ? "..." : "Login"}
-              type="submit"
-              remFontSize={1.1}
-              backgroundColor="orange"
-              borderColor="orange"
-              borderColorActive="black"
-              borderColorHover="black"
-            ></Button>
-          </form>
-          {error != "" && <ErrorMessage>{error}</ErrorMessage>}
+            <InputWrapper>
+              <InputEmail
+                onChange={(e) => setLoginEmail(e.target.value)}
+                placeholder="Email..."
+                remFontSize={1.2}
+                required
+              ></InputEmail>
+              <InputText
+                onChange={(e) => setLoginPassword(e.target.value)}
+                placeholder="Password..."
+                remFontSize={1.2}
+                required
+              ></InputText>
+            </InputWrapper>
+            <ButtonWrapper>
+              <Button
+                label={loading ? "..." : "Login"}
+                type="submit"
+                remFontSize={1.1}
+                backgroundColor="orange"
+                borderColor="orange"
+                borderColorActive="black"
+                borderColorHover="black"
+                minWidth={123}
+              ></Button>
+              <Button
+                label="Sign up?"
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                remFontSize={1.1}
+                backgroundColor="orange"
+                borderColor="orange"
+                borderColorActive="black"
+                borderColorHover="black"
+                minWidth={123}
+              ></Button>
+            </ButtonWrapper>
+            {error != "" && <ErrorMessage>{error}</ErrorMessage>}
+          </LoginForm>
         </LoggedOutContainer>
       )}
     </LoginContainer>

@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 export const NavbarContainer = styled.div`
   background-color: gray;
-  padding: 15px;
+  padding: 10px 15px 10px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  min-width: 1290px;
 `;
 
 export const LinkWrapper = styled.div`
@@ -15,7 +16,10 @@ export const LinkWrapper = styled.div`
   align-items: center;
 `;
 
-export const LoginWrapper = styled.div``;
+export const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const NavbarLink = styled(Link)`
   text-decoration: none;
