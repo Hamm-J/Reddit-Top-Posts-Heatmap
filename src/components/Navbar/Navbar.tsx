@@ -8,11 +8,13 @@ import {
   LoginWrapper,
 } from "./Navbar.styled";
 import Login from "../Login/Login";
+import RegisterScreen from "../RegisterScreen/RegisterScreen";
+import Button from "../common/Button/Button";
 import redditLogo from "../../images/redditLogo.png";
 // import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { user } = useContext<any>(FetcherContext);
+  const { user, isOpen, setIsOpen } = useContext<any>(FetcherContext);
   return (
     <NavbarContainer>
       <LinkWrapper>
@@ -28,6 +30,21 @@ const Navbar = () => {
       </LinkWrapper>
       <LoginWrapper>
         <Login></Login>
+        {!user && (
+          <Button
+            label="Sign up?"
+            onClick={() => setIsOpen(!isOpen)}
+            remFontSize={1.1}
+            backgroundColor="orange"
+            borderColor="orange"
+            borderColorActive="black"
+            borderColorHover="black"
+          ></Button>
+        )}
+        <RegisterScreen
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+        ></RegisterScreen>
       </LoginWrapper>
     </NavbarContainer>
   );

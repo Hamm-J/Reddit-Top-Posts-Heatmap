@@ -1,4 +1,3 @@
-import React from "react";
 import { Auth, signInWithEmailAndPassword } from "firebase/auth";
 
 const useFirebaseLogin = (

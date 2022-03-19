@@ -4,9 +4,9 @@ const useFirebaseRegister = (
   auth: Auth,
   email: string,
   password: string,
-  onClose: () => void,
   setError: React.Dispatch<React.SetStateAction<string>>,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  onClose?: () => void
 ) => {
   return async () => {
     try {
@@ -14,7 +14,7 @@ const useFirebaseRegister = (
       const user = await createUserWithEmailAndPassword(auth, email, password);
       setLoading(false);
       console.log(user);
-      onClose();
+      onClose && onClose();
     } catch (error: any) {
       console.log(error.message);
       setLoading(false);

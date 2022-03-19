@@ -28,3 +28,8 @@ export const CloseWindowWrapper = styled.div`
   align-items: center;
   border-radius: 4px;
 `;
+
+export const ErrorMessage = styled.div`
+  font-weight: bold;
+  color: red;
+`;
