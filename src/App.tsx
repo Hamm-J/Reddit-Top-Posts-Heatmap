@@ -28,20 +28,18 @@ function App() {
   };
   console.log("app rendered");
   return (
-    <div>
-      <Router>
-        <FetcherContext.Provider value={contextValues}>
-          <Navbar></Navbar>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="/user_dashboard" element={<UserDashboard />} />
-            </Route>
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </FetcherContext.Provider>
-      </Router>
-    </div>
+    <Router>
+      <FetcherContext.Provider value={contextValues}>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/user_dashboard" element={<UserDashboard />} />
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </FetcherContext.Provider>
+    </Router>
   );
 }
 
