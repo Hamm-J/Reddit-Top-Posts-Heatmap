@@ -24,7 +24,7 @@ const Navbar = () => {
         {user && (
           <>
             <NavbarLink to="/">Search</NavbarLink>
-            <NavbarLink to="/user_dashboard">Snapshots</NavbarLink>
+            <NavbarLink to="/snapshots">Snapshots</NavbarLink>
           </>
         )}
       </LinkWrapper>

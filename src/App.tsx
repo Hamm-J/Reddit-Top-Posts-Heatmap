@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Search />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/user_dashboard" element={<Snapshots />} />
+            <Route path="/snapshots" element={<Snapshots />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
