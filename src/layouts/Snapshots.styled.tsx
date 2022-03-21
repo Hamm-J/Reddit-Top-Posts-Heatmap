@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UserDashboardContainer = styled.div`
+export const SnapshotsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

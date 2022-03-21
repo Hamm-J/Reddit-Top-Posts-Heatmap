@@ -6,9 +6,13 @@ import Landing from "../components/Landing/Landing";
 import { BannerTitle } from "../components/common/Markup/Markup.styled";
 import SaveSubreddit from "../components/SaveSubreddit/SaveSubreddit";
 import TimeZone from "../components/TimeZone/TimeZone";
-import { HomeContainer, TopWrapper, Description } from "../layouts/Home.styled";
+import {
+  SearchContainer,
+  TopWrapper,
+  Description,
+} from "../layouts/Search.styled";
 
-const Home = () => {
+const Search = () => {
   // const { posts, postCounts } = useContext<any>(FetcherContext);
   // reddit API
   const [posts, setPosts] = useState({});
@@ -39,7 +43,7 @@ const Home = () => {
     }
   }, [posts]);
   return (
-    <HomeContainer>
+    <SearchContainer>
       <TopWrapper>
         <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
         <SearchSubreddit
@@ -67,8 +71,8 @@ const Home = () => {
         </>
       )}
       <Landing></Landing>
-    </HomeContainer>
+    </SearchContainer>
   );
 };
 
-export default Home;
+export default Search;

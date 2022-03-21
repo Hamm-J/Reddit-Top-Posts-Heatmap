@@ -23,8 +23,8 @@ const Navbar = () => {
         </ImgAnchor>
         {user && (
           <>
-            <NavbarLink to="/">Home</NavbarLink>
-            <NavbarLink to="/user_dashboard">User Dashboard</NavbarLink>
+            <NavbarLink to="/">Search</NavbarLink>
+            <NavbarLink to="/user_dashboard">Snapshots</NavbarLink>
           </>
         )}
       </LinkWrapper>
