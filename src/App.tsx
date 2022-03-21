@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import UserDashboard from "./pages/UserDashboard";
+import Search from "./pages/Search";
+import Snapshots from "./pages/Snapshots";
 import ErrorPage from "./pages/404";
 import { FetcherContext } from "./contexts/FetcherContext";
 import Navbar from "./components/Navbar/Navbar";
@@ -32,9 +32,9 @@ function App() {
       <FetcherContext.Provider value={contextValues}>
         <Navbar></Navbar>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Search />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/user_dashboard" element={<UserDashboard />} />
+            <Route path="/user_dashboard" element={<Snapshots />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>

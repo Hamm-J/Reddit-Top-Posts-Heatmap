@@ -3,7 +3,7 @@ import { FetcherContext } from "../contexts/FetcherContext";
 import SnapshotArray from "../components/SnapshotArray/SnapshotArray";
 import Heatmap from "../components/Heatmap/Heatmap";
 import Inspector from "../components/Inspector/Inspector";
-import UserDashboardDescription from "../components/UserDashboardDescription/UserDashboardDescription";
+import SnapshotsDescription from "../components/SnapshotDescription/SnapshotsDescription";
 import {
   BannerTitle,
   SectionTitle,
@@ -13,12 +13,12 @@ import { db } from "../firebase-config";
 import TimeZone from "../components/TimeZone/TimeZone";
 import {
   Description,
-  UserDashboardContainer,
+  SnapshotsContainer,
   TopWrapper,
-} from "../layouts/UserDashboard.styled";
+} from "../layouts/Snapshots.styled";
 import DeleteSubreddit from "../components/DeleteSubreddit/DeleteSubreddit";
 
-const UserDashboard = () => {
+const Snapshots = () => {
   // Firebase states
   const [postsSnapshot, setPostsSnapshot] = useState({});
   const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
@@ -69,10 +69,10 @@ const UserDashboard = () => {
 
   console.log(selectedCell);
   return (
-    <UserDashboardContainer>
+    <SnapshotsContainer>
       <TopWrapper>
-        <BannerTitle>User Dashboard</BannerTitle>
-        <UserDashboardDescription></UserDashboardDescription>
+        <BannerTitle>Checkout your Subreddit Snapshots!</BannerTitle>
+        <SnapshotsDescription></SnapshotsDescription>
         <SnapshotArray
           postsSnapshot={postsSnapshot}
           postCountsSnapshot={postCountsSnapshot}
@@ -105,8 +105,8 @@ const UserDashboard = () => {
           )}
         </>
       )}
-    </UserDashboardContainer>
+    </SnapshotsContainer>
   );
 };
 
-export default UserDashboard;
+export default Snapshots;
