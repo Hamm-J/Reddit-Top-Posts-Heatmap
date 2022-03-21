@@ -8,6 +8,7 @@ export const RegisterScreenContainer = styled.div`
   z-index: 10;
   background-color: white;
   padding: 20px;
+  border-radius: 4px;
 `;
 
 export const OverlayStyles = styled.div`
@@ -25,4 +26,15 @@ export const CloseWindowWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-radius: 4px;
+`;
+
+export const ErrorMessage = styled.div`
+  font-weight: bold;
+  color: red;
+`;
+
+export const RegisterForm = styled.form`
+  display: flex;
+  gap: 4px;
 `;
