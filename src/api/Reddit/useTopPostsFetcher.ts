@@ -107,7 +107,7 @@ const useTopPostsFetcher = (
 
   useEffect(() => {
     // prevent execution on inital render
-    if (firstRender.current == true) {
+    if (firstRender.current === true) {
       firstRender.current = false;
       return;
     }
