@@ -10,14 +10,13 @@ interface ISaveSubreddit {
 }
 const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
   const { user, setIsOpen } = useContext<any>(FetcherContext);
-  const [save, setSave] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useFirebaseWriter(save, posts, postCounts, setLoading);
+  const firebaseWriter = useFirebaseWriter(posts, postCounts, setLoading);
 
   const saveSubreddit = () => {
     if (user) {
-      setSave(!save);
+      firebaseWriter();
     } else {
       setIsOpen(true);
     }

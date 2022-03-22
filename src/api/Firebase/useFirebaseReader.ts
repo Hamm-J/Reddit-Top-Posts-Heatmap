@@ -5,15 +5,13 @@ import {
   where,
   Firestore,
 } from "firebase/firestore";
-import { useEffect } from "react";
 
 const useFirebaseReader = (
   database: Firestore,
   user: any,
   setPostsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
   setPostCountsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
-  setCommentsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
-  docDeleted: boolean
+  setCommentsSnapshot: React.Dispatch<React.SetStateAction<{}>>
 ) => {
   const getPosts = async () => {
     try {
@@ -73,11 +71,11 @@ const useFirebaseReader = (
     setCommentsSnapshot(queryOrganized);
   };
 
-  useEffect(() => {
+  return () => {
     getPosts();
     getPostCounts();
     getComments();
-  }, [user, docDeleted]);
+  };
 };
 
 export default useFirebaseReader;

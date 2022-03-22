@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useContext } from "react";
+import { useRef, useState, useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
@@ -34,21 +34,26 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
 
   // state of error for error handling
   const [error, setError] = useState("");
-  const [refetch, setRefetch] = useState(false);
 
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
 
-  // fetch top posts
-  const [fetchedPosts, fetchedPostCounts] = useTopPostsFetcher(
+  const topPostsFetcher = useTopPostsFetcher(
     topPostsUrl,
     setLoading,
     setError,
-    refetch
+    setPosts,
+    setPostCounts
   );
 
   const searchHandler = (event: any) => {
-    setInput(event.target.value);
+    const { value } = event.target;
+    setInput(value);
+
+    let inputNoSpace = value.replace(/\s/g, "");
+    setTopPostsUrl(
+      `https://www.reddit.com/r/${inputNoSpace}/top.json?t=${time}&limit=${limit}`
+    );
   };
 
   const submitHandler = () => {
@@ -59,26 +64,11 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
 
     // remove spaces in from input
     let inputNoSpace = input.replace(/\s/g, "");
-
-    // If the current input is the same as the currently set subreddit,
-    // refetch the data; else set the subreddit to the current input
-    if (inputNoSpace === subreddit) {
-      setRefetch(!refetch);
-    } else {
-      setSubreddit(inputNoSpace);
-    }
+    setInput(inputNoSpace);
+    setSubreddit(inputNoSpace);
+    topPostsFetcher();
   };
 
-  useEffect(() => {
-    setPosts(fetchedPosts);
-    setPostCounts(fetchedPostCounts);
-  }, [fetchedPosts, fetchedPostCounts]);
-
-  useEffect(() => {
-    setTopPostsUrl(
-      `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
-    );
-  }, [subreddit, refetch]);
   return (
     <SearchSubredditContainer>
       <FlexContainer>

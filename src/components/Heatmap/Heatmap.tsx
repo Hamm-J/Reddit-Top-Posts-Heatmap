@@ -1,4 +1,3 @@
-import SaveSubreddit from "../SaveSubreddit/SaveSubreddit";
 import {
   HeatmapContainer,
   HeatmapGrid,
