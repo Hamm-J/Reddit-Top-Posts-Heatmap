@@ -19,11 +19,9 @@ const DeleteSubreddit = ({
   setDocDeleted,
 }: IDeleteSubreddit) => {
   const { user } = useContext<any>(FetcherContext);
-  const [remove, setRemove] = useState(false); // use "remove" instead of "delete" because of strictmode conventions
   const [loading, setLoading] = useState(false);
 
-  useFirebaseDeleter(
-    remove,
+  const firebaseDeleter = useFirebaseDeleter(
     db,
     user,
     postsSnapshotDoc,
@@ -34,7 +32,7 @@ const DeleteSubreddit = ({
   );
 
   const deleteSubreddit = () => {
-    setRemove(!remove);
+    firebaseDeleter();
   };
 
   return (
