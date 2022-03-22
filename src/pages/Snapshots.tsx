@@ -52,7 +52,7 @@ const Snapshots = () => {
 
   useEffect(() => {
     firebaseReader();
-  }, [user, docDeleted]);
+  }, [firebaseReader, user, docDeleted]);
 
   useEffect(() => {
     setSelectedCell([]);
