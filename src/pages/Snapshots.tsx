@@ -41,15 +41,18 @@ const Snapshots = () => {
   // Snaphost array states
   const [selectedSnapshot, setSelectedSnapshot] = useState("");
 
-  // Read snapshots from firebase
-  useFirebaseReader(
+  // Read snapshots from firebas
+  const firebaseReader = useFirebaseReader(
     db,
     user,
     setPostsSnapshot,
     setPostCountsSnapshot,
-    setCommentsShapshot,
-    docDeleted
+    setCommentsShapshot
   );
+
+  useEffect(() => {
+    firebaseReader();
+  }, [user, docDeleted]);
 
   useEffect(() => {
     setSelectedCell([]);
