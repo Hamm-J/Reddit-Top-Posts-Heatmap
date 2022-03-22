@@ -1,18 +1,15 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { doc, setDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase-config";
+import { db } from "../../firebase-config";
 import { newDateToUnix } from "../../helpers/UTCConversions";
 
 const useFirebaseWriter = (
-  execute: boolean,
   posts: {},
   postCounts: any,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { subreddit, user } = useContext<any>(FetcherContext);
-
-  const firstRender = useRef(true);
 
   const saveTime = newDateToUnix(new Date());
 
@@ -28,20 +25,13 @@ const useFirebaseWriter = (
     data: postCounts,
   };
 
-  console.log("useFirebaseWriter: ");
-  console.log(posts);
-  console.log(subreddit);
-
   // const commentsPackaged = {
   //   docType: "comments",
   //   data: comments,
   // };
 
-  const postData = async () => {
+  return async () => {
     try {
-      if (auth.currentUser === null) {
-        return alert("You must sign in to save the data!");
-      }
       const postsSnapshotcollectionRef = doc(
         db,
         user.uid,
@@ -81,14 +71,6 @@ const useFirebaseWriter = (
       console.log(error.message, error.stack);
     }
   };
-
-  useEffect(() => {
-    if (firstRender.current === true) {
-      firstRender.current = false;
-      return;
-    }
-    postData();
-  }, [execute]);
 };
 
 export default useFirebaseWriter;
