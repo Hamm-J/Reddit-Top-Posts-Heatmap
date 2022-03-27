@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
@@ -38,13 +38,20 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
 
-  const topPostsFetcher = useTopPostsFetcher(
-    topPostsUrl,
-    setLoading,
-    setError,
-    setPosts,
-    setPostCounts
-  );
+  const [
+    redditPosts,
+    redditPostCounts,
+    redditLoading,
+    redditError,
+    topPostsFetcher,
+  ] = useTopPostsFetcher(topPostsUrl);
+
+  useEffect(() => {
+    setPosts(redditPosts);
+    setPostCounts(redditPostCounts);
+    setLoading(redditLoading);
+    setError(redditError);
+  }, [redditPosts, redditPostCounts, redditLoading, redditError]);
 
   const searchHandler = (event: any) => {
     const { value } = event.target;
