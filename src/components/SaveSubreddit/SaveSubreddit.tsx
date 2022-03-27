@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "../common/Button/Button";
 import useFirebaseWriter from "../../api/Firebase/useFirebaseWriter";
 import { SaveSubredditContainer } from "./SaveSubreddit.styled";
@@ -9,10 +9,19 @@ interface ISaveSubreddit {
   postCounts: any;
 }
 const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
-  const { user, setIsOpen } = useContext<any>(FetcherContext);
+  const { user, setIsOpen, subreddit } = useContext<any>(FetcherContext);
   const [loading, setLoading] = useState(false);
 
-  const firebaseWriter = useFirebaseWriter(posts, postCounts, setLoading);
+  const [firebaseLoading, firebaseWriter] = useFirebaseWriter(
+    user,
+    subreddit,
+    posts,
+    postCounts
+  );
+
+  useEffect(() => {
+    setLoading(firebaseLoading);
+  }, [firebaseLoading]);
 
   const saveSubreddit = () => {
     if (user) {
