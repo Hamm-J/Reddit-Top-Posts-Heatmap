@@ -11,11 +11,14 @@ import Button from "../common/Button/Button";
 import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
-  setPosts: React.Dispatch<React.SetStateAction<{}>>;
-  setPostCounts: React.Dispatch<any>;
+  handlePosts: ({}) => void;
+  handlePostCounts: ({}) => void;
 }
 
-const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
+const SearchSubreddit = ({
+  handlePosts,
+  handlePostCounts,
+}: ISearchSubreddit) => {
   // fetcher URL states
   // const [subreddit, setSubreddit] = useState("");
   const { subreddit, setSubreddit } = useContext<any>(FetcherContext);
@@ -47,8 +50,8 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   ] = useTopPostsFetcher(topPostsUrl);
 
   useEffect(() => {
-    setPosts(redditPosts);
-    setPostCounts(redditPostCounts);
+    handlePosts(redditPosts);
+    handlePostCounts(redditPostCounts);
     setLoading(redditLoading);
     setError(redditError);
   }, [redditPosts, redditPostCounts, redditLoading, redditError]);

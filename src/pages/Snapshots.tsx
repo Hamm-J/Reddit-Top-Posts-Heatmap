@@ -79,6 +79,10 @@ const Snapshots = () => {
   }, [docDeleted]);
 
   console.log(selectedCell);
+
+  const handleSelectedCell = (selectedCell: []) => {
+    setSelectedCell(selectedCell);
+  };
   return (
     <SnapshotsContainer>
       <TopWrapper>
@@ -100,7 +104,7 @@ const Snapshots = () => {
           <Heatmap
             posts={selectedPosts}
             postCounts={selectedPostCounts}
-            setSelectedCell={setSelectedCell}
+            handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
             <TimeZone></TimeZone>

@@ -42,13 +42,26 @@ const Search = () => {
       return;
     }
   }, [posts]);
+
+  const handlePosts = (posts: {}) => {
+    setPosts(posts);
+  };
+
+  const handlePostCounts = (postCounts: {}) => {
+    setPostCounts(postCounts);
+  };
+
+  const handleSelectedCell = (selectedCell: []) => {
+    setSelectedCell(selectedCell);
+  };
+
   return (
     <SearchContainer>
       <TopWrapper>
         <BannerTitle>Find the best time to post on Reddit!</BannerTitle>
         <SearchSubreddit
-          setPosts={setPosts}
-          setPostCounts={setPostCounts}
+          handlePosts={handlePosts}
+          handlePostCounts={handlePostCounts}
         ></SearchSubreddit>
       </TopWrapper>
       {showHeatmap && (
@@ -56,7 +69,7 @@ const Search = () => {
           <Heatmap
             posts={posts}
             postCounts={postCounts}
-            setSelectedCell={setSelectedCell}
+            handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
             <TimeZone></TimeZone>
