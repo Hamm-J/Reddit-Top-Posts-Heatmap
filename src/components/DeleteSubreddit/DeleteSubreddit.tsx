@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { DeleteSubredditContainer } from "./DeleteSubreddit.styled";
 import Button from "../common/Button/Button";
@@ -21,15 +21,18 @@ const DeleteSubreddit = ({
   const { user } = useContext<any>(FetcherContext);
   const [loading, setLoading] = useState(false);
 
-  const firebaseDeleter = useFirebaseDeleter(
+  const [firebaseLoading, firebaseDeleter] = useFirebaseDeleter(
     db,
     user,
     postsSnapshotDoc,
     postCountsSnapshotDoc,
-    setLoading,
     docDeleted,
     setDocDeleted
   );
+
+  useEffect(() => {
+    setLoading(firebaseLoading);
+  }, [firebaseLoading]);
 
   const deleteSubreddit = () => {
     firebaseDeleter();
