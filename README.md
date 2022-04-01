@@ -1,13 +1,47 @@
-# react_reddit_analytics
-## Overview 
-### Use Case(s)
-This app fetches the top posts from a subreddit of your choice and visualizes
-the top posts in a easy to comprehend manner such that you can easily see which
-day and time is best to get the most engagement.
-### Tech Stack
-#### Frontend
-- React
-- TypeScript
-- Styled-Components
-#### Backend
-- Firebase
+# Reddit Top Posts Heatmap
+
+## Description
+
+Quickly find the best time and day of week to post on your favorite subreddit [right now!](https://reddit-top-posts-heatmap.netlify.app/)
+
+### How To Use
+
+This application allows the user to search for a subreddit of their choice and
+then visualize the top posts from the last year in a heatmap. To further inspect
+the posts the posts from a particular time, the user can simply click on that
+heatmap cell.
+If the user wishes to give their heatmap at a later date, the user
+can simply: register an account, click the "save" button, and view their snapshots
+at any time within the "Snapshots" page.
+
+### Technologies
+
+This is a React application built with stock `create-react-app` TypeScript Template
+webpack and configuration for practice using a statically typed language. Styling
+was handled using [styled-components](https://styled-components.com/) to allow for
+dynamic state styling. The [Reddit API](https://www.reddit.com/dev/api/) HTTP
+pipeline was handled with JavaScript's native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch). User registration and authentication is handled via [Firebase](https://firebase.google.com/), and data storage was handled with [Firestore](https://firebase.google.com/docs/firestore),
+to facilitate fast deployment, efficient application scaling, and provide industry standard data security. The application is hosted with [Netlify](https://www.netlify.com/) for continuous deployment via Github integration and coupling.
+
+### Future Features
+
+- **Comment sentiment analysis**: In addition to the current data presented
+  when inspecting a heatmap cell (i.e. number of upvotes), I plan to perform a
+  sentiment analysis of each top posts' comment section to gauge if the posts'
+  engagement is positive or negative. This information could inform the user
+  as to which type of post to make on their selected subreddit.
+- **Data downloading**: In addition to saving and revisualizing the top posts of a
+  subreddit at a particular moment in time, I plan to allow the user to download
+  the heatmap's data in the form of a CSV, JSON, etc..
+- **Auto scraping**: News moves fast in some of Reddit's most popular subreddits.
+  As such, the top 100 posts of these subreddits might fluctuate more frequently.
+  To assist the user in getting the best sense of when to post on their subreddit,
+  I plan to allow users to tag subreddits for auto-scraping, which will automatically
+  save heatmap data on a selected time interval.
+- **Search autocompletion**: Sometimes we need autocompletion to find the subreddit
+  we desire. I plan to leverage the search auto-complete API Reddit provides to
+  generate a dropdown of subreddits that the user might be in the process of inputting.
+
+## License
+
+This project is licensed under the MIT License.
