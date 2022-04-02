@@ -59,6 +59,7 @@ const Login = () => {
           <Button
             label="Logout"
             onClick={logout}
+            loading={loading}
             remFontSize={1.1}
             backgroundColor="orange"
             borderColor="orange"
@@ -91,6 +92,7 @@ const Login = () => {
             <ButtonWrapper>
               <Button
                 label={loading ? "..." : "Login"}
+                loading={loading}
                 type="submit"
                 remFontSize={1.1}
                 backgroundColor="orange"

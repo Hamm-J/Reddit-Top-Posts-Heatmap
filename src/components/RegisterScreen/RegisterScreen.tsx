@@ -69,6 +69,7 @@ const RegisterScreen = ({ open, onClose }: Props) => {
           <Button
             type="submit"
             label={loading ? "..." : "Register"}
+            loading={loading}
             remFontSize={1.1}
             minWidth={88}
             backgroundColor="orange"

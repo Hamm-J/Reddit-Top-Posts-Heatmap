@@ -95,6 +95,7 @@ const SearchSubreddit = ({
         <Button
           label={loading ? "..." : "Search"}
           onClick={() => submitHandler()}
+          loading={loading}
           remFontSize={2}
           backgroundColor="orange"
           borderColor="orange"

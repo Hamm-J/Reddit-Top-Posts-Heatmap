@@ -43,6 +43,7 @@ const DeleteSubreddit = ({
       <Button
         label={loading ? "Deleting..." : "Delete Subreddit Data?"}
         onClick={deleteSubreddit}
+        loading={loading}
         remFontSize={1.2}
         backgroundColor="orange"
         borderColor="orange"
