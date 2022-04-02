@@ -79,6 +79,12 @@ const SearchSubreddit = ({
     topPostsFetcher();
   };
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      submitHandler();
+    }
+  };
+
   return (
     <SearchSubredditContainer>
       <FlexContainer>
@@ -87,6 +93,7 @@ const SearchSubreddit = ({
           type="text"
           placeholder="Subreddit..."
           onChange={(event: void) => searchHandler(event)}
+          onKeyPress={(event: void) => handleKeyPress(event)}
           innerRef={inputFieldRef}
           remFontSize={2}
           value={input}

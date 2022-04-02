@@ -9,6 +9,10 @@ interface Props {
   placeholder: string;
   // TODO: confirm that I need () => void here
   onChange: React.ChangeEventHandler<HTMLInputElement> | (() => void);
+  onKeyPress?:
+    | React.KeyboardEventHandler<HTMLInputElement>
+    | (() => void)
+    | undefined;
   innerRef?: React.RefObject<HTMLInputElement>;
   remFontSize?: IInputField["remFontSize"];
   borderThickness?: IInputField["borderThickness"];
@@ -20,6 +24,7 @@ const InputText = ({
   type = "text",
   placeholder,
   onChange,
+  onKeyPress,
   innerRef,
   remFontSize = 1,
   borderThickness = "thin",
@@ -33,6 +38,7 @@ const InputText = ({
           required={required}
           placeholder={placeholder}
           onChange={onChange}
+          onKeyPress={onKeyPress}
           ref={innerRef}
           remFontSize={remFontSize}
           borderThickness={borderThickness}
@@ -43,6 +49,7 @@ const InputText = ({
           required={required}
           placeholder={placeholder}
           onChange={onChange}
+          onKeyPress={onKeyPress}
           ref={innerRef}
           remFontSize={remFontSize}
           borderThickness={borderThickness}
