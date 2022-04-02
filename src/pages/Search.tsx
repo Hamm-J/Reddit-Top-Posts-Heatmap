@@ -72,7 +72,7 @@ const Search = () => {
             handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
-            <TimeZone></TimeZone>
+            {/* <TimeZone></TimeZone> */}
             <SaveSubreddit
               posts={posts}
               postCounts={postCounts}

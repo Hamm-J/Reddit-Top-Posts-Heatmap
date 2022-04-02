@@ -114,7 +114,7 @@ const Snapshots = () => {
             handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
-            <TimeZone></TimeZone>
+            {/* <TimeZone></TimeZone> */}
             <DeleteSubreddit
               postsSnapshotDoc={postsSnapshotDoc}
               postCountsSnapshotDoc={postCountsSnapshotDoc}

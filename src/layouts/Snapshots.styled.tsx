@@ -11,7 +11,8 @@ export const SnapshotsContainer = styled.div`
 export const Description = styled.div`
   width: 1000px;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
 `;
