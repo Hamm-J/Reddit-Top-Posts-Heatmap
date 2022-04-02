@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   collection,
   query,
@@ -6,13 +7,11 @@ import {
   Firestore,
 } from "firebase/firestore";
 
-const useFirebaseReader = (
-  database: Firestore,
-  user: any,
-  setPostsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
-  setPostCountsSnapshot: React.Dispatch<React.SetStateAction<{}>>,
-  setCommentsSnapshot: React.Dispatch<React.SetStateAction<{}>>
-) => {
+const useFirebaseReader = (database: Firestore, user: any) => {
+  const [postsSnapshot, setPostsSnapshot] = useState({});
+  const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
+  const [commentsSnapshot, setCommentsSnapshot] = useState({});
+
   const getPosts = async () => {
     try {
       const qPosts = query(
@@ -71,11 +70,16 @@ const useFirebaseReader = (
     setCommentsSnapshot(queryOrganized);
   };
 
-  return () => {
-    getPosts();
-    getPostCounts();
-    getComments();
-  };
+  return [
+    postsSnapshot,
+    postCountsSnapshot,
+    commentsSnapshot,
+    () => {
+      getPosts();
+      getPostCounts();
+      getComments();
+    },
+  ] as const;
 };
 
 export default useFirebaseReader;

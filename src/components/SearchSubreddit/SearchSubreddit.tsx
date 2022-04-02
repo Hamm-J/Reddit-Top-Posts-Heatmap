@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import {
   SearchSubredditContainer,
@@ -11,11 +11,14 @@ import Button from "../common/Button/Button";
 import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
-  setPosts: React.Dispatch<React.SetStateAction<{}>>;
-  setPostCounts: React.Dispatch<any>;
+  handlePosts: ({}) => void;
+  handlePostCounts: ({}) => void;
 }
 
-const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
+const SearchSubreddit = ({
+  handlePosts,
+  handlePostCounts,
+}: ISearchSubreddit) => {
   // fetcher URL states
   // const [subreddit, setSubreddit] = useState("");
   const { subreddit, setSubreddit } = useContext<any>(FetcherContext);
@@ -38,13 +41,20 @@ const SearchSubreddit = ({ setPosts, setPostCounts }: ISearchSubreddit) => {
   // ref for targeting the input field
   const inputFieldRef = useRef<any>("");
 
-  const topPostsFetcher = useTopPostsFetcher(
-    topPostsUrl,
-    setLoading,
-    setError,
-    setPosts,
-    setPostCounts
-  );
+  const [
+    redditPosts,
+    redditPostCounts,
+    redditLoading,
+    redditError,
+    topPostsFetcher,
+  ] = useTopPostsFetcher(topPostsUrl);
+
+  useEffect(() => {
+    handlePosts(redditPosts);
+    handlePostCounts(redditPostCounts);
+    setLoading(redditLoading);
+    setError(redditError);
+  }, [redditPosts, redditPostCounts, redditLoading, redditError]);
 
   const searchHandler = (event: any) => {
     const { value } = event.target;

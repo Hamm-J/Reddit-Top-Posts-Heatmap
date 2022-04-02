@@ -28,24 +28,18 @@ const RegisterScreen = ({ open, onClose }: Props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const firebaseRegister = useFirebaseRegister(
-    auth,
-    registerEmail,
-    registerPassword,
-    setError,
-    setLoading,
-    onClose
-  );
+  const [firebaseLoading, firebaseError, firebaseRegister] =
+    useFirebaseRegister(auth, registerEmail, registerPassword, onClose);
+
+  useEffect(() => {
+    setLoading(firebaseLoading);
+    setError(firebaseError);
+  }, [firebaseLoading, firebaseError]);
 
   const register = (e: any) => {
     e.preventDefault();
     firebaseRegister();
   };
-
-  // when registerscreen is closed, clear error message
-  useEffect(() => {
-    setError("");
-  }, [open]);
 
   if (!open) return null;
 

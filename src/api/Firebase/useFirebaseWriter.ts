@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import { FetcherContext } from "../../contexts/FetcherContext";
+import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { newDateToUnix } from "../../helpers/UTCConversions";
 
 const useFirebaseWriter = (
+  user: any,
+  subreddit: string,
   posts: {},
-  postCounts: any,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  postCounts: any
 ) => {
-  const { subreddit, user } = useContext<any>(FetcherContext);
+  const [loading, setLoading] = useState(false);
 
   const saveTime = newDateToUnix(new Date());
 
@@ -30,47 +30,52 @@ const useFirebaseWriter = (
   //   data: comments,
   // };
 
-  return async () => {
-    try {
-      const postsSnapshotcollectionRef = doc(
-        db,
-        user.uid,
-        `${subreddit}_posts_${saveTime}`
-      );
+  return [
+    loading,
+    async () => {
+      try {
+        const postsSnapshotcollectionRef = doc(
+          db,
+          user.uid,
+          `${subreddit}_posts_${saveTime}`
+        );
 
-      const postCountsSnapshotCollectionRef = doc(
-        db,
-        user.uid,
-        `${subreddit}_postCounts_${saveTime}`
-      );
+        const postCountsSnapshotCollectionRef = doc(
+          db,
+          user.uid,
+          `${subreddit}_postCounts_${saveTime}`
+        );
 
-      // const commentsSnapshotCollectionRef = doc(
-      //   db,
-      //   user.uid,
-      //   `${subreddit}_comments_${saveTime}`
-      // );
+        // const commentsSnapshotCollectionRef = doc(
+        //   db,
+        //   user.uid,
+        //   `${subreddit}_comments_${saveTime}`
+        // );
 
-      // alert(
-      //   `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
-      //     saveTime
-      //   )}`
-      // );
-      // setReturnMessage(
-      //   `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
-      //     saveTime
-      //   )}`
-      // );
-      setLoading(true);
-      await setDoc(postsSnapshotcollectionRef, postsPackaged, { merge: true });
-      await setDoc(postCountsSnapshotCollectionRef, postCountsPackaged, {
-        merge: true,
-      });
-      // await setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
-      setLoading(false);
-    } catch (error: any) {
-      console.log(error.message, error.stack);
-    }
-  };
+        // alert(
+        //   `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
+        //     saveTime
+        //   )}`
+        // );
+        // setReturnMessage(
+        //   `Saved Subreddit: "${subreddit}" data at ${unixToCalendarDateTime(
+        //     saveTime
+        //   )}`
+        // );
+        setLoading(true);
+        await setDoc(postsSnapshotcollectionRef, postsPackaged, {
+          merge: true,
+        });
+        await setDoc(postCountsSnapshotCollectionRef, postCountsPackaged, {
+          merge: true,
+        });
+        // await setDoc(commentsSnapshotCollectionRef, commentsPackaged, { merge: true });
+        setLoading(false);
+      } catch (error: any) {
+        console.log(error.message, error.stack);
+      }
+    },
+  ] as const;
 };
 
 export default useFirebaseWriter;

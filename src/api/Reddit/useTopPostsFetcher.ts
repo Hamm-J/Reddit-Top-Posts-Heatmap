@@ -1,12 +1,11 @@
+import { useState } from "react";
 import { unixToDayHour } from "../../helpers/UTCConversions";
 
-const useTopPostsFetcher = (
-  url: string,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  setError: React.Dispatch<React.SetStateAction<string>>,
-  setPosts: React.Dispatch<React.SetStateAction<{}>>,
-  setPostCounts: React.Dispatch<any>
-) => {
+const useTopPostsFetcher = (url: string) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [posts, setPosts] = useState({});
+  const [postCounts, setPostCounts] = useState({});
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -98,9 +97,15 @@ const useTopPostsFetcher = (
     return counts;
   };
 
-  return () => {
-    fetchData();
-  };
+  return [
+    posts,
+    postCounts,
+    loading,
+    error,
+    () => {
+      fetchData();
+    },
+  ] as const;
 };
 
 export default useTopPostsFetcher;

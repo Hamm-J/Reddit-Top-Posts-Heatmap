@@ -41,14 +41,22 @@ const Snapshots = () => {
   // Snaphost array states
   const [selectedSnapshot, setSelectedSnapshot] = useState("");
 
-  // Read snapshots from firebas
-  const firebaseReader = useFirebaseReader(
-    db,
-    user,
-    setPostsSnapshot,
-    setPostCountsSnapshot,
-    setCommentsShapshot
-  );
+  const [
+    firebasePostsSnapshot,
+    firebasePostCountsSnapshot,
+    firebaseCommentsSnapshot,
+    firebaseReader,
+  ] = useFirebaseReader(db, user);
+
+  useEffect(() => {
+    setPostsSnapshot(firebasePostsSnapshot);
+    setPostCountsSnapshot(firebasePostCountsSnapshot);
+    setCommentsShapshot(firebaseCommentsSnapshot);
+  }, [
+    firebasePostsSnapshot,
+    firebasePostCountsSnapshot,
+    firebaseCommentsSnapshot,
+  ]);
 
   useEffect(() => {
     firebaseReader();
@@ -71,6 +79,10 @@ const Snapshots = () => {
   }, [docDeleted]);
 
   console.log(selectedCell);
+
+  const handleSelectedCell = (selectedCell: []) => {
+    setSelectedCell(selectedCell);
+  };
   return (
     <SnapshotsContainer>
       <TopWrapper>
@@ -92,7 +104,7 @@ const Snapshots = () => {
           <Heatmap
             posts={selectedPosts}
             postCounts={selectedPostCounts}
-            setSelectedCell={setSelectedCell}
+            handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
             <TimeZone></TimeZone>

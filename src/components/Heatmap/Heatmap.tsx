@@ -13,10 +13,10 @@ import {
 interface IHeatmap {
   posts: {};
   postCounts: {};
-  setSelectedCell: React.Dispatch<React.SetStateAction<any[]>>;
+  handleSelectedCell: (selectedCell: []) => void;
 }
 
-const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
+const Heatmap = ({ posts, postCounts, handleSelectedCell }: IHeatmap) => {
   // Create each day's row with 24 elements (1 for each hour) and set the
   // elements' value to the keys of what the fetcherTransform returns
   let sundayRow = Array.from({ length: 24 }, (ele, val) => val).map(
@@ -71,7 +71,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -85,7 +86,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -99,7 +101,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -113,7 +116,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -127,7 +131,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -141,7 +146,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
@@ -155,7 +161,8 @@ const Heatmap = ({ posts, postCounts, setSelectedCell }: IHeatmap) => {
             id={postTime}
             cellCount={postTime in posts ? postCounts[postTime as keyof {}] : 0}
             onClick={() =>
-              postTime in posts && setSelectedCell(posts[postTime as keyof {}])
+              postTime in posts &&
+              handleSelectedCell(posts[postTime as keyof {}])
             }
             tabIndex={postTime in posts ? 0 : -1}
           >
