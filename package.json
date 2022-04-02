@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@styled-icons/entypo": "^10.34.0",
+    "@styled-icons/evaicons-outline": "^10.34.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
