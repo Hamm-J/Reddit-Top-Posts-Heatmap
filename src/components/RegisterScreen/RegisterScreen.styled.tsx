@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CloseOutline } from "@styled-icons/evaicons-outline";
 
 export const RegisterScreenContainer = styled.div`
   position: fixed;
@@ -37,4 +38,8 @@ export const ErrorMessage = styled.div`
 export const RegisterForm = styled.form`
   display: flex;
   gap: 4px;
+`;
+
+export const CloseIcon = styled(CloseOutline)`
+  width: 25px;
 `;

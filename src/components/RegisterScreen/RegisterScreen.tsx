@@ -8,6 +8,7 @@ import {
   CloseWindowWrapper,
   ErrorMessage,
   RegisterForm,
+  CloseIcon,
 } from "./RegisterScreen.styled";
 import InputText from "../common/InputText/InputText";
 import InputEmail from "../common/InputEmail/InputEmail";
@@ -50,7 +51,12 @@ const RegisterScreen = ({ open, onClose }: Props) => {
       <RegisterScreenContainer>
         <CloseWindowWrapper>
           <SectionTitle>Sign up!</SectionTitle>
-          <Button onClick={onClose} label="X" minWidth={31}></Button>
+          <Button
+            onClick={onClose}
+            label={<CloseIcon />}
+            minWidth={35}
+            minHeight={35}
+          ></Button>
         </CloseWindowWrapper>
         <Para>It's easy and quick!</Para>
         <RegisterForm onSubmit={(e) => register(e)}>
