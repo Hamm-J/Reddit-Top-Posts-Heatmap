@@ -32,33 +32,18 @@ const Landing = () => {
           If you have an account, you can then save the subreddit post data to
           revisualize at a later time.
         </ListItem>
-      </List>
-      <SectionTitle>About</SectionTitle>
-      <ParaWrapper>
-        <Para>
-          This project was created with the goal of practicing and learning
-          about the{" "}
+        <ListItem>
+          The date and time is{" "}
           <Anchor
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+            href="https://en.wikipedia.org/wiki/Unix_time"
             target="_blank"
           >
-            Fetch API
-          </Anchor>
-          ,{" "}
-          <Anchor href="https://firebase.google.com/" target="_blank">
-            Firebase
-          </Anchor>
-          ,{" "}
-          <Anchor href="https://www.typescriptlang.org/" target="_blank">
-            TypeScript
-          </Anchor>
-          , and{" "}
-          <Anchor href="https://reactjs.org/" target="_blank">
-            React
-          </Anchor>
-          . The code can be found on my GitHub.
-        </Para>
-      </ParaWrapper>
+            {" "}
+            Unix Time
+          </Anchor>{" "}
+          based.
+        </ListItem>
+      </List>
     </LandingContainer>
   );
 };
