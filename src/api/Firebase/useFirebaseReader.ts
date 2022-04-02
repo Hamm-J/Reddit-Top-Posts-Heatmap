@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   collection,
   query,
@@ -11,6 +11,7 @@ const useFirebaseReader = (database: Firestore, user: any) => {
   const [postsSnapshot, setPostsSnapshot] = useState({});
   const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
   const [commentsSnapshot, setCommentsSnapshot] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const getPosts = async () => {
     try {
@@ -74,10 +75,13 @@ const useFirebaseReader = (database: Firestore, user: any) => {
     postsSnapshot,
     postCountsSnapshot,
     commentsSnapshot,
-    () => {
-      getPosts();
-      getPostCounts();
-      getComments();
+    loading,
+    async () => {
+      setLoading(true);
+      await getPosts();
+      await getPostCounts();
+      await getComments();
+      setLoading(false);
     },
   ] as const;
 };
