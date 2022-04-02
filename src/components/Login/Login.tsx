@@ -15,6 +15,7 @@ import {
   InputWrapper,
   ButtonWrapper,
 } from "./Login.styled";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 import useFirebaseLogin from "../../api/Firebase/useFirebaseLogin";
 
 const Login = () => {
@@ -91,7 +92,13 @@ const Login = () => {
             </InputWrapper>
             <ButtonWrapper>
               <Button
-                label={loading ? "..." : "Login"}
+                label={
+                  loading ? (
+                    <LoadingIcon sizePixels={20} color="white" />
+                  ) : (
+                    "Login"
+                  )
+                }
                 loading={loading}
                 type="submit"
                 remFontSize={1.1}
@@ -100,6 +107,7 @@ const Login = () => {
                 borderColorActive="black"
                 borderColorHover="black"
                 minWidth={123}
+                minHeight={33}
               ></Button>
               <Button
                 label="Sign up?"

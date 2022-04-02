@@ -102,9 +102,8 @@ const SearchSubreddit = ({
         />
         <Button
           label={
-            loading ? <LoadingIcon sizePixels={20} color="white" /> : "Search"
+            loading ? <LoadingIcon sizePixels={30} color="white" /> : "Search"
           }
-          // label={<LoadingIcon sizePixels={30} color="white" />}
           onClick={() => submitHandler()}
           loading={loading}
           remFontSize={2}

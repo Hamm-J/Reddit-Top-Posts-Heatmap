@@ -13,6 +13,7 @@ import InputText from "../common/InputText/InputText";
 import InputEmail from "../common/InputEmail/InputEmail";
 import Button from "../common/Button/Button";
 import { SectionTitle, Para } from "../common/Markup/Markup.styled";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 
 interface Props {
   open: boolean;
@@ -68,7 +69,15 @@ const RegisterScreen = ({ open, onClose }: Props) => {
           ></InputText>
           <Button
             type="submit"
-            label={loading ? "..." : "Register"}
+            label={
+              loading ? (
+                <>
+                  <LoadingIcon sizePixels={20} color="white" />
+                </>
+              ) : (
+                "Register"
+              )
+            }
             loading={loading}
             remFontSize={1.1}
             minWidth={88}

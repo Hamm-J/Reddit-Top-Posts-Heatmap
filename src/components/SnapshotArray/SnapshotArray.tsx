@@ -7,6 +7,7 @@ import {
   EmptySnapshots,
 } from "./SnapshotArray.styled";
 import { unixToTime, unixToCalendarDate } from "../../helpers/UTCConversions";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 
 interface ISnapshotArray {
   postsSnapshot: {};
@@ -53,7 +54,9 @@ const SnapshotArray = ({
   return (
     <SnapshotArrayContainer>
       {loading ? (
-        <LoadingSymbol>...</LoadingSymbol>
+        <LoadingSymbol>
+          <LoadingIcon sizePixels={45} color="orange" />
+        </LoadingSymbol>
       ) : (
         <>
           {Object.keys(postCountsSnapshot).length ? (

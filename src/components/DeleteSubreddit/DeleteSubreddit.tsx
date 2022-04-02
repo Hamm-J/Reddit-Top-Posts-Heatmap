@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { FetcherContext } from "../../contexts/FetcherContext";
 import { DeleteSubredditContainer } from "./DeleteSubreddit.styled";
 import Button from "../common/Button/Button";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 import useFirebaseDeleter from "../../api/Firebase/useFirebaseDeleter";
 import { db } from "../../firebase-config";
 
@@ -41,7 +42,16 @@ const DeleteSubreddit = ({
   return (
     <DeleteSubredditContainer>
       <Button
-        label={loading ? "Deleting..." : "Delete Subreddit Data?"}
+        label={
+          loading ? (
+            <>
+              <span>Deleting...</span>
+              <LoadingIcon sizePixels={20} color="white" />
+            </>
+          ) : (
+            "Delete Subreddit Data?"
+          )
+        }
         onClick={deleteSubreddit}
         loading={loading}
         remFontSize={1.2}
