@@ -3,6 +3,7 @@ import Button from "../common/Button/Button";
 import useFirebaseWriter from "../../api/Firebase/useFirebaseWriter";
 import { SaveSubredditContainer } from "./SaveSubreddit.styled";
 import { FetcherContext } from "../../contexts/FetcherContext";
+import LoadingIcon from "../../components/common/LoadingIcon/LoadingIcon";
 
 interface ISaveSubreddit {
   posts: {};
@@ -34,8 +35,18 @@ const SaveSubreddit = ({ posts, postCounts }: ISaveSubreddit) => {
   return (
     <SaveSubredditContainer>
       <Button
-        label={loading ? "Saving..." : "Save Subreddit Data?"}
+        label={
+          loading ? (
+            <>
+              <span>Saving...</span>
+              <LoadingIcon sizePixels={20} color="white" />
+            </>
+          ) : (
+            "Save Subreddit Data?"
+          )
+        }
         onClick={() => saveSubreddit()}
+        loading={loading}
         remFontSize={1.2}
         backgroundColor="orange"
         borderColor="orange"

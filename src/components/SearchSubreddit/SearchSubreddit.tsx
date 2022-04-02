@@ -8,6 +8,7 @@ import {
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
@@ -79,25 +80,37 @@ const SearchSubreddit = ({
     topPostsFetcher();
   };
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      submitHandler();
+    }
+  };
+
   return (
     <SearchSubredditContainer>
       <FlexContainer>
         <R>r /</R>
         <InputText
+          type="text"
           placeholder="Subreddit..."
           onChange={(event: void) => searchHandler(event)}
+          onKeyPress={(event: void) => handleKeyPress(event)}
           innerRef={inputFieldRef}
           remFontSize={2}
           value={input}
           borderThickness="medium"
         />
         <Button
-          label={loading ? "..." : "Search"}
+          label={
+            loading ? <LoadingIcon sizePixels={30} color="white" /> : "Search"
+          }
           onClick={() => submitHandler()}
+          loading={loading}
           remFontSize={2}
           backgroundColor="orange"
           borderColor="orange"
           minWidth={128}
+          minHeight={53}
         ></Button>
       </FlexContainer>
       {error && <Error>{error}</Error>}

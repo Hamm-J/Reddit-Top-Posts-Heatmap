@@ -22,8 +22,8 @@ const Snapshots = () => {
   // Firebase states
   const [postsSnapshot, setPostsSnapshot] = useState({});
   const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
-  const [commentsSnapshot, setCommentsShapshot] = useState({});
-  const [postsSnapshotDoc, setPostsSnapshostDoc] = useState("");
+  const [commentsSnapshot, setCommentsSnapshot] = useState({});
+  const [postsSnapshotDoc, setPostsSnapshotDoc] = useState("");
   const [postCountsSnapshotDoc, setPostCountsSnapshotDoc] = useState("");
   const [docDeleted, setDocDeleted] = useState(false);
 
@@ -38,24 +38,28 @@ const Snapshots = () => {
 
   const [showHeatmap, setShowHeatmap] = useState(false);
 
-  // Snaphost array states
+  // Snapshot array states
   const [selectedSnapshot, setSelectedSnapshot] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [
     firebasePostsSnapshot,
     firebasePostCountsSnapshot,
     firebaseCommentsSnapshot,
+    firebaseLoading,
     firebaseReader,
   ] = useFirebaseReader(db, user);
 
   useEffect(() => {
     setPostsSnapshot(firebasePostsSnapshot);
     setPostCountsSnapshot(firebasePostCountsSnapshot);
-    setCommentsShapshot(firebaseCommentsSnapshot);
+    setCommentsSnapshot(firebaseCommentsSnapshot);
+    setLoading(firebaseLoading);
   }, [
     firebasePostsSnapshot,
     firebasePostCountsSnapshot,
     firebaseCommentsSnapshot,
+    firebaseLoading,
   ]);
 
   useEffect(() => {
@@ -87,15 +91,18 @@ const Snapshots = () => {
     <SnapshotsContainer>
       <TopWrapper>
         <BannerTitle>Checkout your Subreddit Snapshots!</BannerTitle>
-        <SnapshotsDescription></SnapshotsDescription>
+        {Object.keys(postCountsSnapshot).length > 0 && (
+          <SnapshotsDescription></SnapshotsDescription>
+        )}
         <SnapshotArray
           postsSnapshot={postsSnapshot}
           postCountsSnapshot={postCountsSnapshot}
           setSelectedPosts={setSelectedPosts}
           setSelectedPostCounts={setSelectedPostCounts}
-          setPostsSnapshotDoc={setPostsSnapshostDoc}
+          setPostsSnapshotDoc={setPostsSnapshotDoc}
           setPostCountsSnapshot={setPostCountsSnapshotDoc}
           setSelectedSnapshot={setSelectedSnapshot}
+          loading={loading}
         ></SnapshotArray>
       </TopWrapper>
       {showHeatmap && (
@@ -107,7 +114,7 @@ const Snapshots = () => {
             handleSelectedCell={handleSelectedCell}
           ></Heatmap>
           <Description>
-            <TimeZone></TimeZone>
+            {/* <TimeZone></TimeZone> */}
             <DeleteSubreddit
               postsSnapshotDoc={postsSnapshotDoc}
               postCountsSnapshotDoc={postCountsSnapshotDoc}

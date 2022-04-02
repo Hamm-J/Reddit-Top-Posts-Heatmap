@@ -15,6 +15,7 @@ import {
   InputWrapper,
   ButtonWrapper,
 } from "./Login.styled";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 import useFirebaseLogin from "../../api/Firebase/useFirebaseLogin";
 
 const Login = () => {
@@ -59,6 +60,7 @@ const Login = () => {
           <Button
             label="Logout"
             onClick={logout}
+            loading={loading}
             remFontSize={1.1}
             backgroundColor="orange"
             borderColor="orange"
@@ -81,6 +83,7 @@ const Login = () => {
                 required
               ></InputEmail>
               <InputText
+                type="password"
                 onChange={(e) => setLoginPassword(e.target.value)}
                 placeholder="Password..."
                 remFontSize={1.2}
@@ -89,7 +92,14 @@ const Login = () => {
             </InputWrapper>
             <ButtonWrapper>
               <Button
-                label={loading ? "..." : "Login"}
+                label={
+                  loading ? (
+                    <LoadingIcon sizePixels={20} color="white" />
+                  ) : (
+                    "Login"
+                  )
+                }
+                loading={loading}
                 type="submit"
                 remFontSize={1.1}
                 backgroundColor="orange"
@@ -97,6 +107,7 @@ const Login = () => {
                 borderColorActive="black"
                 borderColorHover="black"
                 minWidth={123}
+                minHeight={33}
               ></Button>
               <Button
                 label="Sign up?"

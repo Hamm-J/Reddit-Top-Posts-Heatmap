@@ -19,8 +19,8 @@ at any time within the "Snapshots" page.
 This is a React application built with stock `create-react-app` [TypeScript Template](https://create-react-app.dev/docs/adding-typescript/)
 webpack and configuration. Styling
 was handled using [styled-components](https://styled-components.com/) to allow for
-dynamic state styling. The [Reddit API](https://www.reddit.com/dev/api/) HTTP
-pipeline was handled with JavaScript's native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch). User registration and authentication is handled via [Firebase](https://firebase.google.com/), and data storage was handled with [Firestore](https://firebase.google.com/docs/firestore),
+dynamic state styling. I used [styled-icons](https://styled-icons.dev/) for custom icons. The [Reddit API](https://www.reddit.com/dev/api/) HTTP
+pipeline was handled with JavaScript's native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch). User registration and authentication is handled via [Firebase](https://firebase.google.com/), and CRUD database management is implemented with [Firestore](https://firebase.google.com/docs/firestore),
 to facilitate fast deployment, efficient application scaling, and provide industry standard data security. The application is hosted with [Netlify](https://www.netlify.com/) for continuous deployment via Github integration and repository coupling.
 
 ### Future Features
@@ -41,6 +41,10 @@ to facilitate fast deployment, efficient application scaling, and provide indust
 - **Search autocompletion**: Sometimes we need autocompletion to find the subreddit
   we desire. I plan to leverage the search auto-complete API Reddit provides to
   generate a dropdown of subreddits that the user might be in the process of inputting.
+- **Convert to local time**: Currently, the Heatmap displays the day and time in terms
+  of [Unix Time](https://en.wikipedia.org/wiki/Unix_time), as the Reddit API is set in.
+  I plan to to leverage the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+  to convert the Heatmap's time to the user's local time.
 
 ## License
 

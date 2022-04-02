@@ -22,3 +22,13 @@ export const LoadingSymbol = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const EmptySnapshots = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 20px;
+  font-style: italic;
+  font-family: "Trebuchet MS";
+`;

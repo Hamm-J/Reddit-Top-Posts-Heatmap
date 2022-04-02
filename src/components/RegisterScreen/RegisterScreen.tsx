@@ -8,11 +8,13 @@ import {
   CloseWindowWrapper,
   ErrorMessage,
   RegisterForm,
+  CloseIcon,
 } from "./RegisterScreen.styled";
 import InputText from "../common/InputText/InputText";
 import InputEmail from "../common/InputEmail/InputEmail";
 import Button from "../common/Button/Button";
 import { SectionTitle, Para } from "../common/Markup/Markup.styled";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 
 interface Props {
   open: boolean;
@@ -49,7 +51,12 @@ const RegisterScreen = ({ open, onClose }: Props) => {
       <RegisterScreenContainer>
         <CloseWindowWrapper>
           <SectionTitle>Sign up!</SectionTitle>
-          <Button onClick={onClose} label="X" minWidth={31}></Button>
+          <Button
+            onClick={onClose}
+            label={<CloseIcon />}
+            minWidth={35}
+            minHeight={35}
+          ></Button>
         </CloseWindowWrapper>
         <Para>It's easy and quick!</Para>
         <RegisterForm onSubmit={(e) => register(e)}>
@@ -60,6 +67,7 @@ const RegisterScreen = ({ open, onClose }: Props) => {
             required
           ></InputEmail>
           <InputText
+            type="password"
             onChange={(e) => setRegisterPassword(e.target.value)}
             placeholder="Password..."
             remFontSize={1.2}
@@ -67,7 +75,16 @@ const RegisterScreen = ({ open, onClose }: Props) => {
           ></InputText>
           <Button
             type="submit"
-            label={loading ? "..." : "Register"}
+            label={
+              loading ? (
+                <>
+                  <LoadingIcon sizePixels={20} color="white" />
+                </>
+              ) : (
+                "Register"
+              )
+            }
+            loading={loading}
             remFontSize={1.1}
             minWidth={88}
             backgroundColor="orange"

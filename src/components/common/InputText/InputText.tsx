@@ -1,9 +1,18 @@
-import { InputField, IInputField } from "./InputText.styled";
+import {
+  InputFieldText,
+  InputFieldPassword,
+  IInputField,
+} from "./InputText.styled";
 
 interface Props {
+  type: "text" | "password";
   placeholder: string;
   // TODO: confirm that I need () => void here
   onChange: React.ChangeEventHandler<HTMLInputElement> | (() => void);
+  onKeyPress?:
+    | React.KeyboardEventHandler<HTMLInputElement>
+    | (() => void)
+    | undefined;
   innerRef?: React.RefObject<HTMLInputElement>;
   remFontSize?: IInputField["remFontSize"];
   borderThickness?: IInputField["borderThickness"];
@@ -12,8 +21,10 @@ interface Props {
 }
 
 const InputText = ({
+  type = "text",
   placeholder,
   onChange,
+  onKeyPress,
   innerRef,
   remFontSize = 1,
   borderThickness = "thin",
@@ -22,15 +33,29 @@ const InputText = ({
 }: Props): any => {
   return (
     <>
-      <InputField
-        required={required}
-        placeholder={placeholder}
-        onChange={onChange}
-        ref={innerRef}
-        remFontSize={remFontSize}
-        borderThickness={borderThickness}
-        value={value}
-      />
+      {type === "text" ? (
+        <InputFieldText
+          required={required}
+          placeholder={placeholder}
+          onChange={onChange}
+          onKeyPress={onKeyPress}
+          ref={innerRef}
+          remFontSize={remFontSize}
+          borderThickness={borderThickness}
+          value={value}
+        />
+      ) : (
+        <InputFieldPassword
+          required={required}
+          placeholder={placeholder}
+          onChange={onChange}
+          onKeyPress={onKeyPress}
+          ref={innerRef}
+          remFontSize={remFontSize}
+          borderThickness={borderThickness}
+          value={value}
+        />
+      )}
     </>
   );
 };
