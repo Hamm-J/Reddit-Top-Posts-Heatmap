@@ -25,18 +25,23 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Update the user on auth change
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
   });
 
-  const firebaseLogin = useFirebaseLogin(
+  // use login credentials and auth information to sign in
+  const [firebaseLoading, firebaseError, firebaseLogin] = useFirebaseLogin(
     auth,
     loginEmail,
-    loginPassword,
-    setUser,
-    setError,
-    setLoading
+    loginPassword
   );
+
+  useEffect(() => {
+    setLoading(firebaseLoading);
+    setError(firebaseError);
+  }, [firebaseLoading, firebaseError]);
+
   const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     firebaseLogin();
@@ -46,28 +51,20 @@ const Login = () => {
     await signOut(auth);
   };
 
-  // clear error message when successfully logged in
-  useEffect(() => {
-    if (user) {
-      setError("");
-    }
-  }, [user]);
   return (
     <LoginContainer>
       {user ? (
         <LoggedInContainer>
           <LoggedInMessage>{user?.email}</LoggedInMessage>
-          <div>
-            <Button
-              label="Logout"
-              onClick={logout}
-              remFontSize={1.1}
-              backgroundColor="orange"
-              borderColor="orange"
-              borderColorActive="black"
-              borderColorHover="black"
-            ></Button>
-          </div>
+          <Button
+            label="Logout"
+            onClick={logout}
+            remFontSize={1.1}
+            backgroundColor="orange"
+            borderColor="orange"
+            borderColorActive="black"
+            borderColorHover="black"
+          ></Button>
         </LoggedInContainer>
       ) : (
         <LoggedOutContainer>

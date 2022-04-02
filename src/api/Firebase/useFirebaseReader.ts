@@ -10,7 +10,7 @@ import {
 const useFirebaseReader = (database: Firestore, user: any) => {
   const [postsSnapshot, setPostsSnapshot] = useState({});
   const [postCountsSnapshot, setPostCountsSnapshot] = useState({});
-  const [commentsSnapahot, setCommentsSnapshot] = useState({});
+  const [commentsSnapshot, setCommentsSnapshot] = useState({});
 
   const getPosts = async () => {
     try {
@@ -73,7 +73,7 @@ const useFirebaseReader = (database: Firestore, user: any) => {
   return [
     postsSnapshot,
     postCountsSnapshot,
-    commentsSnapahot,
+    commentsSnapshot,
     () => {
       getPosts();
       getPostCounts();
