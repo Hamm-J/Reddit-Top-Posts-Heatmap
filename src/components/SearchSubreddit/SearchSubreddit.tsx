@@ -8,6 +8,7 @@ import {
 } from "./SearchSubreddit.styled";
 import InputText from "../common/InputText/InputText";
 import Button from "../common/Button/Button";
+import LoadingIcon from "../common/LoadingIcon/LoadingIcon";
 import useTopPostsFetcher from "../../api/Reddit/useTopPostsFetcher";
 
 export interface ISearchSubreddit {
@@ -100,13 +101,17 @@ const SearchSubreddit = ({
           borderThickness="medium"
         />
         <Button
-          label={loading ? "..." : "Search"}
+          label={
+            loading ? <LoadingIcon sizePixels={20} color="white" /> : "Search"
+          }
+          // label={<LoadingIcon sizePixels={30} color="white" />}
           onClick={() => submitHandler()}
           loading={loading}
           remFontSize={2}
           backgroundColor="orange"
           borderColor="orange"
           minWidth={128}
+          minHeight={53}
         ></Button>
       </FlexContainer>
       {error && <Error>{error}</Error>}

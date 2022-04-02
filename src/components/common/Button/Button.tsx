@@ -1,6 +1,6 @@
 import { ButtonField, IButtonField } from "./Button.styled";
 interface Props {
-  label: string;
+  label: string | JSX.Element;
   onClick?: () => any;
   loading?: boolean;
   innerRef?: React.RefObject<HTMLButtonElement>;
@@ -13,6 +13,7 @@ interface Props {
   fontColor?: IButtonField["fontColor"];
   type?: "button" | "submit" | "reset" | undefined;
   minWidth?: IButtonField["minWidth"];
+  minHeight?: IButtonField["minWidth"];
 }
 
 const Button = ({
@@ -29,6 +30,7 @@ const Button = ({
   onKeyUp,
   type = undefined,
   minWidth,
+  minHeight,
 }: Props): any => {
   return (
     <ButtonField
@@ -44,6 +46,7 @@ const Button = ({
       fontColor={fontColor}
       onKeyUp={onKeyUp}
       minWidth={minWidth}
+      minHeight={minHeight}
     >
       {label}
     </ButtonField>

@@ -9,6 +9,7 @@ export interface IButtonField {
   borderColorHover: string;
   borderColorActive: string;
   minWidth: number | undefined;
+  minHeight: number | undefined;
 }
 
 export const ButtonField = styled.button<IButtonField>`
@@ -21,9 +22,13 @@ export const ButtonField = styled.button<IButtonField>`
   /* cursor: pointer; */
   cursor: ${(props) => (props.loading ? "progress" : "pointer")};
   min-width: ${(props) => props.minWidth}px;
+  min-height: ${(props) => props.minHeight}px;
   border-radius: 4px;
   outline: none;
   font-family: Verdana;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover,
   &:focus {
