@@ -60,6 +60,7 @@ const RegisterScreen = ({ open, onClose }: Props) => {
             required
           ></InputEmail>
           <InputText
+            type="password"
             onChange={(e) => setRegisterPassword(e.target.value)}
             placeholder="Password..."
             remFontSize={1.2}

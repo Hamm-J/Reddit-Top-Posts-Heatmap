@@ -84,6 +84,7 @@ const SearchSubreddit = ({
       <FlexContainer>
         <R>r /</R>
         <InputText
+          type="text"
           placeholder="Subreddit..."
           onChange={(event: void) => searchHandler(event)}
           innerRef={inputFieldRef}

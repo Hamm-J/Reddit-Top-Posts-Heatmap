@@ -81,6 +81,7 @@ const Login = () => {
                 required
               ></InputEmail>
               <InputText
+                type="password"
                 onChange={(e) => setLoginPassword(e.target.value)}
                 placeholder="Password..."
                 remFontSize={1.2}
