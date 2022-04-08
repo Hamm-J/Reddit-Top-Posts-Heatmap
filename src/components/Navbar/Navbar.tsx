@@ -17,7 +17,7 @@ const Navbar = () => {
     <NavbarContainer>
       <LinkWrapper>
         <ImgAnchor href="https://www.reddit.com/" target="_blank">
-          <img src={redditLogo} alt="reddit logo" height="50px" width="50px" />
+          <img src={redditLogo} alt="reddit logo" height="60px" width="60px" />
         </ImgAnchor>
         {user && (
           <>

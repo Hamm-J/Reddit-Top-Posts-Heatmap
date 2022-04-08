@@ -26,7 +26,8 @@ export const LoggedOutContainer = styled.div``;
 
 export const LoginForm = styled.form`
   display: flex;
-  flex-direction: column;
+  gap: 4px;
+  /* flex-direction: column; */
 `;
 
 export const LoggedInMessage = styled.div`
@@ -41,11 +42,12 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 4px;
+  /* gap: 4px; */
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 4px;
-  margin-top: 4px;
+  /* margin-top: 4px; */
 `;
