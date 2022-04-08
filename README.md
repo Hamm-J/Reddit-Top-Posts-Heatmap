@@ -2,7 +2,7 @@
 
 ## Description
 
-Quickly find the best time and day of week to post on your favorite subreddit [right now!](https://reddit-top-posts-heatmap.netlify.app/)
+Quickly find the best time and day of week to post on your favorite subreddit [right now](https://reddit-top-posts-heatmap.netlify.app/), and increase your engagement and impact in seconds!
 
 ### How To Use
 
