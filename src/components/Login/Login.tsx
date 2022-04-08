@@ -79,14 +79,14 @@ const Login = () => {
               <InputEmail
                 onChange={(e) => setLoginEmail(e.target.value)}
                 placeholder="Email..."
-                remFontSize={1.2}
+                remFontSize={1.3}
                 required
               ></InputEmail>
               <InputText
                 type="password"
                 onChange={(e) => setLoginPassword(e.target.value)}
                 placeholder="Password..."
-                remFontSize={1.2}
+                remFontSize={1.3}
                 required
               ></InputText>
             </InputWrapper>
@@ -101,7 +101,7 @@ const Login = () => {
                 }
                 loading={loading}
                 type="submit"
-                remFontSize={1.1}
+                remFontSize={1}
                 backgroundColor="orange"
                 borderColor="orange"
                 borderColorActive="black"
@@ -113,7 +113,7 @@ const Login = () => {
                 label="Sign up?"
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                remFontSize={1.1}
+                remFontSize={1}
                 backgroundColor="orange"
                 borderColor="orange"
                 borderColorActive="black"
