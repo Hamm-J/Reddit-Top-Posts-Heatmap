@@ -1,5 +1,5 @@
 import React from "react";
-import { LandingContainer, ParaWrapper } from "./Landing.styled";
+import { LandingContainer } from "./Landing.styled";
 import {
   SectionTitle,
   Para,
@@ -14,23 +14,23 @@ const Landing = () => {
       <SectionTitle>How it works</SectionTitle>
       <List>
         <ListItem>Search a subreddit.</ListItem>
-        <ListItem>We find the top 100 posts from the last year.</ListItem>
         <ListItem>
-          We visualize the data in a heatmap that is grouped by weekday and hour
-          of the day.
+          We find the top 100 posts from that subreddit within the last year.
         </ListItem>
         <ListItem>
-          Click on a heatmap cell to inspect the posts from that day and time.
+          The top 100 posts are presented in a heatmap grouped by weekday and
+          hour of the day.
+        </ListItem>
+        <ListItem>
+          Click on any occupied heatmap square to inspect the posts from that
+          day and time.
         </ListItem>
         <ListItem>
           Instantly find out when to post on{" "}
           <Anchor href="https://www.reddit.com/" target="_blank">
             Reddit
           </Anchor>
-        </ListItem>
-        <ListItem>
-          If you have an account, you can then save the subreddit post data to
-          revisualize at a later time.
+          !
         </ListItem>
         <ListItem>
           The date and time is{" "}
@@ -44,6 +44,27 @@ const Landing = () => {
           based.
         </ListItem>
       </List>
+      <SectionTitle>Bonus</SectionTitle>
+      <Para>
+        If you create an account, you can save the subreddit post data to
+        revisualize at any time in the future!
+      </Para>
+      <SectionTitle>Special Thanks</SectionTitle>
+      <Para>
+        A special thanks to Reddit for making its{" "}
+        <Anchor href="https://www.reddit.com/dev/api/" target="_blank">
+          API
+        </Anchor>{" "}
+        available to the public for free. This tool wouldn't have been possible
+        without this generosity from Reddit. Thank you,{" "}
+        <Anchor
+          href="https://en.wikipedia.org/wiki/Snoo#:~:text=Snoo%2C%20the%20mascot%20of%20the,born%201962)%2C%20American%20discus%20thrower"
+          target="_blank"
+        >
+          Snoo
+        </Anchor>
+        .
+      </Para>
     </LandingContainer>
   );
 };

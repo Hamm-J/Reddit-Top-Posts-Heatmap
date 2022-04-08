@@ -21,6 +21,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   font-family: Verdana;
+  margin-bottom: 8px;
 `;
 
 export const Anchor = styled.a`
