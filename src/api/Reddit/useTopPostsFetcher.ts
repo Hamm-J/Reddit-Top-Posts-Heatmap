@@ -11,10 +11,8 @@ const useTopPostsFetcher = (url: string) => {
       setLoading(true);
 
       const response: any = await fetch(url);
-      console.log(response);
 
       const data = await response.json();
-      console.log(data);
 
       const topPostsArray = data.data.children;
       const transformedPosts = transformData(topPostsArray);

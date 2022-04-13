@@ -24,10 +24,6 @@ const Search = () => {
   // State so that the Heatmap is only shown on Home after the first search
   const [showHeatmap, setShowHeatmap] = useState(false);
 
-  console.log("posts: ");
-  console.log(posts);
-  console.log(postCounts);
-
   // reset the selectedCell whenever a a new set of posts is fetched
   useEffect(() => {
     setSelectedCell([]);
