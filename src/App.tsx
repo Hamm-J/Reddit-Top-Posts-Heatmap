@@ -26,7 +26,6 @@ function App() {
     isOpen,
     setIsOpen,
   };
-  console.log("app rendered");
   return (
     <Router>
       <FetcherContext.Provider value={contextValues}>

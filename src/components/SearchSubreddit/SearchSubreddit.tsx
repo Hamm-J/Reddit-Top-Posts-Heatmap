@@ -29,7 +29,6 @@ const SearchSubreddit = ({
     `https://www.reddit.com/r/${subreddit}/top.json?t=${time}&limit=${limit}`
   );
 
-  console.log(topPostsUrl);
   // state of the current input value
   const [input, setInput] = useState("");
 

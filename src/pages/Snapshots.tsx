@@ -82,8 +82,6 @@ const Snapshots = () => {
     setShowHeatmap(false);
   }, [docDeleted]);
 
-  console.log(selectedCell);
-
   const handleSelectedCell = (selectedCell: []) => {
     setSelectedCell(selectedCell);
   };

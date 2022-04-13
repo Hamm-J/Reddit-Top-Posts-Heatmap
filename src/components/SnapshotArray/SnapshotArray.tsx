@@ -48,8 +48,6 @@ const SnapshotArray = ({
 
     setPostsSnapshotDoc(`${subreddit}_posts_${docSaveTime}`);
     setPostCountsSnapshot(`${subreddit}_postCounts_${docSaveTime}`);
-    console.log("test");
-    console.log("postCountsSnapshot: " + postCountsSnapshot);
   };
   return (
     <SnapshotArrayContainer>
