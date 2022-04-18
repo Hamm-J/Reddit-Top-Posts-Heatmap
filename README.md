@@ -8,11 +8,12 @@ Quickly find the best time and day of week to post on your favorite subreddit [r
 
 This application allows the user to search for a subreddit of their choice and
 then visualize the top posts from the last year in a heatmap. To further inspect
-the posts the posts from a particular time, the user can simply click on that
-heatmap cell.
-If the user wishes to give their heatmap at a later date, the user
+the posts the posts from a particular time, the user can simply click on the
+heatmap cell they are interested in.
+If the user wishes to view their heatmap at a later date, the user
 can simply: register an account, click the "save" button, and view their snapshots
-at any time within the "Snapshots" page.
+at any time within the "Snapshots" page. They can also delete snapshots they no longer
+wish to keep by clicking on the "delete" button on the "Snapshots" page.
 
 ### Technologies
 
@@ -20,7 +21,7 @@ This is a React application built with the stock `create-react-app` [TypeScript 
 webpack and configuration. I opted to use [TypeScript](https://www.typescriptlang.org/) for static typing, self-documentation, and peace of mind as my application grew. Styling
 was handled using [styled-components](https://styled-components.com/) to allow for
 dynamic state styling. I used [styled-icons](https://styled-icons.dev/) for custom icons. The [Reddit API](https://www.reddit.com/dev/api/) HTTP
-pipeline was handled with NodeJS's native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch). User registration-and-authentication and CRUD database were implemented with [Firebase](https://firebase.google.com/)
+pipeline was handled with NodeJS's native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch). User registration-and-authentication and CRUD database operations were implemented with [Firebase](https://firebase.google.com/)
 to facilitate fast deployment, efficient application scaling, and provide industry standard data security. The application is hosted with [Netlify](https://www.netlify.com/) for continuous deployment via Github integration and repository coupling.
 
 ### Future Features
@@ -32,7 +33,7 @@ to facilitate fast deployment, efficient application scaling, and provide indust
   as to which type of post to make on their selected subreddit.
 - **Data exporting**: In addition to saving and revisualizing the top posts of a
   subreddit at a particular moment in time, I plan to allow the user to download
-  the heatmap's data in the form of a CSV, JSON, etc..
+  the heatmap's data in the form of a CSV, JSON, PDF, etc..
 - **Auto scraping**: News moves fast in some of Reddit's most popular subreddits.
   As such, the top 100 posts of these subreddits might fluctuate more frequently.
   To assist the user in getting the best sense of when to post on their subreddit,
@@ -45,6 +46,10 @@ to facilitate fast deployment, efficient application scaling, and provide indust
   of [unix time](https://en.wikipedia.org/wiki/Unix_time), as the Reddit API is set in.
   I plan to to leverage the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
   to convert the Heatmap's time to the user's local time.
+- **Responsive mobile design**: While this project was not initially intended for
+  mobile viewing, in today's world one cannot ignore the market share that mobile
+  users have in the tech space. I plan to support mobile use with a clean and easy
+  to use mobile UI.
 
 ## License
 
