@@ -121,8 +121,8 @@ const Login = () => {
                 minWidth={123}
               ></Button>
             </ButtonWrapper>
-            {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
           </LoginForm>
+          {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
         </LoggedOutContainer>
       )}
     </LoginContainer>
